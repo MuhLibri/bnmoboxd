@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   web:
-    build: ./docker
+    build: ./
     image: tubes-1:latest
     env_file:
       - .env
@@ -25,7 +25,8 @@ services:
     ports:
       - "8002:3306"
     volumes:
-      - mysql:/var/lib/mysql
+      - ./mysql:/var/lib/mysql
+      - ./migrations/init.sql:/docker-entrypoint-initdb.d/init.sql
     env_file:
       - .env
     networks:
