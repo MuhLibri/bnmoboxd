@@ -1,6 +1,39 @@
-version: '3.3'
+version: "3.3"
+
 services:
   web:
+    build: ./docker
     image: tubes-1:latest
+    env_file:
+      - .env
     ports:
-      - 8008:80
+      - "8080:80"
+    volumes:
+      - ./:/var/www
+    networks:
+      - bnmoboxd-app
+
+  bnmoboxd-db:
+    image: mysql:latest
+    hostname: bnmoboxd-db
+    healthcheck:
+      test: mysqladmin ping -h localhost -u${MYSQL_USER} -p{MYSQL_PASSWORD}
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: always
+    ports:
+      - "8002:3306"
+    volumes:
+      - mysql:/var/lib/mysql
+    env_file:
+      - .env
+    networks:
+      - bnmoboxd-app
+
+volumes:
+  mysql:
+    driver: local
+
+networks:
+  bnmoboxd-app:
