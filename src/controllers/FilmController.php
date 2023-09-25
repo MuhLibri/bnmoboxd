@@ -9,7 +9,7 @@ class FilmController extends Controller
 {
     private FilmService $filmService;
     public function __construct(){
-        require_once __DIR__ . '/../services/FilmService.php';
+        require_once Application::$BASE_DIR . '/src/services/FilmService.php';
         $this->filmService = new FilmService();
     }
 

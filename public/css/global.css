@@ -1,0 +1,64 @@
+:root {
+    /* Color  */
+    --clr-background-base: #292929;
+    --clr-background-disabled: #323232;
+    --clr-background-surface: #3E3E3E;
+    --clr-primary: #BB86FC;
+    --clr-primary-dark: #7F39FB;
+    --clr-danger: #CF6679;
+    --clr-muted: rgba(255, 255, 255, 0.38);
+
+    /* Breakpoint  */
+    --sm: 640px;
+    --md: 768px;
+    --lg: 1024px;
+    --xl: 1280px;
+    --2xl: 1536px;
+
+    /* Others  */
+    --radius-lg: 2rem;
+    --radius-md: 0.5rem;
+    --spacing: 0.25rem;
+    --transition: all 0.2s linear;
+    --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+body {
+    background-color: var(--clr-background-base);
+    font-family: Arial, sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input {
+    border-radius: var(--radius-md);
+    background: var(--clr-background-disabled);
+    color: white;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline-color: var(--clr-primary);
+    box-sizing: border-box;
+}
+
+
+.btn-primary {
+    padding: 14px 32px;
+    border-radius: var(--radius-md);
+    border: none;
+    background-color: var(--clr-primary);
+    color: white;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+
+    background-color: var(--clr-primary-dark);
+}

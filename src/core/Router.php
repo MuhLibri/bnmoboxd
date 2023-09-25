@@ -12,44 +12,46 @@ class Router
         $this->response = $response;
     }
     public function get(string $url, $handler) {
-        $this->routes['get'][$url] = $handler;
+        $this->routes[$url]['get'] = $handler;
     }
 
     public function post(string $url, $handler) {
-        $this->routes['post'][$url] = $handler;
+        $this->routes[$url]['post'] = $handler;
     }
 
     public function patch(string $url, $handler) {
-        $this->routes['patch'][$url] = $handler;
+        $this->routes[$url]['patch'] = $handler;
     }
 
     public function put(string $url, $handler) {
-        $this->routes['put'][$url] = $handler;
+        $this->routes[$url]['put'] = $handler;
     }
 
     public function delete(string $url, $handler) {
-        $this->routes['delete'][$url] = $handler;
+        $this->routes[$url]['delete'] = $handler;
     }
 
     public function findHandler()
     {
         $path = $this->request->getPath();
         $method = $this->request->getMethod();
-
-        if (isset($this->routes[$method][$path])) {
-            return $this->routes[$method][$path];
+        if (isset($this->routes[$path][$method])) {
+            return $this->routes[$path][$method];
         }
-
-        foreach ($this->routes[$method] as $route => $handler) {
+        foreach (array_keys($this->routes) as $route) {
             $pattern = preg_replace('/(:\w+)/', '(\w+)', $route);
             $pattern = "@^" . $pattern . "$@";
-
             if (preg_match($pattern, $path, $matches)) {
-                array_shift($matches);
-                $this->request->setParams($matches);
-                return $handler;
+                if (isset($this->routes[$route][$method])) {
+                    array_shift($matches);
+                    $this->request->setParams($matches);
+                    return $this->routes[$route][$method];
+                }
+                $this->response->setStatusCode(405);
+                return null;
             }
         }
+        $this->response->setStatusCode(404);
         return null;
     }
 
@@ -57,7 +59,6 @@ class Router
     {
         $handler = $this->findHandler();
         if (!$handler) {
-            $this->response->setStatusCode(404);
             return "Route not found.";
         }
         if (is_array($handler)) {
