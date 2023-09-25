@@ -10,9 +10,7 @@ class Database
         $host = $config['host'] ?? 'localhost';
         $port = $config['port'] ?? '3306';
         $db_name = $config['db_name'] ?? 'tubes';
-
         $dsn = 'mysql:host=' . $host . ';port=' .$port . ';dbname=' . $db_name;
-
         $username = $config['username'] ?? '';
         $password = $config['password'] ?? '';
 
@@ -20,10 +18,6 @@ class Database
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
-    public function prepare($sql): \PDOStatement
-    {
-        return $this->pdo->prepare($sql);
-    }
 
     private function log($message)
     {
