@@ -1,13 +1,16 @@
+DROP TABLE IF EXISTS watch_lists;
+DROP TABLE IF EXISTS film_reviews;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS films;
-DROP TABLE IF EXISTS film_reviews;
-DROP TABLE IF EXISTS watch_lists;
 -- Create 'users' table
 CREATE TABLE IF NOT EXISTS users (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL UNIQUE,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50),
     email VARCHAR(255) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'user') NOT NULL DEFAULT 'user',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -17,6 +20,7 @@ CREATE TABLE IF NOT EXISTS films (
     title VARCHAR(255) NOT NULL,
     release_year INT(11) NOT NULL,
     description TEXT,
+    genre ENUM('Action', 'Comedy', 'Drama', 'Sci-Fi', 'Horror', 'Fantasy', 'Other') NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -45,11 +49,11 @@ CREATE TABLE IF NOT EXISTS watch_lists (
 );
 
 -- Insert sample data for 'users' table
-INSERT INTO users (username, email, password_hash)
+INSERT INTO users (username, first_name, email, password_hash)
 VALUES
-    ('user1', 'user1@example.com', 'hashed_password_1'),
-    ('user2', 'user2@example.com', 'hashed_password_2'),
-    ('user3', 'user3@example.com', 'hashed_password_3');
+    ('user1', 'user1', 'user1@example.com', '$2y$10$Rj8KgMT1OnRPz.pMH3A/U.3CDqwqgNamF8yFCkYi91FVy7pmXLyZq'),
+    ('user2', 'user2', 'user2@example.com', '$2y$10$Rj8KgMT1OnRPz.pMH3A/U.3CDqwqgNamF8yFCkYi91FVy7pmXLyZq'),
+    ('user3', 'user3', 'user3@example.com', '$2y$10$Rj8KgMT1OnRPz.pMH3A/U.3CDqwqgNamF8yFCkYi91FVy7pmXLyZq');
 
 -- Insert sample data for 'films' table
 INSERT INTO films (title, release_year, description)
