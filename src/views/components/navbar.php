@@ -37,5 +37,6 @@ function isNavLinkActive($currentUrl, $link_url) {
             <button id="logoutButton">Logout</button>
         </div>
     </div>
+    <a href="javascript:void(0);" class="icon" onclick="onClick()">&#9776;</a>
 </div>
 <script defer src="/js/navbar.js"></script>
