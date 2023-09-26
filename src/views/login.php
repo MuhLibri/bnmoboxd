@@ -1,26 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/login.css">
-    <title>Login Form</title>
-</head>
-<body>
 <div class="container">
     <h2>Login</h2>
-    <form action="/login" method="POST">
+    <form id="login-form">
         <div class="form-group">
-            <label for="email">Username</label>
-            <input type="text" id="username" name="email" required>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" novalidate>
+            <label class="form-error" id="username-form-error"></label>
         </div>
         <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" novalidate>
+            <label class="form-error" id="password-form-error"></label>
         </div>
+        <label class="form-error" id="auth-form-error"></label>
         <button type="submit" class="btn-primary">Login</button>
     </form>
 </div>
-</body>
-</html>
+<script defer src="/js/form-handler.js"></script>
+<script defer src="/js/login.js"></script>

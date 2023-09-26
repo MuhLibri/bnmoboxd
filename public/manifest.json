@@ -1,0 +1,6 @@
+{
+  "name": "BNMOBOXD",
+  "short_name": "BNMOBOXD",
+  "start_url": "/",
+  "display": "standalone"
+}
