@@ -52,7 +52,7 @@ class Request
         $data = [];
         if($this->method==="post"){
             foreach ($_POST as $key => $value) {
-                $data[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                $data[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
         return $data;
