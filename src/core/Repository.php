@@ -20,6 +20,16 @@ class Repository
         return $stmt->fetch();
     }
 
+    public function save($sql, $params) {
+        $stmt = $this->pdo->prepare($sql);
+        foreach ($params as $key => $item) {
+            $type = $this->getBindType($item);
+            $stmt->bindValue(":$key", $item, $type);
+        }
+        $stmt->execute();
+        return true;
+    }
+
     public function getBindType($value) {
         switch (true) {
             case is_int($value):
