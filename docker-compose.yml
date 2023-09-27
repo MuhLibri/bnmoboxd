@@ -25,16 +25,11 @@ services:
     ports:
       - "8002:3306"
     volumes:
-      - ./mysql:/var/lib/mysql
       - ./migrations/init.sql:/docker-entrypoint-initdb.d/init.sql
     env_file:
       - .env
     networks:
       - bnmoboxd-app
-
-volumes:
-  mysql:
-    driver: local
 
 networks:
   bnmoboxd-app:
