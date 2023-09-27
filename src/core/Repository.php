@@ -5,11 +5,10 @@ namespace app\core;
 class Repository
 {
     private \PDO $pdo;
-    public string $forModel;
     public function __construct() {
         $this->pdo = Application::$db->pdo;
     }
-    public function findOne($sql, $params)
+    protected function findOne($sql, $params)
     {
         $stmt = $this->pdo->prepare($sql);
         foreach ($params as $key => $item) {
@@ -20,7 +19,18 @@ class Repository
         return $stmt->fetch();
     }
 
-    public function save($sql, $params) {
+    protected function findAll($sql, $params)
+    {
+        $stmt = $this->pdo->prepare($sql);
+        foreach ($params as $key => $item) {
+            $type = $this->getBindType($item);
+            $stmt->bindValue(":$key", $item, $type);
+        }
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    protected function save($sql, $params) {
         $stmt = $this->pdo->prepare($sql);
         foreach ($params as $key => $item) {
             $type = $this->getBindType($item);
