@@ -14,11 +14,17 @@ class FilmController extends Controller
     }
 
     public function index(Request $request) {
-        $id = $request->getParams()[0];
-        return $this->render('test');
+        $films = $this->filmService->getFilms(['take' => 10]);
+        $this->render('films', ["films" => $films]);
     }
     public function show(Request $request) {
         $id = $request->getParams()[0];
         return $this->filmService->getFilm($id);
+    }
+
+    public function search(Request $request) {
+        $options = $request->getQuery();
+        $films = $this->filmService->getFilms($options);
+        return $this->renderContent('components/film-posters', ["films" => $films]);
     }
 }
