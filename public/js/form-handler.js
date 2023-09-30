@@ -19,7 +19,6 @@ function handleFormSubmit(formId, url, onSuccess) {
             } else {
                 // Handle errors or failed response here
                 const jsonResponse = JSON.parse(xhr.responseText);
-                alert(xhr.responseText);
                 updateErrorMessages(jsonResponse);
             }
         };
