@@ -27,7 +27,7 @@
             <label class="form-error" id="password-form-error"></label>
         </div>
         <div>
-            <p class="text-white">Have an account? <a href="/register" class="text-primary font-bold">Login</a> </p>
+            <p class="text-white">Have an account? <a href="/login" class="text-primary font-bold">Login</a> </p>
         </div>
         <label class="form-error" id="auth-form-error"></label>
         <button type="submit" class="btn-primary font-bold">Register</button>
