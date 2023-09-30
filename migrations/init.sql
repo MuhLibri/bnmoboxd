@@ -62,6 +62,18 @@ INSERT INTO films (title, release_year, description, image_path)
 VALUES
     ('Barbie', 2023, 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg'),
     ('Oppenheimer', 2022, 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg'),
+    ('Spiderman: Into The Spiderverse', 2021, 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg'),
+    ('Barbie', 2023, 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg'),
+    ('Oppenheimer', 2022, 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg'),
+    ('Spiderman: Into The Spiderverse', 2021, 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg'),
+    ('Barbie', 2023, 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg'),
+    ('Oppenheimer', 2022, 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg'),
+    ('Spiderman: Into The Spiderverse', 2021, 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg'),
+    ('Barbie', 2023, 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg'),
+    ('Oppenheimer', 2022, 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg'),
+    ('Spiderman: Into The Spiderverse', 2021, 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg'),
+    ('Barbie', 2023, 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg'),
+    ('Oppenheimer', 2022, 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg'),
     ('Spiderman: Into The Spiderverse', 2021, 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg');
 
 -- Insert sample data for 'film_reviews' table
