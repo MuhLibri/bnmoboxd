@@ -14,8 +14,8 @@ class FilmService
         $this->filmRepository = new FilmRepository();
     }
 
-    public function getFilms() {
-        return $this->filmRepository->getAll();
+    public function getFilms($options = []) {
+        return $this->filmRepository->getAll($options);
     }
 
     public function getFilm(string $id){
