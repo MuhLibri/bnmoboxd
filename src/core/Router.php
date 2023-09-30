@@ -1,6 +1,8 @@
 <?php
 
 namespace app\core;
+use app\exceptions\NotFoundException;
+
 class Router
 {
     private array $routes = [];
@@ -55,18 +57,23 @@ class Router
         return null;
     }
 
+    /**
+     * @throws NotFoundException
+     */
     public function resolve()
     {
         $handler = $this->findHandler();
         if (!$handler) {
-            return "Route not found.";
+            throw new NotFoundException(true);
         }
         if (is_array($handler)) {
             $controller = new $handler[0];
-//            $middlewares = $controller->getMiddlewares();
-//            foreach ($middlewares as $middleware) {
-//                $middleware->execute();
-//            }
+            $method = $handler[1];
+            $middlewares = $controller->getMiddlewares();
+            if (isset($middlewares[$method])) {
+                $middleware = new $middlewares[$method];
+                $middleware->execute(true);
+            }
             $handler[0] = $controller;
         }
         return call_user_func($handler, $this->request);
