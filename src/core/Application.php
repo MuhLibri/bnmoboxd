@@ -3,6 +3,8 @@
 namespace app\core;
 
 use app\db\Database;
+use app\exceptions\BaseException;
+use app\exceptions\NotFoundException;
 
 class Application {
     public static Application $app;
@@ -25,6 +27,12 @@ class Application {
     }
 
     public function run() {
-        echo $this->router->resolve();
+        try {
+            echo $this->router->resolve();
+        } catch (BaseException $e) { // Catch the specific exception class you're using.
+            $e->handle();
+        } catch (\Exception $e) {
+            echo "yaaaaa";
+        }
     }
 }
