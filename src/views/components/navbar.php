@@ -10,8 +10,8 @@ $navLinks = [
 ];
 
 if ($authenticated) {
-    $navLinks['MY REVIEWS'] = '#my-reviews';
-    $navLinks['WATCH LIST'] = '#watch-list';
+    $navLinks['MY REVIEWS'] = '/my-reviews';
+    $navLinks['WATCH LIST'] = '/watch-list';
 }
 
 function isNavLinkActive($currentUrl, $link_url) {
