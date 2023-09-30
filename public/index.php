@@ -6,15 +6,23 @@ require_once __DIR__ . '/../src/core/Request.php';
 require_once __DIR__ . '/../src/core/Response.php';
 require_once __DIR__ . '/../src/core/Controller.php';
 require_once __DIR__ . '/../src/core/Repository.php';
+require_once __DIR__ . '/../src/core/Middleware.php';
+require_once __DIR__ . '/../src/core/Service.php';
 require_once __DIR__ . '/../src/controllers/FilmController.php';
 require_once __DIR__ . '/../src/controllers/DashboardController.php';
 require_once __DIR__ . '/../src/controllers/AuthController.php';
+require_once __DIR__ . '/../src/controllers/ReviewsController.php';
+require_once __DIR__ . '/../src/exceptions/BaseException.php';
+require_once __DIR__ . '/../src/exceptions/NotFoundException.php';
+require_once __DIR__ . '/../src/exceptions/ForbiddenException.php';
+require_once __DIR__ . '/../src/exceptions/BadRequestException.php';
 require_once __DIR__ . '/../src/db/Database.php';
 
 use app\core\Application;
 use app\controllers\DashboardController;
 use app\controllers\FilmController;
 use app\controllers\AuthController;
+use app\controllers\ReviewsController;
 
 if (!session_id()) {
     session_start();
@@ -38,6 +46,9 @@ $app->router->get('/register', [AuthController::class, 'registerPage']);
 $app->router->post('/login', [AuthController::class, 'login']);
 $app->router->post('/register', [AuthController::class, 'register']);
 $app->router->post('/logout', [AuthController::class, 'logout']);
+$app->router->get('/films', [FilmController::class, 'index']);
+$app->router->get('/films/search', [FilmController::class, 'search']);
 $app->router->post('/film/:id', [FilmController::class, 'index']);
+$app->router->get('/my-reviews', [ReviewsController::class, 'index']);
 
 $app->run();
