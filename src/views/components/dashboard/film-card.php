@@ -3,7 +3,7 @@ function filmCard($data){
     $str = "";
     if (!empty($data)){
         foreach($data as $film){
-            $title = $film['title'];
+            $title = strlen($film['title']) > 30 ? substr($film['title'],0, 30) . '...'  : $film['title'];
             $image_path = '/assets/films/' . $film['image_path'];
             $release_year = $film['release_year'];
             $name = $film['first_name'] . ' ' . $film['last_name'];
@@ -11,7 +11,7 @@ function filmCard($data){
             $review = strlen($film['review']) > 100 ? substr($film['review'],0, 100) . '...'  : $film['review'];
             $rating = $film['rating'];
             // Loop to add star images based on the rating value
-            $starsHtml = str_repeat('<img src="/assets/app/star.png" alt="star">', $rating);
+            $starsHtml = str_repeat('<img src="/assets/app/star.png" alt="star" class="stars-img">', $rating);
             $html = <<<"EOT"
             <a href="#" class="film-container">
                 <img src="$image_path" alt="dummy" class="poster-image">
@@ -24,7 +24,7 @@ function filmCard($data){
                         <div class="review-details">
                             <h6>$name</h6>
                             <p>$review</p>
-                            <div>$starsHtml</div>
+                            <div class="review-stars-container">$starsHtml</div>
                         </div>
                     </div>
                 </div>
