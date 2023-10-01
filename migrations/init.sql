@@ -36,8 +36,8 @@ CREATE TABLE IF NOT EXISTS film_reviews (
     review TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (film_id) REFERENCES films(id),
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (film_id) REFERENCES films(id) ON DELETE cascade,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE cascade
 );
 
 -- Create 'watch_lists' table
@@ -46,8 +46,8 @@ CREATE TABLE IF NOT EXISTS watch_lists (
     user_id INT(11),
     film_id INT(11),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (film_id) REFERENCES films(id)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE cascade,
+    FOREIGN KEY (film_id) REFERENCES films(id) ON DELETE cascade
 );
 
 -- Insert sample data for 'users' table
