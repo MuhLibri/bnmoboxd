@@ -17,8 +17,9 @@ class FilmRepository extends Repository
     **/
     public function getAll($options = []) {
         $params = [];
-        $query = 'SELECT f.*, avg_rating.rating
-                FROM films AS f 
+        $selectFilmsQuery = 'SELECT f.*, avg_rating.rating ';
+        $selectCountQuery = 'SELECT COUNT(*) film_count ';
+        $query = 'FROM films AS f 
                 LEFT JOIN (
                     SELECT film_id, AVG(rating) AS rating
                     FROM film_reviews AS fr
@@ -53,6 +54,9 @@ class FilmRepository extends Repository
                 $params = array_merge($params, ['rating' => $rating]);
             }
         }
+
+        $selectCountQuery .= $query;
+
         if (isset($options['orderBy'])) {
             // Check for security because we're appending the options to the query
             if (in_array(strtolower($options['orderBy']), ['rating', 'release_year', 'name'])) {
@@ -64,15 +68,18 @@ class FilmRepository extends Repository
                 }
             }
         }
-        $pageSize = 10; // DEFAULT PAGE SIZE
-
+        $isLimited = false;
+        $pageSize = 10;
         if (isset($options['take']) && is_numeric($options['take'])) {
             $pageSize = $options['take'];
+            $query .= " LIMIT $pageSize";
+            $isLimited = true;
         }
 
-        $query .= " LIMIT $pageSize";
-
         if (isset($options['page']) && is_numeric($options['page'])) {
+            if (!$isLimited) {
+                $query .= " LIMIT $pageSize";
+            }
             $page = (int)$options['page'];
 
             if ($page < 1) {
@@ -83,6 +90,10 @@ class FilmRepository extends Repository
 
             $query .= " OFFSET $offset";
         }
-        return $this->findAll($query,$params);
+        $selectFilmsQuery .= $query;
+
+        $films = $this->findAll($selectFilmsQuery,$params);
+        $count = $this->findOne($selectCountQuery, $params);
+        return ['films' => $films, 'count' => $count['film_count']];
     }
 }

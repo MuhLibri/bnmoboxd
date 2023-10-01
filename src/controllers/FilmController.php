@@ -10,12 +10,13 @@ class FilmController extends Controller
     private FilmService $filmService;
     public function __construct(){
         require_once Application::$BASE_DIR . '/src/services/FilmService.php';
+        $this->view = 'films';
         $this->filmService = new FilmService();
     }
 
     public function index(Request $request) {
-        $films = $this->filmService->getFilms(['take' => 10]);
-        $this->render('films', ["films" => $films]);
+        $filmsData = $this->filmService->getFilms();
+        $this->render('index', array_merge($filmsData, ['currentPage' => 1]));
     }
     public function show(Request $request) {
         $id = $request->getParams()[0];
@@ -24,7 +25,8 @@ class FilmController extends Controller
 
     public function search(Request $request) {
         $options = $request->getQuery();
-        $films = $this->filmService->getFilms($options);
-        return $this->renderContent('components/film-posters', ["films" => $films]);
+        $filmsData = $this->filmService->getFilms($options);
+        $currentPage = $options['page'] ?? 1;
+        return $this->renderComponent('film-posters', array_merge($filmsData, ['currentPage' => $currentPage]));
     }
 }
