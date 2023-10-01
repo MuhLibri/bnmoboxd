@@ -1,0 +1,13 @@
+.user-profile {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.user-profile img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
