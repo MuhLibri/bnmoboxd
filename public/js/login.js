@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    handleFormSubmit("#login-form", "/login", function (responseText) {
+    handleFormSubmit("#login-form", "/login", function () {
+        window.location.href = "/"
     });
 });

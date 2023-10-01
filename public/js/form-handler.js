@@ -1,6 +1,5 @@
 function handleFormSubmit(formId, url, onSuccess) {
     const form = document.querySelector(formId);
-
     if (!form) {
         return;
     }
@@ -12,22 +11,18 @@ function handleFormSubmit(formId, url, onSuccess) {
 
         xhr.open("post", url, true);
 
-        // Set up a callback function for when the request is complete
         xhr.onload = function () {
             if (xhr.status === 200) {
-                window.location.href = "/";
+                onSuccess();
             } else {
-                // Handle errors or failed response here
                 const jsonResponse = JSON.parse(xhr.responseText);
                 updateErrorMessages(jsonResponse);
             }
         };
 
-        // Set up the request headers (adjust as needed)
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.setRequestHeader("enctype", "multipart/form-data");
 
-        // Send the request with form data
-        xhr.send(new URLSearchParams(formData));
+        xhr.send(formData);
     });
 
     function updateErrorMessages(response) {
