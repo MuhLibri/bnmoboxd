@@ -1,6 +1,8 @@
 <?php
-include __DIR__ . '/components/navbar.php';
-include __DIR__ . '/components/dashboard/film-card.php';
+
+use app\core\Application;
+
+include_once Application::$BASE_DIR . '/src/views/components/navbar.php';
 ?>
 <div class="base-container">
     <h5 class="section-title">🎥 Films 🎥</h5>
@@ -32,7 +34,7 @@ include __DIR__ . '/components/dashboard/film-card.php';
         </div>
         <div class="film-poster-list" id="film-poster-list">
             <?php
-            include __DIR__ . '/components/film-posters.php';
+            include Application::$BASE_DIR . '/src/views/components/film-posters.php';
             ?>
         </div>
     </div>

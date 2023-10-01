@@ -1,6 +1,6 @@
-<div class="container">
+<div class="form-cardr">
     <h2>Register</h2>
-    <form id="register-form">
+    <form class="form-container" id="register-form">
         <div class="form-group">
             <label for="first_name">First Name</label>
             <input type="text" id="first-name" name="first_name" formnovalidate>

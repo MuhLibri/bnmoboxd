@@ -1,6 +1,6 @@
-<div class="container">
+<div class="form-card">
     <h2>Login</h2>
-    <form id="login-form">
+    <form class="form-container" id="login-form">
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" novalidate>

@@ -6,6 +6,7 @@ const VIEW_DIR = __DIR__ . '/../views';
 
 class Controller
 {
+    protected string $view = "";
     protected array $middlewares = [];
 
     public function render($view, $data = []) {
@@ -13,7 +14,7 @@ class Controller
         ob_start();
         include_once VIEW_DIR . "/layouts/layout.php";
         $layout = ob_get_clean();
-        $layout = str_replace('{{page}}', $view, $layout);
+        $layout = str_replace('{{page}}', $this->view, $layout);
         $layout = str_replace('{{pageTitle}}', ucwords($view), $layout);
         $layout = str_replace('{{content}}', $content, $layout);
         echo $layout;
@@ -21,13 +22,14 @@ class Controller
 
     public function renderContent($content, $data){
         ob_start();
-        include_once VIEW_DIR . "/$content.php";
+        include_once VIEW_DIR . ($this->view !== '' ? '/' .$this->view : '') . "/$content.php";
         return ob_get_clean();
     }
 
     public function renderComponent($component, $data) {
+        ob_start();
         include_once VIEW_DIR . "/components/$component.php";
-        return call_user_func($component, $data);
+        return ob_get_clean();
     }
 
 //    protected function validateRequired($data, $fields) {
