@@ -16,6 +16,9 @@ RUN docker-php-ext-install zip pdo_mysql pdo
 
 COPY ./php.ini /usr/local/etc/php/
 
+RUN mkdir public
+RUN chmod 777 public
+
 WORKDIR /var/www
 
 RUN chown -R www-data:www-data /var/www
