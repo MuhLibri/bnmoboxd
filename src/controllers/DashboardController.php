@@ -19,7 +19,7 @@ class DashboardController extends Controller
     }
     public function index() {
         $filmReviews = $this->filmReviewService->getFilmReviews();
-        $films = $this->filmService->getFilms(['take' => 6]);
-        $this->render('index', ["filmReviews" => $filmReviews, "films" => $films]);
+        $filmsData = $this->filmService->getFilms(['take' => 6]);
+        $this->render('index', ["filmReviews" => $filmReviews, "films" => $filmsData['films']]);
     }
 }
