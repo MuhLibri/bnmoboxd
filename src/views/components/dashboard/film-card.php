@@ -4,22 +4,22 @@ function filmCard($data){
     if (!empty($data)){
         foreach($data as $film){
             $title = strlen($film['title']) > 30 ? substr($film['title'],0, 30) . '...'  : $film['title'];
-            $image_path = '/assets/films/' . $film['image_path'];
-            $release_year = $film['release_year'];
+            $imagePath = '/assets/films/' . $film['image_path'];
+            $releaseYear = $film['release_year'];
             $name = $film['first_name'] . ' ' . $film['last_name'];
-            $profile_picture_path = '/assets/users/' . $film['profile_picture_path'];
+            $profilePicturePath = '/assets/users/' . $film['profile_picture_path'];
             $review = strlen($film['review']) > 100 ? substr($film['review'],0, 100) . '...'  : $film['review'];
             $rating = $film['rating'];
             // Loop to add star images based on the rating value
             $starsHtml = str_repeat('<img src="/assets/app/star.png" alt="star" class="stars-img">', $rating);
             $html = <<<"EOT"
             <a href="#" class="film-container">
-                <img src="$image_path" alt="dummy" class="poster-image">
+                <img src="$imagePath" alt="dummy" class="poster-image">
                 <div class="film-details-container">
-                    <h5 class="film-title">$title<span class="release-year"> $release_year </span></h5>
+                    <h5 class="film-title">$title<span class="release-year"> $releaseYear </span></h5>
                     <div class="review-container">
                         <div class="profile-picture">
-                            <img src="$profile_picture_path">
+                            <img src="$profilePicturePath">
                         </div>
                         <div class="review-details">
                             <h6>$name</h6>
