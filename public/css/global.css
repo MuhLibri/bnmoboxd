@@ -1,12 +1,14 @@
 :root {
     /* Color  */
     --clr-background-base: #202028;
-    --clr-background-disabled: #323232;
+    --clr-background-disabled: #373b46;
     --clr-background-surface: #242632;
-    --clr-primary: #BB86FC;
-    --clr-primary-dark: #7F39FB;
-    --clr-secondary: #03DAC5;
-    --clr-danger: #CF6679;
+    --clr-primary: #7F39FB;
+    --clr-primary-dark: #3700B3;
+    --clr-secondary: #018786;
+    --clr-secondary-dark: #017374;
+    --clr-danger: #C93650;
+    --clr-danger-dark: #E51238;
     --clr-on-surface-emphasis: rgba(255, 255, 255, 0.60);
     --clr-muted: rgba(255, 255, 255, 0.38);
 
@@ -81,7 +83,9 @@ p {
 }
 
 button {
+    box-shadow: none;
     cursor: pointer;
+    border: none;
 }
 
 form {
@@ -97,7 +101,29 @@ input {
     border: none;
     outline-color: var(--clr-primary);
     box-sizing: border-box;
+    font-size: 14px;
 }
+
+input[type="file"] {
+    background: none;
+    padding: 0;
+}
+
+input::file-selector-button {
+    cursor: pointer;
+    padding: 6px 8px;
+    font-weight: bold;
+    border-radius: var(--radius-md);
+    border: none;
+    background-color: var(--clr-secondary);
+    color: white;
+    transition: var(--transition);
+}
+
+input::file-selector-button:hover {
+    background-color: var(--clr-secondary-dark);
+}
+
 
 ::placeholder {
     color: var(--clr-muted);
@@ -126,7 +152,7 @@ a {
 
 
 .btn-primary {
-    padding: 14px 32px;
+    padding: 14px 20px;
     font-weight: bold;
     border-radius: var(--radius-md);
     border: none;
@@ -135,8 +161,22 @@ a {
     transition: var(--transition);
 }
 
+.btn-danger {
+    padding: 14px 20px;
+    font-weight: bold;
+    border-radius: var(--radius-md);
+    border: none;
+    background-color: var(--clr-danger);
+    color: white;
+    transition: var(--transition);
+}
+
 .btn-primary:hover {
     background-color: var(--clr-primary-dark);
+}
+
+.btn-danger:hover {
+    background-color: var(--clr-danger-dark);
 }
 
 .form-error {
@@ -147,17 +187,23 @@ a {
 }
 
 
-.container {
+.form-card {
     max-width: 500px;
-    margin: 0 auto;
     padding: 20px;
     background-color: var(--clr-background-surface);
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     border-radius: 10px;
-    margin-top: 100px;
+    margin: 100px auto 0;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.form-container {
+    width: 100%;
+}
+
 .form-group {
     margin-bottom: 20px;
 }
@@ -201,6 +247,7 @@ a {
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+    flex-wrap: wrap;
 }
 .film-container {
     display: flex;
@@ -255,7 +302,7 @@ a {
     padding: 1vw;
     border-radius: var(--radius-md);
     align-items: center;
-    min-width: 200px;
+    min-width: 180px;
     min-height: 140px;
 }
 
@@ -331,6 +378,7 @@ a {
 .review-stars-container img{
     width: 20px;
     height: auto;
+    margin: 0;
 }
 
 .stars-img {
@@ -344,4 +392,63 @@ a {
     display: flex;
     align-items: center;
     gap: 4rem;
+}
+
+.pagination-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    gap: 6px;
+}
+
+.pagination-button {
+    padding: 5px 10px;
+    border-radius: var(--radius-md);
+    background-color: var(--clr-background-surface);
+    color: white;
+    font-size: 20px;
+    transition: var(--transition);
+}
+
+.pagination-button.active {
+    border: 2px solid var(--clr-primary);
+}
+
+.btn-group {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.modal-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    z-index: 1000; /* Make it appear above other elements */
+}
+
+/* Modal */
+.confirmation-modal {
+    background-color: var(--clr-background-surface);
+    padding: 20px;
+    width: 320px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-lg);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Show the modal and overlay when active */
+.modal-container.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
