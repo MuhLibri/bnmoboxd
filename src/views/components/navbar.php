@@ -23,7 +23,7 @@ function isNavLinkActive($currentUrl, $link_url) {
     <div class="nav-items">
         <?php
         foreach ($navLinks as $text => $url) {
-            $activeClass = isNavLinkActive($currentUrl, $url) ? 'active' : '';
+            $activeClass = isNavLinkActive($currentUrl, $url) ? 'nav-item active' : 'nav-item';
             echo '<a href="' . $url . '" class="' . $activeClass . '">' . $text . '</a>';
         }
         ?>
