@@ -13,13 +13,20 @@ class UserRepository extends Repository
         parent::__construct();
     }
 
+    public function getUserById(string $id) {
+        $query = 'SELECT * FROM users WHERE id = :id';
+        $params = [
+            'id' => $id,
+        ];
+        return $this->findOne($query, $params);
+    }
+
     public function getUserByUsername(string $username) {
         $query = 'SELECT * FROM users WHERE username = :username';
         $params = [
             'username' => $username,
         ];
-        $res = $this->findOne($query, $params);
-        return $res;
+        return $this->findOne($query, $params);
     }
 
     public function getUserByEmail(string $email) {
@@ -45,6 +52,44 @@ class UserRepository extends Repository
             $query = 'INSERT INTO users (username, email, password_hash, first_name) VALUES (:username, :email, :hashedPassword, :firstName)';
         }
 
+        $this->save($query, $params);
+    }
+
+    public function updateUser(int $id, string $username, string $email, string $firstName, string $lastName, string $profilePicturePath = null)
+    {
+        $params = [
+            'username' => $username,
+            'email' => $email,
+            'firstName' => $firstName,
+            'lastName' => $lastName,
+            'id' => $id
+        ];
+        if ($profilePicturePath) {
+            $params['profilePicturePath'] = $profilePicturePath;
+            $query = 'UPDATE users 
+              SET username = :username, 
+                  email = :email, 
+                  first_name = :firstName, 
+                  last_name = :lastName, 
+                  profile_picture_path = :profilePicturePath 
+              WHERE id = :id';
+        } else {
+            $query = 'UPDATE users 
+              SET username = :username, 
+                  email = :email, 
+                  first_name = :firstName, 
+                  last_name = :lastName 
+              WHERE id = :id';
+        }
+        $this->save($query, $params);
+    }
+
+    public function deleteUser(int $id)
+    {
+        $query = 'DELETE FROM users where id = :id';
+        $params = [
+            'id' => $id
+        ];
         $this->save($query, $params);
     }
 }
