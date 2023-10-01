@@ -12,17 +12,20 @@ require_once __DIR__ . '/../src/controllers/FilmController.php';
 require_once __DIR__ . '/../src/controllers/DashboardController.php';
 require_once __DIR__ . '/../src/controllers/AuthController.php';
 require_once __DIR__ . '/../src/controllers/ReviewsController.php';
+require_once __DIR__ . '/../src/controllers/ProfileController.php';
 require_once __DIR__ . '/../src/exceptions/BaseException.php';
 require_once __DIR__ . '/../src/exceptions/NotFoundException.php';
 require_once __DIR__ . '/../src/exceptions/ForbiddenException.php';
 require_once __DIR__ . '/../src/exceptions/BadRequestException.php';
 require_once __DIR__ . '/../src/db/Database.php';
+require_once __DIR__ . '/../src/utils/utils.php';
 
 use app\core\Application;
 use app\controllers\DashboardController;
 use app\controllers\FilmController;
 use app\controllers\AuthController;
 use app\controllers\ReviewsController;
+use app\controllers\ProfileController;
 
 if (!session_id()) {
     session_start();
@@ -50,5 +53,7 @@ $app->router->get('/films', [FilmController::class, 'index']);
 $app->router->get('/films/search', [FilmController::class, 'search']);
 $app->router->post('/film/:id', [FilmController::class, 'index']);
 $app->router->get('/my-reviews', [ReviewsController::class, 'index']);
-
+$app->router->get('/profile', [ProfileController::class, 'index']);
+$app->router->post('/profile/edit', [ProfileController::class, 'edit']);
+$app->router->delete('/profile/delete', [ProfileController::class, 'delete']);
 $app->run();
