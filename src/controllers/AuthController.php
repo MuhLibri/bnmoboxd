@@ -5,15 +5,16 @@ namespace app\controllers;
 use app\core\Controller;
 use app\core\Request;
 use app\exceptions\BadRequestException;
-use app\services\AuthService;
+use app\services\UserService;
 use app\core\Application;
 
 class AuthController extends Controller
 {
-    private AuthService $authService;
+    private UserService $userService;
     public function __construct() {
-        require_once Application::$BASE_DIR . '/src/services/AuthService.php';
-        $this->authService = new AuthService();
+        require_once Application::$BASE_DIR . '/src/services/UserService.php';
+        $this->userService = new UserService();
+        $this->view = "auth";
     }
 
     public function loginPage() {
@@ -31,20 +32,23 @@ class AuthController extends Controller
     }
 
 
+    /**
+     * @throws BadRequestException
+     */
     public function login(Request $request) {
         $credentials = $request->getBody();
-        $this->authService->login($credentials);
+        $this->userService->login($credentials);
         echo Application::$app->response->jsonEncode(200, ['errors' => []]);
     }
 
     public function register(Request $request) {
         $registerData = $request->getBody();
-        $this->authService->register($registerData);
+        $this->userService->register($registerData);
         echo Application::$app->response->jsonEncode(200, []);
     }
 
     public function logout() {
-        $this->authService->logout();
+        $this->userService->logout();
         Application::$app->response->redirect('/login');
         exit;
     }
