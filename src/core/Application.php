@@ -32,7 +32,7 @@ class Application {
         } catch (BaseException $e) { // Catch the specific exception class you're using.
             $e->handle();
         } catch (\Exception $e) {
-            echo "yaaaaa";
+            echo $e;
         }
     }
 }
