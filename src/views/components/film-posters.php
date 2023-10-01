@@ -1,4 +1,7 @@
 <?php
+
+use app\core\Application;
+
 if (!empty($data['films'])) {
     $filmsPerPage = 10; // Number of films per page
     $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -26,4 +29,9 @@ EOT;
         $str .= $html;
     }
     echo $str;
+
+    if (isset($data['count']) && isset($data['currentPage'])) {
+        include Application::$BASE_DIR . '/src/views/components/pagination.php';
+    }
+
 }
