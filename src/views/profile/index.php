@@ -3,7 +3,6 @@
 use app\core\Application;
 
 include_once Application::$BASE_DIR . '/src/views/components/navbar.php';
-include_once Application::$BASE_DIR . '/src/views/components/confirmation-modal.php';
 
 $username = $data['profile']['username'];
 $email = $data['profile']['email'];
@@ -56,7 +55,7 @@ $html = <<<EOT
         </div>
         <div class="modal-container" id="confirm-delete-modal">
             <div class="confirmation-modal">
-                <h2>Are you sure you want to delete your profile?</h2>
+                <h2>Are you sure you want to delete your account?</h2>
                 <div class="btn-group">
                     <button class="btn-primary" id="confirm-delete-btn">Yes</button>
                     <button class="btn-danger" onclick="handleClose('#confirm-delete-modal')">Cancel</button>

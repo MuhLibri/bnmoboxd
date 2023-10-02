@@ -59,9 +59,12 @@ class FilmRepository extends Repository
 
         if (isset($options['orderBy'])) {
             // Check for security because we're appending the options to the query
-            if (in_array(strtolower($options['orderBy']), ['rating', 'release_year', 'name'])) {
+            if (in_array(strtolower($options['orderBy']), ['rating', 'year', 'title'])) {
+                if ($options['orderBy'] == 'year') {
+                    $options['orderBy'] = 'release_year';
+                }
                 $query .= ' ORDER BY ' . $options['orderBy'];
-                if ($options['sort'] === true) {
+                if ($options['sort'] === 'asc') {
                     $query .= ' ASC ';
                 } else {
                     $query .= ' DESC ';
@@ -91,7 +94,6 @@ class FilmRepository extends Repository
             $query .= " OFFSET $offset";
         }
         $selectFilmsQuery .= $query;
-
         $films = $this->findAll($selectFilmsQuery,$params);
         $count = $this->findOne($selectCountQuery, $params);
         return ['films' => $films, 'count' => $count['film_count']];

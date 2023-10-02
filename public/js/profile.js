@@ -1,9 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-
-    handleFormSubmit("#profile-form", "/profile/edit", function (responseText) {
-        window.location.href = "/profile"
-    });
-
     const saveButton = document.querySelector('#save-btn');
     saveButton.addEventListener('click', function (e) {
         e.preventDefault();
@@ -20,7 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
     confirmEditButton.addEventListener('click', function (e) {
         e.preventDefault();
         const form = document.querySelector("#profile-form");
-        form.submit();
+        submitForm(form, "/profile/edit", function (responseText) {
+            window.location.href = "/profile"
+        })
         handleClose('#confirm-edit-modal');
     });
 
