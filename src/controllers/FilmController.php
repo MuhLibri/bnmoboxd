@@ -4,14 +4,22 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Request;
 use app\core\Controller;
+use app\exceptions\NotFoundException;
 use app\services\FilmService;
+use app\services\FilmReviewService;
+
 class FilmController extends Controller
 {
     private FilmService $filmService;
+    private FilmReviewService $filmReviewService;
+
     public function __construct(){
         require_once Application::$BASE_DIR . '/src/services/FilmService.php';
+        require_once Application::$BASE_DIR . '/src/services/FilmReviewService.php';
+
         $this->view = 'films';
         $this->filmService = new FilmService();
+        $this->filmReviewService = new FilmReviewService();
     }
 
     public function index(Request $request) {
@@ -24,10 +32,9 @@ class FilmController extends Controller
         $film = $this->filmService->getFilm($id);
 
         if($film){
-            // echo $film['id'] . ' ' . $film['title'];
             $this->render('show', $film);
         }else{
-            echo 'No such film';
+            throw new NotFoundException(true);
         }
     }
 
