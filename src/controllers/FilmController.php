@@ -23,9 +23,9 @@ class FilmController extends Controller
         $id = $request->getParams()[0];
         $film = $this->filmService->getFilm($id);
 
-        // Test echo
         if($film){
-            echo $film['id'] . ' ' . $film['title'];
+            // echo $film['id'] . ' ' . $film['title'];
+            $this->render('show', $film);
         }else{
             echo 'No such film';
         }
