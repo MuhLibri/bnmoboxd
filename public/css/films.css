@@ -87,6 +87,11 @@
     margin-right: 25px;
 }
 
+.film-reviews .review-date {
+    font-weight: normal;
+    color: var(--clr-muted);
+}
+
 .film-reviews h6 {
     font-weight: bold;
 }

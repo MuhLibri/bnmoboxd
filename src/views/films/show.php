@@ -38,6 +38,11 @@ function reviewList($reviews){
             $profilePicturePath = '/assets/users/' . $review['profile_picture_path'];
             $reviewText = $review['review'];
             $rating = $review['rating'];
+            $dtCreate = new DateTime($review['created_at']);
+            $dtUpdate = new DateTime($review['updated_at']);
+            $dateCreate = $dtCreate->format('M d, Y');
+            $dateUpdate = $dtCreate != $dtUpdate ? ' • Updated on ' . $dtUpdate->format('M d, Y') : '';
+
             // Loop to add star images based on the rating value
             $starsHtml = str_repeat('<img src="/assets/app/star.png" alt="star" class="stars-img">', $rating);
             $html = <<<"EOT"
@@ -46,7 +51,13 @@ function reviewList($reviews){
                         <img src="$profilePicturePath">
                     </div>
                     <div class="review-details">
-                        <h6>$name</h6>
+                        <h6>
+                            $name
+                            <span class="review-date">
+                                $dateCreate
+                                $dateUpdate
+                            </span>
+                        </h6>
                         <div class="review-stars-container">$starsHtml</div>
                         <p>$reviewText</p>
                     </div>
