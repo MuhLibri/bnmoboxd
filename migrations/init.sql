@@ -20,8 +20,10 @@ CREATE TABLE IF NOT EXISTS films (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     release_year INT(11) NOT NULL,
+    director VARCHAR(255) NOT NULL,
     description TEXT,
     image_path VARCHAR(50),
+    video_path VARCHAR(50),
     genre ENUM('Action', 'Comedy', 'Drama', 'Sci-Fi', 'Horror', 'Fantasy', 'Other') NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -58,23 +60,23 @@ VALUES
     ('user3', 'user3', 'user3@example.com', '$2y$10$Rj8KgMT1OnRPz.pMH3A/U.3CDqwqgNamF8yFCkYi91FVy7pmXLyZq', 'dummy.jpg');
 
 -- Insert sample data for 'films' table
-INSERT INTO films (title, release_year, description, image_path)
+INSERT INTO films (title, release_year, director, description, image_path)
 VALUES
-    ('Barbie', 2023, 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg'),
-    ('Oppenheimer', 2022, 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg'),
-    ('Spiderman: Into The Spiderverse', 2021, 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg'),
-    ('Barbie', 2023, 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg'),
-    ('Oppenheimer', 2022, 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg'),
-    ('Spiderman: Into The Spiderverse', 2021, 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg'),
-    ('Barbie', 2023, 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg'),
-    ('Oppenheimer', 2022, 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg'),
-    ('Spiderman: Into The Spiderverse', 2021, 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg'),
-    ('Barbie', 2023, 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg'),
-    ('Oppenheimer', 2022, 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg'),
-    ('Spiderman: Into The Spiderverse', 2021, 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg'),
-    ('Barbie', 2023, 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg'),
-    ('Oppenheimer', 2022, 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg'),
-    ('Spiderman: Into The Spiderverse', 2021, 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg');
+    ('Barbie', 2023, 'Greta Gerwig', 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg'),
+    ('Oppenheimer', 2022, 'Christoper Nolan', 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg'),
+    ('Spiderman: Into The Spiderverse', 2021, 'Rodney Rothman, Peter Ramsey, Bob Persichetti', 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg'),
+    ('Barbie', 2023, 'Greta Gerwig', 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg'),
+    ('Oppenheimer', 2022, 'Christoper Nolan', 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg'),
+    ('Spiderman: Into The Spiderverse', 2021, 'Rodney Rothman, Peter Ramsey, Bob Persichetti', 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg'),
+    ('Barbie', 2023, 'Greta Gerwig', 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg'),
+    ('Oppenheimer', 2022, 'Christoper Nolan', 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg'),
+    ('Spiderman: Into The Spiderverse', 2021, 'Rodney Rothman, Peter Ramsey, Bob Persichetti', 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg'),
+    ('Barbie', 2023, 'Greta Gerwig', 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg'),
+    ('Oppenheimer', 2022, 'Christoper Nolan', 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg'),
+    ('Spiderman: Into The Spiderverse', 2021, 'Rodney Rothman, Peter Ramsey, Bob Persichetti', 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg'),
+    ('Barbie', 2023, 'Greta Gerwig', 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg'),
+    ('Oppenheimer', 2022, 'Christoper Nolan', 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg'),
+    ('Spiderman: Into The Spiderverse', 2021, 'Rodney Rothman, Peter Ramsey, Bob Persichetti', 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg');
 
 -- Insert sample data for 'film_reviews' table
 INSERT INTO film_reviews (film_id, user_id, rating, review)

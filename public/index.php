@@ -51,7 +51,7 @@ $app->router->post('/register', [AuthController::class, 'register']);
 $app->router->post('/logout', [AuthController::class, 'logout']);
 $app->router->get('/films', [FilmController::class, 'index']);
 $app->router->get('/films/search', [FilmController::class, 'search']);
-$app->router->post('/film/:id', [FilmController::class, 'index']);
+$app->router->get('/film/:id', [FilmController::class, 'show']);
 $app->router->get('/my-reviews', [ReviewsController::class, 'index']);
 $app->router->get('/profile', [ProfileController::class, 'index']);
 $app->router->post('/profile/edit', [ProfileController::class, 'edit']);

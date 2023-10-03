@@ -9,12 +9,13 @@ if (!empty($data['films'])) {
     $end = $start + $filmsPerPage;
     $str = '';
     foreach ($data['films'] as $film) {
+        $id = $film['id'];
         $image_path = '/assets/films/' . $film['image_path'];
         $title = strlen($film['title']) > 18 ? substr($film['title'], 0, 18) . '...' : $film['title'];
         $year = $film['release_year'];
         $rating = number_format($film['rating'], 2);
         $html = <<<EOT
-            <a href="#" class="film-poster-card">
+            <a href="/film/$id" class="film-poster-card">
                 <img src="$image_path" alt="dummy" class="poster-image">
                 <h5 class="film-poster-title">$title</h5>
                 <div class="review-stars-container">

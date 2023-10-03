@@ -1,4 +1,4 @@
-<div class="form-cardr">
+<div class="form-card">
     <h2>Register</h2>
     <form class="form-container" id="register-form">
         <div class="form-group">

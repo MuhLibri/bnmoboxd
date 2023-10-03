@@ -19,6 +19,6 @@ class FilmService
     }
 
     public function getFilm(string $id){
-        return "Got film ". $id;
+        return $this->filmRepository->getById($id);
     }
 }

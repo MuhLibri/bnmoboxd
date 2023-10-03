@@ -15,6 +15,14 @@ class FilmRepository extends Repository
      * ]
      *
     **/
+    public function getById($id) {
+        $query = 'SELECT * FROM films WHERE id = :id';
+        $params = [
+            'id' => $id
+        ];
+        return $this->findOne($query, $params);
+    }
+
     public function getAll($options = []) {
         $params = [];
         $selectFilmsQuery = 'SELECT f.*, avg_rating.rating ';
