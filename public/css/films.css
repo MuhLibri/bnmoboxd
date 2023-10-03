@@ -13,28 +13,32 @@
 }
 
 .film-show-container {
-    margin: auto;
-    width: 80%;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    width: 80vw;
+}
+
+.film-poster-col {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    min-width: 180px;
+}
+
+.film-details-col {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
 }
 
 .film-show-container .film-subtitle {
     margin-block-end: 1em;
 }
 
-.film-show-container .film-poster-col {
-    width: 30%;
-    min-width: 180px;
-    float: left;
-}
-
-.film-show-container .film-details-col {
-    width: 65%;
-    float: right;
-}
-
 .film-poster-col .poster-image {
     width: 100%;
-    height: 100%;
+    height: auto;
     min-width: 180px;
     min-height: 240px;
     margin-top: 30px;
