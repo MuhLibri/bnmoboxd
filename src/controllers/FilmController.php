@@ -18,9 +18,17 @@ class FilmController extends Controller
         $filmsData = $this->filmService->getFilms();
         $this->render('index', array_merge($filmsData, ['currentPage' => 1]));
     }
+
     public function show(Request $request) {
         $id = $request->getParams()[0];
-        return $this->filmService->getFilm($id);
+        $film = $this->filmService->getFilm($id);
+
+        // Test echo
+        if($film){
+            echo $film['id'] . ' ' . $film['title'];
+        }else{
+            echo 'No such film';
+        }
     }
 
     public function search(Request $request) {
