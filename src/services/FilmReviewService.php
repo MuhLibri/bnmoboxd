@@ -18,4 +18,8 @@ class FilmReviewService
     public function getFilmReviews() {
         return $this->filmReviewRepository->getAll();
     }
+
+    public function getReviewsWithFilmId($id){
+        return $this->filmReviewRepository->getByFilmId($id);
+    }
 }

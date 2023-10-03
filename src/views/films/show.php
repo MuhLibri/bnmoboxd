@@ -11,32 +11,72 @@ function filmPosterImage($film){
     return "<img src=\"$path\" alt=\"$title\" class=\"poster-image\">";
 }
 
-function filmDetailsHead($film){
+function filmInfo($film){
     $title = $film['title'];
     $year = $film['release_year'];
     $genre = $film['genre'];
+    $description = $film['description'];
 
     return <<<"EOT"
-        <h5 class="section-title">$title</h5>
-        <h6 class="film-subtitle">
-            <span class="release-year">$year</span>
-            • $genre
-        </h6>
+        <div class="film-title-description">
+            <h5 class="section-title film-title">$title</h5>
+            <h6 class="film-subtitle">
+                <span class="release-year">$year</span>
+                •
+                <span class="film-genre">$genre</span>
+            </h6>
+            <p class="text-white">$description</p>
+        </div>
     EOT;
+}
+
+function reviewList($reviews){
+    $str = "";
+    if(!empty($reviews)){
+        foreach($reviews as $review){
+            $name = $review['first_name'] . ' ' . $review['last_name'];
+            $profilePicturePath = '/assets/users/' . $review['profile_picture_path'];
+            $reviewText = $review['review'];
+            $rating = $review['rating'];
+            // Loop to add star images based on the rating value
+            $starsHtml = str_repeat('<img src="/assets/app/star.png" alt="star" class="stars-img">', $rating);
+            $html = <<<"EOT"
+                <div class="review-container">
+                    <div class="profile-picture">
+                        <img src="$profilePicturePath">
+                    </div>
+                    <div class="review-details">
+                        <h6>$name</h6>
+                        <div class="review-stars-container">$starsHtml</div>
+                        <p>$reviewText</p>
+                    </div>
+                </div>
+            EOT;
+            $str = $str . $html;
+        }
+    }
+    if(empty($str)){
+        return <<<"EOT"
+            <p class="review-empty-text">No reviews.</p>
+        EOT;
+    }
+    return $str;
 }
 ?>
 <div class="base-container">
     <div class="film-show-container">
         <div class="film-poster-col">
-            <?php echo filmPosterImage($data); ?>
+            <?php echo filmPosterImage($data['film']); ?>
         </div>
 
         <div class="film-details-col">
-            <?php echo filmDetailsHead($data); ?>
-
-            <p class="text-white">
-                <?php echo $data['description']; ?>
-            </p>
+            <div class="film-title-description">
+                <?php echo filmInfo($data['film']); ?>
+            </div>
+            <div class="film-reviews">
+                <h5 class="section-title">Reviews</h5>
+                <?php echo reviewList($data['reviews']); ?>
+            </div>
         </div>
     </div>
 </div>

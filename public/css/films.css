@@ -40,11 +40,65 @@
     margin-top: 30px;
 }
 
-.film-details-col .section-title {
+.film-title-description .film-title {
     font-size: 40px;
     line-height: 40px;
 }
 
-.film-details-col p {
+.film-title-description .film-genre {
+    color: var(--clr-on-surface-emphasis);
+}
+
+.film-title-description p {
     font-size: 20px;
+}
+
+
+.film-reviews {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.film-reviews .section-title {
+    margin-bottom: 20px;
+}
+
+.film-reviews .review-container {
+    background: var(--clr-background-surface);
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
+}
+
+.film-reviews .profile-picture {
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+    min-height: 80px;
+}
+
+.film-reviews .review-details {
+    width: max-content;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.film-reviews h6 {
+    font-weight: bold;
+}
+
+.film-reviews p {
+    font-size: 18px;
+}
+
+.film-reviews .review-stars-container {
+    justify-content: left;
+    gap: 12px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.film-reviews .review-empty-text {
+    color: var(--clr-muted);
+    font-style: italic;
 }
