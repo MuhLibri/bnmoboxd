@@ -89,7 +89,7 @@
 
 .film-reviews .review-date {
     font-weight: normal;
-    color: var(--clr-on-surface-emphasis);
+    color: var(--clr-muted);
 }
 
 .film-reviews h6 {
