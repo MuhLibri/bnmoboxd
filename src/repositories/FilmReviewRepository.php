@@ -8,6 +8,9 @@ class FilmReviewRepository extends Repository
 {
     public function getByFilmId($id){
         $query = 'SELECT
+                    fr.id AS id,
+                    fr.film_id AS film_id,
+                    fr.user_id AS user_id,
                     fr.rating AS rating,
                     fr.review AS review,
                     fr.created_at AS created_at,
@@ -65,7 +68,12 @@ class FilmReviewRepository extends Repository
 
     public function getByReviewId(int $reviewId)
     {
-        $query = 'SELECT fr.* FROM film_reviews AS fr WHERE id = :reviewId';
+        $query = 'SELECT
+                    f.*, fr.*
+                FROM
+                    film_reviews AS fr
+                    INNER JOIN films AS f ON fr.film_id = f.id
+                WHERE fr.id = :reviewId';
         $params = ['reviewId' => $reviewId];
         return $this->findOne($query, $params);
     }

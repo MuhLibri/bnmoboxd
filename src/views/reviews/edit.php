@@ -5,31 +5,23 @@ include_once Application::$BASE_DIR . '/src/views/components/navbar.php';
 
 function showReview($review){
     $str = "";
-    // $name = $review['first_name'] . ' ' . $review['last_name'];
-    // $profilePicturePath = '/assets/users/' . $review['profile_picture_path'];
-    // $reviewText = $review['review'];
-    // $rating = $review['rating'];
-    // $dtCreate = new DateTime($review['created_at']);
-    // $dtUpdate = new DateTime($review['updated_at']);
-    // $dateCreate = $dtCreate->format('M d, Y');
-    // $dateUpdate = $dtCreate != $dtUpdate ? ' • Updated on ' . $dtUpdate->format('M d, Y') : '';
-    $name = "Star Wars a New Hope";
-    $profilePicturePath = '/assets/films/star-wars-a-new-hope.jpeg';
-    $reviewText = "suka baliik";
-    $rating = 1;
-    $dtCreate = new DateTime(date_default_timezone_get());
-    $dtUpdate = new DateTime(date_default_timezone_get());
+
+    $title = $review['title'];
+    $posterImagePath = '/assets/films/' . $review['image_path'];
+    $reviewText = $review['review'];
+    $rating = $review['rating'];
+    $dtCreate = new DateTime($review['created_at']);
+    $dtUpdate = new DateTime($review['updated_at']);
     $dateCreate = $dtCreate->format('M d, Y');
-    $dateUpdate = '';
+    $dateUpdate = $dtCreate != $dtUpdate ? ' • Updated on ' . $dtUpdate->format('M d, Y') : '';
 
     // Loop to add star images based on the rating value
-    $starsHtml = str_repeat('<img src="/assets/app/star.png" alt="star" class="stars-img">', $rating);
     $html = <<<"EOT"
         <div class="edit-review-container">
             <div class="review-upper-section">
-                <img class="film-poster-edit" src="$profilePicturePath">
+                <img class="film-poster-edit" src="$posterImagePath">
                 <div class="review-details">
-                <h6 class="film-title" id="ftr1">$name</h6>
+                <h6 class="film-title" id="ftr1">$title</h6>
                 <h6>
                     <span class="review-date">
                         $dateCreate
@@ -37,30 +29,7 @@ function showReview($review){
                     </span>
                 </h6>
                 <div class="edit-star">
-                    <input type="radio" name="star" id="star1" value="1">
-                    <label class="star-label" for="star1">
-                        <div class="review-stars-container">$starsHtml 1</div>
-                    </label>
-
-                    <input type="radio" name="star" id="star2" value="2">
-                    <label class="star-label" for="star2">
-                        <div class="review-stars-container">$starsHtml 2</div>
-                    </label>
-
-                    <input type="radio" name="star" id="star3" value="3">
-                    <label class="star-label" for="star3">
-                        <div class="review-stars-container">$starsHtml 3</div>
-                    </label>
-
-                    <input type="radio" name="star" id="star4" value="4">
-                    <label class="star-label" for="star4">
-                        <div class="review-stars-container">$starsHtml 4</div>                    
-                    </label>
-
-                    <input type="radio" name="star" id="star5" value="5" checked>
-                    <label class="star-label" for="star5">
-                        <div class="review-stars-container">$starsHtml 5</div>
-                    </label>
+                    {{star_radio}}
                 </div>
                 <div class="edit-text-box">
                     <textarea class="edit-textarea">$reviewText</textarea>
@@ -69,6 +38,20 @@ function showReview($review){
             </div>
         </div>
     EOT;
+
+    $starsHtml = '<img src="/assets/app/star.png" alt="star" class="stars-img">';
+    $starRadioHtml = '';
+    for($i = 1; $i <= 5; $i++){
+        $checked = $i == $rating ? ' checked' : '';
+        $starRadioHtml .= <<<"EOT"
+            <input type="radio" name="star" id="star$i" value="$i" $checked>
+            <label class="star-label" for="star$i">
+                <div class="review-stars-container">$starsHtml $i</div>
+            </label>
+        EOT;
+    }
+    $html = str_replace('{{star_radio}}', $starRadioHtml, $html);
+
     $str = $str . $html;
     return $str;
 }
@@ -78,7 +61,7 @@ function showReview($review){
 <div class="base-container">
     <div class="edit-review">
         <div>
-            <?php echo showReview(1) ?>
+            <?php echo showReview($data['review']) ?>
         </div>
         <div class="review-button-container">
             <input type="image" class="review-button" id="save" src="/assets/app/save-review.png" name="Save"/>

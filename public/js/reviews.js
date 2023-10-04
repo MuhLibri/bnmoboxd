@@ -48,7 +48,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const saveButton = document.querySelector('#save');
     saveButton.addEventListener('click', function (e) {
-        console.log("a")
         e.preventDefault();
         handleOpen('#confirm-edit-modal');
     });
