@@ -2,7 +2,7 @@
 
 $currentPage = $data['currentPage'];
 $buttonsToShow = 5;
-$totalPages = ceil($data['count'] / 10);
+$totalPages = ceil($data['count'] / 21);
 $startPage = max(1, $currentPage - floor($buttonsToShow / 2));
 $endPage = min($totalPages, $startPage + 5 - 1);
 

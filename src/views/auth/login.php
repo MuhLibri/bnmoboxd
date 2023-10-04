@@ -12,7 +12,12 @@
             <label class="form-error" id="password-form-error"></label>
         </div>
         <label class="form-error" id="auth-form-error"></label>
-        <button type="submit" class="btn-primary">Login</button>
+        <div>
+            <p class="text-white">No account yet? <a href="/register" class="text-primary font-bold">Register</a> </p>
+        </div>
+        <div class="btn-group">
+            <button type="submit" class="btn-primary">Login</button>
+        </div>
     </form>
 </div>
 <script defer src="/js/form-handler.js"></script>
