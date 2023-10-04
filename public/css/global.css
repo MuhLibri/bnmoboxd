@@ -148,12 +148,16 @@ textarea {
 select {
     border-radius: var(--radius-md);
     background: var(--clr-background-disabled);
-    color: white;
+    color: var(--clr-muted);
     padding: 10px;
     border: none;
     outline-color: var(--clr-primary);
     box-sizing: border-box;
     font-size: 14px;
+}
+
+option:not(:first-of-type) {
+    color: white;
 }
 
 label {
@@ -483,16 +487,13 @@ a {
 
 .modal-container.active {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 .display-grid {
     display: grid;
-}
-
-select option:disabled:checked {
-    color: var(--clr-muted)
 }
 
 .form-logo {
