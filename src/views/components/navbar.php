@@ -18,7 +18,7 @@ function isNavLinkActive($currentUrl, $linkUrl) {
 
 <div class="topnav" id="myTopnav">
     <div class="logo=container">
-        <img class="nav-logo" src="/assets/logo.png">
+        <img class="nav-logo" src="/assets/logo.png" alt="Logo">
     </div>
     <div class="nav-items">
         <?php

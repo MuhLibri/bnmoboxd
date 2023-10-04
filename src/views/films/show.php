@@ -15,19 +15,22 @@ function filmInfo($film){
     $title = $film['title'];
     $year = $film['release_year'];
     $genre = $film['genre'];
+    $director = $film['director'];
     $description = $film['description'];
 
-    return <<<"EOT"
-        <div class="film-title-description">
-            <h5 class="section-title film-title">$title</h5>
-            <h6 class="film-subtitle">
-                <span class="release-year">$year</span>
-                •
-                <span class="film-genre">$genre</span>
-            </h6>
-            <p class="text-white">$description</p>
-        </div>
+    $html = <<<"EOT"
+        <h5 class="section-title film-title">$title</h5>
+        <h6 class="film-subtitle">
+            <span class="release-year">$year</span>
+            •
+            <span class="film-genre-director">$genre</span>
+            •
+            <span class="film-genre-director">Directed by $director</span>
+        </h6>
     EOT;
+    $html .= ($description ? "<p class=\"text-white\">$description</p>" : '<p class="empty-text">No description.</p>');
+    
+    return $html;
 }
 
 function reviewList($reviews){
@@ -67,17 +70,28 @@ function reviewList($reviews){
         }
     }
     if(empty($str)){
-        return <<<"EOT"
-            <p class="review-empty-text">No reviews.</p>
-        EOT;
+        return '<p class="empty-text">No reviews.</p>';
     }
     return $str;
 }
 ?>
-<div class="base-container">
-    <div class="film-show-container">
+<div class="base-container display-grid">
+    <div class="film-page-container">
         <div class="film-poster-col">
-            <?php echo filmPosterImage($data['film']); ?>
+            <?php
+                echo filmPosterImage($data['film']);
+                if($data['admin']){
+                    $id = $data['film']['id'];
+                    echo <<<"EOT"
+                        <a href="/film/$id/edit">
+                            <button class="btn-primary" type="button">Edit</button>
+                        </a>
+                    EOT;
+                }
+                if(isset($data['film']['video_path'])) {
+                    echo '<button class="btn-primary" id="watch-trailer-btn">Watch Trailer</button>';
+                }
+            ?>
         </div>
 
         <div class="film-details-col">
@@ -89,5 +103,17 @@ function reviewList($reviews){
                 <?php echo reviewList($data['reviews']); ?>
             </div>
         </div>
+        <div class="trailer-container" id="trailer-container">
+            <?php
+            if (isset($data['film']['video_path'])) {
+                $videoPath = '/assets/videos/' . $data['film']['video_path'];
+                echo <<<"EOT"
+                            <video controls class="video-player" id="video-player"><source src="$videoPath" type="video/mp4"></video>
+                        EOT;
+            }
+            ?>
+            <button class="btn-danger" id="close-trailer-btn">Close</button>
+        </div>
     </div>
 </div>
+<script defer src="/js/film-detail.js"></script>
