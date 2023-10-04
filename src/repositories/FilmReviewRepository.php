@@ -104,7 +104,7 @@ class FilmReviewRepository extends Repository
         return $this->findOne($query, $params);
     }
 
-    public function addReview($filmId, $userId, $review, $rating)
+    public function addReview(int $filmId, int $userId, string $review, int $rating)
     {
         $query = 'INSERT INTO film_reviews (film_id, user_id, review, rating) VALUES (:film_id, :user_id, :review, :rating)';
         $params = [
