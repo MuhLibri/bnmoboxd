@@ -5,6 +5,7 @@ use app\core\Application;
 use app\core\Request;
 use app\core\Controller;
 use app\exceptions\NotFoundException;
+use app\middlewares\AdminMiddleware;
 use app\services\FilmService;
 use app\services\FilmReviewService;
 
@@ -16,12 +17,40 @@ class FilmController extends Controller
     public function __construct(){
         require_once Application::$BASE_DIR . '/src/services/FilmService.php';
         require_once Application::$BASE_DIR . '/src/services/FilmReviewService.php';
+        require_once Application::$BASE_DIR . '/src/middlewares/AdminMiddleware.php';
 
         $this->view = 'films';
         $this->filmService = new FilmService();
         $this->filmReviewService = new FilmReviewService();
+        $this->middlewares = [
+            'createPage' => AdminMiddleware::class,
+            'editPage' => AdminMiddleware::class,
+            'create' => AdminMiddleware::class,
+            'edit' => AdminMiddleware::class,
+            'delete' => AdminMiddleware::class
+        ];
+    }
+    
+    public function createPage(Request $request){
+        echo 'Wow a new film';
     }
 
+    public function editPage(Request $request){
+        echo 'Wow you are updating film ' . $request->getParams()[0];
+    }
+
+    public function create(Request $request){
+        echo Application::$app->response->jsonEncode(501, ['errors' => []]);
+    }
+
+    public function edit(Request $request){
+        echo Application::$app->response->jsonEncode(501, ['errors' => []]);
+    }
+
+    public function delete(Request $request){
+        echo Application::$app->response->jsonEncode(501, ['errors' => []]);
+    }
+    
     public function index(Request $request) {
         $filmsData = $this->filmService->getFilms();
         $this->render('index', array_merge($filmsData, ['currentPage' => 1]));
