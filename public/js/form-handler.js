@@ -5,6 +5,7 @@ function handleFormSubmit(formId, url, onSuccess) {
     }
 
     form.addEventListener("submit", function (e) {
+        e.preventDefault();
         submitForm(form, url, onSuccess)
     });
 
