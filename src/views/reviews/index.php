@@ -52,7 +52,7 @@ function reviewList($reviews){
     }
     if(empty($str)){
         return <<<"EOT"
-            <p class="review-empty-text">No reviews.</p>
+            <p class="empty-text">No reviews.</p>
         EOT;
     }
     return $str;

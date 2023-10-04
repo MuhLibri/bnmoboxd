@@ -38,6 +38,11 @@
     margin-block-end: 1em;
 }
 
+.film-page-container .empty-text {
+    color: var(--clr-muted);
+    font-style: italic;
+}
+
 .film-poster-col .poster-image {
     width: 100%;
     height: auto;
@@ -115,11 +120,6 @@
 .film-reviews .review-stars-container {
     justify-content: left;
     gap: 12px;
-}
-
-.film-reviews .review-empty-text {
-    color: var(--clr-muted);
-    font-style: italic;
 }
 
 #film-form textarea {
