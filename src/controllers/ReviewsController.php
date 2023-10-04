@@ -11,12 +11,14 @@ use app\exceptions\NotFoundException;
 use app\middlewares\AuthMiddleware;
 use app\services\FilmReviewService;
 
-class ReviewsController extends Controller
-{
+class ReviewsController extends Controller{
     private FilmReviewService $filmReviewService;
+
     public function __construct() {
-        require_once Application::$BASE_DIR . '/src/middlewares/AuthMiddleware.php';
         require_once Application::$BASE_DIR . '/src/services/FilmReviewService.php';
+        require_once Application::$BASE_DIR . '/src/middlewares/AuthMiddleware.php';
+
+        $this->filmReviewService = new FilmReviewService();
         $this->view = 'reviews';
         $this->filmReviewService = new FilmReviewService();
         $this->middlewares = [
@@ -46,7 +48,7 @@ class ReviewsController extends Controller
     public function create(Request $request) {
         $reviewData = $request->getBody();
         $userId = $_SESSION['user_id'];
-        $this->filmReviewService->create($reviewData. $userId);
+        $this->filmReviewService->create($reviewData, $userId);
     }
 
     /**

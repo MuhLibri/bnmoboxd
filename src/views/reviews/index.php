@@ -17,20 +17,20 @@ function reviewList($reviews){
 
             $starsHtml = str_repeat('<img src="/assets/app/star.png" alt="star" class="stars-img">', $rating);
             $html = <<<EOT
-<a href="/my-reviews/$id" class="review-container" id="review-container-flex">                                                                                                                                     
-    <img src="$filmPosterPath" class="poster-image">
-    <div class="review-details">
-        <h6>
-            $name
-            <span class="review-date">
-                $dateCreate
-            </span>
-        </h6>
-        <div class="review-stars-container">$starsHtml</div>
-        <p>$reviewText</p>
-    </div>
-</a>
-EOT;
+                <a href="/my-reviews/$id" class="review-container" id="review-container-flex">                                                                                                                                     
+                    <img src="$filmPosterPath" class="poster-image">
+                    <div class="review-details">
+                        <h6>
+                            $name
+                            <span class="review-date">
+                                $dateCreate
+                            </span>
+                        </h6>
+                        <div class="review-stars-container">$starsHtml</div>
+                        <p>$reviewText</p>
+                    </div>
+                </a>
+            EOT;
             $str = $str . $html;
         }
     }

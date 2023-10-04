@@ -48,7 +48,7 @@ class FilmReviewRepository extends Repository
         return $this->findAll($query, $params);
     }
 
-    public function getByUserId($userId,$options = [])
+    public function getByUserId($userId, $options = [])
     {
         $params = ['userId' => (int)$userId];
         $selectQuery = 'SELECT f.*, fr.* ';
