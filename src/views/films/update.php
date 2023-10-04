@@ -40,7 +40,7 @@ function filmUpdateForm($data){
                 </div>
                 <div class="form-group">
                     <label for="release-year">Release Year</label>
-                    <input type="text" id="release-year" name="release-year" formnovalidate value="$releaseYear">
+                    <input type="text" id="release_year" name="release_year" formnovalidate value="$releaseYear">
                     <label class="form-error" id="release-year-form-error"></label>
                 </div>
                 <div class="form-group">
@@ -61,11 +61,12 @@ function filmUpdateForm($data){
                 </div>
                 <div class="form-group">
                     <label for="film-poster">Poster</label>
-                    <input type="file" id="film-poster" name="film-poster" accept="image/*">
+                    <input type="file" id="film_poster" name="film_poster" accept="image/*">
+                    <label class="form-error" id="film-poster-form-error"></label>
                 </div>
                 <div class="form-group">
                     <label for="film-trailer">Trailer</label>
-                    <input type="file" id="film-trailer" name="film-trailer" accept="video/*">
+                    <input type="file" id="film_trailer" name="film_trailer" accept="video/*">
                 </div>
                 <div class="btn-group">
                     <button class="btn-primary" type="button" id="save-btn">Save</button>

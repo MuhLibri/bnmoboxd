@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const deleteButton = document.querySelector('#delete-btn');
-    deleteButton.addEventListener('click', function (e) {
+    deleteButton?.addEventListener('click', function (e) {
         e.preventDefault();
         handleOpen('#confirm-delete-modal');
     });
@@ -37,15 +37,17 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
         const form = document.querySelector("#film-form");
         submitForm(form, window.location.href, function (responseText) {
+            const jsonResponse = JSON.parse(responseText);
+
             switch(formContext()){
                 case CTX_CREATE:
-                    window.location.href = "/films";
+                    window.location.href = '/film/' + jsonResponse['id'];
                     break;
                 case CTX_UPDATE:
                     window.location.href = window.location.href.replace('/edit', '');
                     break;
                 default:
-                    window.location.href = "/"
+                    window.location.href = '/'
             }
         })
         handleClose('#confirm-save-modal');

@@ -48,7 +48,8 @@ class FilmController extends Controller
 
     public function create(Request $request){
         $data = $request->getBody();
-        $this->filmService->createFilm($data);
+        $id = $this->filmService->createFilm($data);
+        echo Application::$app->response->jsonEncode(200, ['id' => $id]);
     }
 
     public function edit(Request $request){

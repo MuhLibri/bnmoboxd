@@ -108,6 +108,51 @@ class FilmRepository extends Repository
         return ['films' => $films, 'count' => $count['film_count']];
     }
 
+    /**
+     * @return int ID of the newly added film.
+     */
+    public function addFilm(
+        string $title,
+        int $releaseYear,
+        string $director,
+        string $genre,
+        string $description = null,
+        string $posterImagePath = null,
+        string $trailerVideoPath = null
+    ){
+        // Insert a new tuple into table
+        $queryInsert = 'INSERT INTO films
+            SET
+                title = :title,
+                release_year = :release_year,
+                director = :director,
+                genre = :genre,
+                description = :description
+        ';
+        $params = [
+            'title' => $title,
+            'release_year' => $releaseYear,
+            'director' => $director,
+            'genre' => $genre,
+            'description' => $description
+        ];
+
+        if($posterImagePath){
+            $params['image_path'] = $posterImagePath;
+            $queryInsert = $queryInsert . ', image_path = :image_path';
+        }
+        if($trailerVideoPath){
+            $params['video_path'] = $trailerVideoPath;
+            $queryInsert = $queryInsert . ', video_path = :video_path';
+        }
+        $this->save($queryInsert, $params);
+
+        // Get the new tuple's ID (will always be the largest ID in the table thanks to AUTO INCREMENT)
+        $queryGetId = 'SELECT MAX(id) FROM films';
+        $id = $this->findOne($queryGetId, []);
+        return (int)$id;
+    }
+
     public function updateFilm(
         int $id,
         string $title,

@@ -4,7 +4,6 @@ namespace app\services;
 
 use app\core\Application;
 use app\core\Service;
-use app\exceptions\ForbiddenException;
 use app\exceptions\NotFoundException;
 use app\repositories\FilmRepository;
 
@@ -26,6 +25,28 @@ class FilmService extends Service {
 
     public function createFilm(array $data){
         $this->validateCreateFilmFields($data);
+
+        $posterImagePath = null;
+        $trailerVideoPath = null;
+
+        if(isset($_FILES['film_poster']) && $_FILES['film_poster']['name'] !== ''){
+            $posterImagePath = saveFile($_FILES['film_poster'], Application::$BASE_DIR . '/public/assets/films/');
+        }
+        if(isset($_FILES['film_trailer']) && $_FILES['film_trailer']['name'] !== ''){
+            $trailerVideoPath = saveFile($_FILES['film_trailer'], Application::$BASE_DIR . '/public/assets/films/trailers/');
+        }
+
+        $id = $this->filmRepository->addFilm(
+            $data['title'],
+            $data['release_year'],
+            $data['director'],
+            $data['genre'],
+            $data['description'],
+            $posterImagePath,
+            $trailerVideoPath
+        );
+
+        return $id;
     }
 
     public function updateFilm(array $data){
@@ -34,17 +55,17 @@ class FilmService extends Service {
         $posterImagePath = null;
         $trailerVideoPath = null;
 
-        if(isset($_FILES['film-poster']) && $_FILES['film-poster']['name'] !== ''){
-            $posterImagePath = saveFile($_FILES['film-poster'], Application::$BASE_DIR . '/public/assets/films/');
+        if(isset($_FILES['film_poster']) && $_FILES['film_poster']['name'] !== ''){
+            $posterImagePath = saveFile($_FILES['film_poster'], Application::$BASE_DIR . '/public/assets/films/');
         }
-        if(isset($_FILES['film-trailer']) && $_FILES['film-trailer']['name'] !== ''){
-            $trailerVideoPath = saveFile($_FILES['film-trailer'], Application::$BASE_DIR . '/public/assets/films/trailers/');
+        if(isset($_FILES['film_trailer']) && $_FILES['film_trailer']['name'] !== ''){
+            $trailerVideoPath = saveFile($_FILES['film_trailer'], Application::$BASE_DIR . '/public/assets/films/trailers/');
         }
 
         $this->filmRepository->updateFilm(
             $data['id'],
             $data['title'],
-            $data['release-year'],
+            $data['release_year'],
             $data['director'],
             $data['genre'],
             $data['description'],
@@ -54,17 +75,21 @@ class FilmService extends Service {
     }
 
     private function validateCreateFilmFields(array $data){
-        $errors = $this->validateRequired($data, ['title', 'release-year', 'director']);
+        $errors = $this->validateRequired($data, ['title', 'release_year', 'director']);
 
-        if(!isset($errors['release-year'])){
-            $errors = array_merge($errors, $this->validateReleaseYear($data['release-year']));
+        if(!isset($errors['release_year'])){
+            $errors = array_merge($errors, $this->validateReleaseYear($data['release_year']));
+        }
+
+        if(!isset($errors['film_poster'])){
+            $errors = array_merge($errors, $this->validateFilmPoster());
         }
 
         $this->handleValidationErrors($errors);
     }
 
     private function validateUpdateFilmFields(array $data){
-        $errors = $this->validateRequired($data, ['title', 'release-year', 'director']);
+        $errors = $this->validateRequired($data, ['title', 'release_year', 'director']);
         $id = $data['id'];
         if(!is_numeric($id) || !preg_match('/^[0-9]+$/', $id)){
             throw new NotFoundException(true);
@@ -75,8 +100,8 @@ class FilmService extends Service {
             throw new NotFoundException(true);
         }
 
-        if(!isset($errors['release-year'])){
-            $errors = array_merge($errors, $this->validateReleaseYear($data['release-year']));
+        if(!isset($errors['release_year'])){
+            $errors = array_merge($errors, $this->validateReleaseYear($data['release_year']));
         }
 
         $this->handleValidationErrors($errors);
@@ -86,9 +111,19 @@ class FilmService extends Service {
         $errors = [];
 
         if(!is_numeric($year) || !preg_match('/^[1-9][0-9]*$/', $year)){
-            $errors['release-year'] = 'Release year must be a valid year';
+            $errors['release_year'] = 'Release year must be a valid year';
         }elseif($year < 1900){
-            $errors['release-year'] = 'Release year must be 1900 or later';
+            $errors['release_year'] = 'Release year must be 1900 or later';
+        }
+
+        return $errors;
+    }
+
+    private function validateFilmPoster(){
+        $errors = [];
+
+        if(!isset($_FILES['film_poster']) || $_FILES['film_poster']['name'] == ''){
+            $errors['film_poster'] = 'A film poster must be provided';
         }
 
         return $errors;
