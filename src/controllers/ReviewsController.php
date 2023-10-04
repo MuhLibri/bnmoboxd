@@ -26,8 +26,8 @@ class ReviewsController extends Controller
 
     public function index() {
         $userId = $_SESSION['user_id'];
-        $reviewsData = $this->filmReviewService->getUserReviews($userId, []);
-        $this->render('index', $reviewsData);
+        $reviewsData = $this->filmReviewService->getUserReviews($userId, ['take' => 5]);
+        $this->render('index', array_merge($reviewsData, ['currentPage' => 1, 'pageSize' => 5]));
     }
 
     /**
@@ -46,7 +46,7 @@ class ReviewsController extends Controller
     public function create(Request $request) {
         $reviewData = $request->getBody();
         $userId = $_SESSION['user_id'];
-        $this->filmReviewService->create($reviewData. $userId);
+        $this->filmReviewService->create($reviewData, $userId);
     }
 
     /**
@@ -69,5 +69,12 @@ class ReviewsController extends Controller
         $reviewId = $request->getParams()[0];
         $userId = $_SESSION['user_id'];
         $this->filmReviewService->delete($reviewId, $userId);
+    }
+
+    public function search(Request  $request) {
+        $options = $request->getQuery();
+        $userId = $_SESSION['user_id'];
+        $reviewsData = $this->filmReviewService->getUserReviews($userId, $options);
+        return $this->renderComponent('review-list', array_merge($reviewsData, ['currentPage' => $options['page'], 'pageSize' => 5]));
     }
 }
