@@ -107,4 +107,101 @@ class FilmRepository extends Repository
         $count = $this->findOne($selectCountQuery, $params);
         return ['films' => $films, 'count' => $count['film_count']];
     }
+
+    /**
+     * @return int ID of the newly added film.
+     */
+    public function addFilm(
+        string $title,
+        int $releaseYear,
+        string $director,
+        string $genre,
+        string $description = null,
+        string $posterImagePath = null,
+        string $trailerVideoPath = null
+    ){
+        // Insert a new tuple into table
+        $queryInsert = 'INSERT INTO films
+            SET
+                title = :title,
+                release_year = :release_year,
+                director = :director,
+                genre = :genre,
+                description = :description
+        ';
+        $params = [
+            'title' => $title,
+            'release_year' => $releaseYear,
+            'director' => $director,
+            'genre' => $genre,
+            'description' => $description
+        ];
+
+        if($posterImagePath){
+            $params['image_path'] = $posterImagePath;
+            $queryInsert = $queryInsert . ', image_path = :image_path';
+        }
+        if($trailerVideoPath){
+            $params['video_path'] = $trailerVideoPath;
+            $queryInsert = $queryInsert . ', video_path = :video_path';
+        }
+        $this->save($queryInsert, $params);
+
+        // Get the new tuple's ID (will always be the largest ID in the table thanks to AUTO INCREMENT)
+        $queryGetId = 'SELECT MAX(id) AS id FROM films';
+        $id = $this->findOne($queryGetId, []);
+        return (int)$id['id'];
+    }
+
+    public function updateFilm(
+        int $id,
+        string $title,
+        int $releaseYear,
+        string $director,
+        string $genre,
+        string $description = null,
+        string $posterImagePath = null,
+        string $trailerVideoPath = null
+    ){
+        $dtUpdate = new \DateTime(date_default_timezone_get());
+        $timestamp = $dtUpdate->format('Y-m-d h:i:s');
+
+        $query = 'UPDATE films
+            SET
+                updated_at = :updated_at,
+                title = :title,
+                release_year = :release_year,
+                director = :director,
+                genre = :genre,
+                description = :description
+        ';
+
+        $params = [
+            'updated_at' => $timestamp,
+            'id' => $id,
+            'title' => $title,
+            'release_year' => $releaseYear,
+            'director' => $director,
+            'genre' => $genre,
+            'description' => $description
+        ];
+
+        if($posterImagePath){
+            $params['image_path'] = $posterImagePath;
+            $query = $query . ', image_path = :image_path';
+        }
+        if($trailerVideoPath){
+            $params['video_path'] = $trailerVideoPath;
+            $query = $query . ', video_path = :video_path';
+        }
+
+        $query = $query . ' WHERE id = :id';
+        $this->save($query, $params);
+    }
+
+    public function deleteFilm(int $id){
+        $query = 'DELETE FROM films WHERE id = :id';
+        $params = ['id' => $id];
+        $this->save($query, $params);
+    }
 }

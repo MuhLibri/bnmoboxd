@@ -42,6 +42,15 @@ include_once Application::$BASE_DIR . '/src/views/components/navbar.php';
                     <option value="title_asc">Title (A-Z)</option>
                     <option value="title_desc">Title (Z-A)</option>
                 </select>
+                <?php
+                    if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
+                        echo '
+                            <a href="/films/new">
+                                <button class="btn-primary" type="button">Add New...</button>
+                            </a>
+                        ';
+                    }
+                ?>
             </div>
             <div class="film-poster-list" id="film-poster-list">
                 <?php
