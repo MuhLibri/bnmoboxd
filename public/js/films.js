@@ -18,7 +18,6 @@ function buildQuery() {
     const orderBy = sortFilter[0];
     const sort = sortFilter[1] ?? '';
 
-    // Add any additional parameters as needed
     const query = [
         `search=${searchInput}`,
         `genre=${genreFilter}`,
@@ -31,7 +30,7 @@ function buildQuery() {
 }
 
 function handleFilterChange() {
-*    const query = buildQuery() + `&page=1&take=21`;
+    const query = buildQuery() + `&page=1&take=21`;
     sendRequest(query);
 }
 

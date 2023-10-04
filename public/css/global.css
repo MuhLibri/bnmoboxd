@@ -3,7 +3,7 @@
     --clr-background-base: #202028;
     --clr-background-disabled: #373b46;
     --clr-background-surface: #242632;
-    --clr-primary: #7F39FB;
+    --clr-primary: #985EFF;
     --clr-primary-dark: #3700B3;
     --clr-secondary: #018786;
     --clr-secondary-dark: #017374;
@@ -137,7 +137,7 @@ select {
     border: none;
     outline-color: var(--clr-primary);
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 label {
@@ -463,11 +463,14 @@ a {
     gap: 10px;
 }
 
-/* Show the modal and overlay when active */
 .modal-container.active {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+select option:disabled:checked {
+    color: var(--clr-muted)
 }
 
 @media screen and (max-width: 600px) {
@@ -511,6 +514,16 @@ a {
         width: 100%;
         margin: 0;
         padding: 10px;
+    }
+
+    .section-title {
+        letter-spacing: 2px;
+    }
+
+
+    .form-card {
+        letter-spacing: 2px;
+        width: 75vw;
     }
 
 }

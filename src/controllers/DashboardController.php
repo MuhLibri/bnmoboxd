@@ -20,6 +20,6 @@ class DashboardController extends Controller
     public function index() {
         $filmReviews = $this->filmReviewService->getLatestReviews(['take' => 6]);
         $filmsData = $this->filmService->getFilms(['take' => 6]);
-        $this->render('index', ["filmReviews" => $filmReviews, "films" => $filmsData['films']]);
+        $this->render('index', ['filmReviews' => $filmReviews, 'films' => $filmsData['films'], 'pageSize' => 21]);
     }
 }

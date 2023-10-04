@@ -1,6 +1,7 @@
 .filter-container {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 }
 .filter-container input {
     max-width: 300px;
@@ -111,4 +112,25 @@
 .film-reviews .review-empty-text {
     color: var(--clr-muted);
     font-style: italic;
+}
+
+.search-bar {
+    min-width: 300px;
+    font-size: 14px;
+}
+
+.search-container {
+    position: relative;
+    display: inline-block;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    right: 5px; /* Adjust the position as needed */
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    width: 30px;
+    height: auto;
 }
