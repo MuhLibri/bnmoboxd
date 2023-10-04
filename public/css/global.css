@@ -189,15 +189,16 @@ a {
 
 .form-card {
     max-width: 500px;
-    padding: 20px;
+    padding: 40px;
     background-color: var(--clr-background-surface);
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     border-radius: 10px;
-    margin: 100px auto 0;
+    margin: 100px auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    letter-spacing: 5px;
 }
 
 .form-container {
@@ -205,6 +206,8 @@ a {
 }
 
 .form-group {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 20px;
 }
 
@@ -229,33 +232,44 @@ a {
 }
 
 .base-container {
-    padding: 20px 8vw 60px 8vw;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    padding: 60px 8vw;
 }
 
 .section-title {
     font-weight: bold;
-    margin: 30px 0;
+    margin-bottom: 50px;
     text-decoration: underline;
     text-decoration-color: var(--clr-primary);
     text-decoration-line: underline;
-    text-underline-offset: 10px
+    text-underline-offset: 10px;
+    text-align: center;
+    letter-spacing: 5px;
+}
+
+.section-desc {
+    text-align: center;
+    font-weight: normal;
+    font-size: 14px;
+    color: white;
+    width: 100%;
 }
 
 .review-list {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: center;
     flex-wrap: wrap;
 }
 .film-container {
     display: flex;
     box-sizing: border-box;
-    width: 32vw;
-    min-width: 400px;
-    border-radius: 6px;
+    width: 500px;
     margin: 10px;
+    border-radius: 6px;
     background: var(--clr-background-surface);
     justify-content: space-between;
     align-items: center;
@@ -277,13 +291,14 @@ a {
     height: 12vw;
     object-fit: cover;
     border-radius: var(--radius-md);
-    min-width: 150px;
-    min-height: 200px;
+    min-width: 120px;
+    min-height: 180px;
 }
 
 .film-details-container {
     display: flex;
     flex-direction: column;
+    width: 300px;
     gap: 8px;
 }
 
@@ -298,12 +313,13 @@ a {
 .review-container {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     background: black;
     padding: 1vw;
     border-radius: var(--radius-md);
+    width: 240px;
+    height: 140px;
     align-items: center;
-    min-width: 180px;
-    min-height: 140px;
 }
 
 .review-container img {
@@ -321,7 +337,7 @@ a {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    width: 68%;
+    width: 70%;
     margin-left: 10%;
 }
 
@@ -420,6 +436,7 @@ a {
     display: flex;
     justify-content: flex-end;
     gap: 8px;
+    margin-top: 10px;
 }
 
 .modal-container {
@@ -451,4 +468,49 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media screen and (max-width: 600px) {
+    .profile-picture {
+        display: none;
+    }
+
+    h5 {
+        font-size: 20px;
+    }
+
+    h6 {
+        font-size: 16px;
+    }
+
+    .review-list {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .film-container {
+        flex-direction: column;
+        width: 80%;
+        justify-content: center;
+        align-items: center;
+        margin: 20px;
+    }
+
+    .film-details-container {
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .review-container {
+        width: 100%;
+        height: 180px;
+    }
+
+    .review-details {
+        width: 100%;
+        margin: 0;
+        padding: 10px;
+    }
+
 }
