@@ -31,12 +31,12 @@ function buildQuery() {
 }
 
 function handleFilterChange() {
-    const query = buildQuery() + `&page=1&take=10`;
+*    const query = buildQuery() + `&page=1&take=21`;
     sendRequest(query);
 }
 
 function handlePageChange(page) {
-    const query = buildQuery() + `&page=${page}&take=10`;
+    const query = buildQuery() + `&page=${page}&take=21`;
     sendRequest(query);
 }
 
