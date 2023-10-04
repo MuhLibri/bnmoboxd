@@ -1,3 +1,18 @@
+const
+    CTX_CREATE = 1,
+    CTX_UPDATE = 2,
+    CTX_INVALID = -1;
+
+function formContext(){
+    if(window.location.href.endsWith('new')){
+        return CTX_CREATE;
+    }else if(window.location.href.endsWith('edit')){
+        return CTX_UPDATE;
+    }else{
+        return CTX_INVALID;
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     const saveButton = document.querySelector('#save-btn');
     saveButton.addEventListener('click', function (e) {
@@ -8,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const cancelButton = document.querySelector('#cancel-btn');
     cancelButton.addEventListener('click', function (e) {
         e.preventDefault();
-        window.location.href = window.location.href.replace('/edit', '');
+        window.location.href = window.location.href.replace(/\/\w+$/, '');
     });
 
     const deleteButton = document.querySelector('#delete-btn');
@@ -17,12 +32,21 @@ document.addEventListener("DOMContentLoaded", function () {
         handleOpen('#confirm-delete-modal');
     });
 
-    const confirmEditButton = document.querySelector('#confirm-save-btn');
-    confirmEditButton.addEventListener('click', function (e) {
+    const confirmSaveButton = document.querySelector('#confirm-save-btn');
+    confirmSaveButton.addEventListener('click', function (e) {
         e.preventDefault();
         const form = document.querySelector("#film-form");
         submitForm(form, window.location.href, function (responseText) {
-            window.location.href = "/films"
+            switch(formContext()){
+                case CTX_CREATE:
+                    window.location.href = "/films";
+                    break;
+                case CTX_UPDATE:
+                    window.location.href = window.location.href.replace('/edit', '');
+                    break;
+                default:
+                    window.location.href = "/"
+            }
         })
         handleClose('#confirm-save-modal');
     });

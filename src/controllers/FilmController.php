@@ -51,7 +51,9 @@ class FilmController extends Controller
     }
 
     public function edit(Request $request){
-        echo Application::$app->response->jsonEncode(501, ['errors' => []]);
+        $data = $request->getBody();
+        $data['id'] = $request->getParams()[0];
+        $this->filmService->updateFilm($data);
     }
 
     public function delete(Request $request){

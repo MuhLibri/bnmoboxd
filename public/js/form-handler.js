@@ -17,7 +17,7 @@ function submitForm(form, url, onSuccess) {
     xhr.open("post", url, true);
     xhr.onload = function () {
         if (xhr.status === 200) {
-            onSuccess();
+            onSuccess(xhr.responseText);
         } else {
             const jsonResponse = JSON.parse(xhr.responseText);
             updateErrorMessages(jsonResponse);

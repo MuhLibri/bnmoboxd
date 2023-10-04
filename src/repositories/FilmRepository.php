@@ -107,4 +107,45 @@ class FilmRepository extends Repository
         $count = $this->findOne($selectCountQuery, $params);
         return ['films' => $films, 'count' => $count['film_count']];
     }
+
+    public function updateFilm(
+        int $id,
+        string $title,
+        int $releaseYear,
+        string $director,
+        string $genre,
+        string $description = null,
+        string $posterImagePath = null,
+        string $trailerVideoPath = null
+    ){
+        $query = 'UPDATE films
+            SET
+                title = :title,
+                release_year = :release_year,
+                director = :director,
+                genre = :genre,
+                description = :description
+        ';
+
+        $params = [
+            'id' => $id,
+            'title' => $title,
+            'release_year' => $releaseYear,
+            'director' => $director,
+            'genre' => $genre,
+            'description' => $description
+        ];
+
+        if($posterImagePath){
+            $params['image_path'] = $posterImagePath;
+            $query = $query . ', image_path = :image_path';
+        }
+        if($trailerVideoPath){
+            $params['video_path'] = $trailerVideoPath;
+            $query = $query . ', video_path = :video_path';
+        }
+
+        $query = $query . ' WHERE id = :id';
+        $this->save($query, $params);
+    }
 }

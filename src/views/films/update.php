@@ -13,7 +13,7 @@ function filmUpdateForm($data){
     $description = '';
     $genre = '';
     $imagePath = '/assets/films/';
-    $videoPath = '/assets/films/';
+    $videoPath = '/assets/films/trailers/';
 
     if(!$newFilm){
         $film = $data['film'];
@@ -55,14 +55,8 @@ function filmUpdateForm($data){
                 </div>
                 <div class="form-group">
                     <label for="genre">Genre</label>
-                    <select type="text" id="genre" name="genre" formnovalidate value="$genre">
-                        <option value="Action">Action</option>
-                        <option value="Comedy">Comedy</option>
-                        <option value="Drama">Drama</option>
-                        <option value="Sci-Fi">Sci-Fi</option>
-                        <option value="Horror">Horror</option>
-                        <option value="Fantasy">Fantasy</option>
-                        <option value="Other">Other</option>
+                    <select type="text" id="genre" name="genre" formnovalidate>
+                        {{genre-options}}
                     </select>
                 </div>
                 <div class="form-group">
@@ -105,6 +99,16 @@ function filmUpdateForm($data){
         $newFilm ? '' : '<button class="btn-danger" type="button" id="delete-btn">Delete</button>',
         $html
     );
+
+    $genreOptions = ['Action', 'Comedy', 'Drama', 'Sci-Fi', 'Horror', 'Fantasy', 'Other'];
+    $genreOptionsHtml = '';
+    foreach($genreOptions as $genreOption){
+        $genreOptionHtml = $genreOption == $genre ?
+            "<option value=\"$genreOption\" selected>$genreOption</option>" :
+            "<option value=\"$genreOption\">$genreOption</option>";
+        $genreOptionsHtml = $genreOptionsHtml . $genreOptionHtml;
+    }
+    $html = str_replace('{{genre-options}}', $genreOptionsHtml, $html);
 
     return $html;
 }
