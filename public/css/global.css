@@ -193,12 +193,12 @@ a {
     background-color: var(--clr-background-surface);
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     border-radius: 10px;
-    margin: 100px auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     letter-spacing: 5px;
+    width: 60vw;
 }
 
 .form-container {
@@ -235,6 +235,8 @@ a {
     display: flex;
     flex-direction: column;
     gap: 60px;
+    justify-content: center;
+    align-items: center;
     padding: 60px 8vw;
 }
 
@@ -471,6 +473,10 @@ a {
 
 select option:disabled:checked {
     color: var(--clr-muted)
+}
+
+.form-logo {
+    width: 250px;
 }
 
 @media screen and (max-width: 600px) {

@@ -7,7 +7,7 @@ function filmCard($data){
             $imagePath = '/assets/films/' . $film['image_path'];
             $releaseYear = $film['release_year'];
             $name = $film['first_name'] . ' ' . $film['last_name'];
-            $profilePicturePath = '/assets/users/' . $film['profile_picture_path'];
+            $profilePicturePath = $film['profile_picture_path'] ? '/assets/users/' . $film['profile_picture_path'] : '/assets/users/blank.jpeg';
             $review = strlen($film['review']) > 100 ? substr($film['review'],0, 100) . '...'  : $film['review'];
             $rating = $film['rating'];
             // Loop to add star images based on the rating value
