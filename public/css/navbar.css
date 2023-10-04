@@ -8,6 +8,7 @@
     top: 0;
     overflow: visible;
     letter-spacing: 5px;
+    font-size: 14px;
 }
 
 .nav-item {
@@ -105,8 +106,9 @@
     text-align: center;
     padding: 8px;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 14px;
     width: 100%;
+    letter-spacing: 5px;
 }
 
 .logout-btn:hover {

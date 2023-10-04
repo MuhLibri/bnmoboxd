@@ -7,11 +7,13 @@ include_once Application::$BASE_DIR . '/src/views/components/navbar.php';
 
 <div class="base-container">
     <div>
-
         <h5 class="section-title">FILMS</h5>
         <div class="film-list">
             <div class="filter-container">
-                <input type="string" value="" name="search" id="searchInput" placeholder="Search by title/director">
+                <div class="search-container">
+                    <input type="string" value="" name="search" id="searchInput" placeholder="Search by title/director" class="search-bar">
+                    <img src="/assets/app/search-icon.png" alt="Search Icon" class="search-icon">
+                </div>
                 <select id="genreFilter">
                     <option value="" disabled selected>Genre</option>
                     <option value="all">All</option>
@@ -24,6 +26,7 @@ include_once Application::$BASE_DIR . '/src/views/components/navbar.php';
                 </select>
                 <select id="ratingFilter">
                     <option value="" disabled selected>Rating</option>
+                    <option value="all">All</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
