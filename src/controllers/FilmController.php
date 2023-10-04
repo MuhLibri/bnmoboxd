@@ -23,7 +23,7 @@ class FilmController extends Controller
     }
 
     public function index(Request $request) {
-        $filmsData = $this->filmService->getFilms();
+        $filmsData = $this->filmService->getFilms(['take' => 21]);
         $this->render('index', array_merge($filmsData, ['currentPage' => 1]));
     }
 
