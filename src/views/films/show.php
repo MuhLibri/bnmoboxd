@@ -87,6 +87,9 @@ function reviewList($reviews){
                         </a>
                     EOT;
                 }
+                if(isset($data['film']['video_path'])) {
+                    echo '<button class="btn-primary" id="watch-trailer-btn">Watch Trailer</button>';
+                }
             ?>
         </div>
 
@@ -99,5 +102,17 @@ function reviewList($reviews){
                 <?php echo reviewList($data['reviews']); ?>
             </div>
         </div>
+        <div class="trailer-container" id="trailer-container">
+            <?php
+            if (isset($data['film']['video_path'])) {
+                $videoPath = '/assets/videos/' . $data['film']['video_path'];
+                echo <<<"EOT"
+                            <video controls class="video-player" id="video-player"><source src="$videoPath" type="video/mp4"></video>
+                        EOT;
+            }
+            ?>
+            <button class="btn-danger" id="close-trailer-btn">Close</button>
+        </div>
     </div>
 </div>
+<script defer src="/js/film-detail.js"></script>
