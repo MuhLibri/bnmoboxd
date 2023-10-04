@@ -10,19 +10,27 @@ use app\exceptions\ForbiddenException;
 use app\exceptions\NotFoundException;
 use app\middlewares\AuthMiddleware;
 use app\services\FilmReviewService;
+use app\services\FilmService;
 
 class ReviewsController extends Controller{
+    private FilmService $filmService;
     private FilmReviewService $filmReviewService;
 
     public function __construct() {
+        require_once Application::$BASE_DIR . '/src/services/FilmService.php';
         require_once Application::$BASE_DIR . '/src/services/FilmReviewService.php';
         require_once Application::$BASE_DIR . '/src/middlewares/AuthMiddleware.php';
 
+        $this->filmService = new FilmService();
         $this->filmReviewService = new FilmReviewService();
         $this->view = 'reviews';
-        $this->filmReviewService = new FilmReviewService();
         $this->middlewares = [
-            "index" => AuthMiddleware::class
+            "index" => AuthMiddleware::class,
+            "createPage" => AuthMiddleware::class,
+            "editPage" => AuthMiddleware::class,
+            "create" => AuthMiddleware::class,
+            "edit" => AuthMiddleware::class,
+            "delete" => AuthMiddleware::class
         ];
     }
 
@@ -32,11 +40,18 @@ class ReviewsController extends Controller{
         $this->render('index', $reviewsData);
     }
 
+    public function createPage(Request $request){
+        $filmId = $request->getParams()[0];
+        $userId = $_SESSION['user_id'];
+        $film = $this->filmService->getFilm($filmId);
+        $this->render('edit', ['film' => $film]);
+    }
+
     /**
      * @throws NotFoundException
      * @throws ForbiddenException
      */
-    public function show(Request $request) {
+    public function editPage(Request $request) {
         $reviewId = $request->getParams()[0];
         $userId = $_SESSION['user_id'];
         $review = $this->filmReviewService->getReview($reviewId, $userId);

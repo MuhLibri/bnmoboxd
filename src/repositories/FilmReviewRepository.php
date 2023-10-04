@@ -30,6 +30,32 @@ class FilmReviewRepository extends Repository
         return $this->findAll($query, $params);
     }
 
+    public function getByUserFilmId($userId, $filmId){
+        $query = 'SELECT
+                    fr.id AS id,
+                    fr.film_id AS film_id,
+                    fr.user_id AS user_id,
+                    fr.rating AS rating,
+                    fr.review AS review,
+                    fr.created_at AS created_at,
+                    fr.updated_at AS updated_at,
+                    u.first_name AS first_name,
+                    u.last_name AS last_name,
+                    u.profile_picture_path AS profile_picture_path
+                FROM
+                    film_reviews AS fr
+                    INNER JOIN users AS u ON fr.user_id = u.id
+                WHERE
+                    fr.user_id = :user_id
+                    AND fr.film_id = :film_id
+                ';
+        $params = [
+            'user_id' => $userId,
+            'film_id' => $filmId
+        ];
+        return $this->findAll($query, $params);
+    }
+
     public function getLatestReviews($options) {
         $params = [];
         $query = 'SELECT f.*, fr.*, u.first_name, u.last_name, u.profile_picture_path
@@ -80,9 +106,9 @@ class FilmReviewRepository extends Repository
 
     public function addReview($filmId, $userId, $review, $rating)
     {
-        $query = 'INSERT INTO film_reviews (film_id, user_id, rating, review) VALUES (:filmId, :userId, :review, :rating)';
+        $query = 'INSERT INTO film_reviews (film_id, user_id, review, rating) VALUES (:film_id, :user_id, :review, :rating)';
         $params = [
-            'filmd_id' => $filmId,
+            'film_id' => $filmId,
             'user_id' => $userId,
             'rating' => $rating,
             'review' => $review

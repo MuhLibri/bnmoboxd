@@ -27,6 +27,10 @@ class FilmReviewService extends Service
         return $this->filmReviewRepository->getByFilmId($id);
     }
 
+    public function getReviewFromUserOnFilm($userId, $filmId){
+        return $this->filmReviewRepository->getByUserFilmId($userId, $filmId);
+    }
+
     public function getUserReviews(int $userId, $options= []): array
     {
         return $this->filmReviewRepository->getByUserId($userId, $options = []);
