@@ -30,9 +30,9 @@ class FilmController extends Controller
     public function show(Request $request) {
         $id = $request->getParams()[0];
         $film = $this->filmService->getFilm($id);
-        $reviews = $this->filmReviewService->getReviewsWithFilmId($id);
-
+        
         if($film){
+            $reviews = $this->filmReviewService->getReviewsWithFilmId($id);
             $this->render('show', ['film' => $film, 'reviews' => $reviews]);
         }else{
             throw new NotFoundException(true);
