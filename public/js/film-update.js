@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const cancelButton = document.querySelector('#cancel-btn');
     cancelButton.addEventListener('click', function (e) {
         e.preventDefault();
-        window.location.href = '/films';
+        window.location.href = window.location.href.replace('/edit', '');
     });
 
     const deleteButton = document.querySelector('#delete-btn');
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     confirmDeleteButton.addEventListener('click', function (e) {
         e.preventDefault();
         const xhr = new XMLHttpRequest();
-        const url = window.location.href + '/delete';
+        const url = window.location.href.replace('edit', 'delete');
         xhr.open('DELETE', url, true);
         xhr.onreadystatechange = function () {
             // alert(xhr.responseText);

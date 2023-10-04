@@ -77,7 +77,17 @@ function reviewList($reviews){
 <div class="base-container display-grid">
     <div class="film-page-container">
         <div class="film-poster-col">
-            <?php echo filmPosterImage($data['film']); ?>
+            <?php
+                echo filmPosterImage($data['film']);
+                if($data['admin']){
+                    $id = $data['film']['id'];
+                    echo <<<"EOT"
+                        <a href="/film/$id/edit">
+                            <button class="btn-primary" type="button">Edit</button>
+                        </a>
+                    EOT;
+                }
+            ?>
         </div>
 
         <div class="film-details-col">

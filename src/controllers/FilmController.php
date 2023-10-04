@@ -69,7 +69,7 @@ class FilmController extends Controller
         
         if($film){
             $reviews = $this->filmReviewService->getReviewsWithFilmId($id);
-            $this->render('show', ['film' => $film, 'reviews' => $reviews]);
+            $this->render('show', ['film' => $film, 'reviews' => $reviews, 'admin' => isset($_SESSION['role']) && $_SESSION['role'] == 'admin']);
         }else{
             throw new NotFoundException(true);
         }
