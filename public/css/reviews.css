@@ -54,7 +54,7 @@
     margin-bottom: 5px;
 }
 
-.review-empty-text {
+.empty-text {
     color: var(--clr-muted);
     font-style: italic;
 }

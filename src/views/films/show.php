@@ -18,7 +18,7 @@ function filmInfo($film){
     $director = $film['director'];
     $description = $film['description'];
 
-    return <<<"EOT"
+    $html = <<<"EOT"
         <h5 class="section-title film-title">$title</h5>
         <h6 class="film-subtitle">
             <span class="release-year">$year</span>
@@ -27,8 +27,10 @@ function filmInfo($film){
             •
             <span class="film-genre-director">Directed by $director</span>
         </h6>
-        <p class="text-white">$description</p>
     EOT;
+    $html .= ($description ? "<p class=\"text-white\">$description</p>" : '<p class="empty-text">No description.</p>');
+    
+    return $html;
 }
 
 function createReviewModal($filmId) {
@@ -102,9 +104,7 @@ function reviewList($reviews){
         }
     }
     if(empty($str)){
-        return <<<"EOT"
-            <p class="review-empty-text">No reviews.</p>
-        EOT;
+        return '<p class="empty-text">No reviews.</p>';
     }
     return $str;
 }

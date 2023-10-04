@@ -33,7 +33,7 @@ class FilmService extends Service {
             $posterImagePath = saveFile($_FILES['film_poster'], Application::$BASE_DIR . '/public/assets/films/');
         }
         if(isset($_FILES['film_trailer']) && $_FILES['film_trailer']['name'] !== ''){
-            $trailerVideoPath = saveFile($_FILES['film_trailer'], Application::$BASE_DIR . '/public/assets/films/trailers/');
+            $trailerVideoPath = saveFile($_FILES['film_trailer'], Application::$BASE_DIR . '/public/assets/videos/');
         }
 
         $id = $this->filmRepository->addFilm(
@@ -59,7 +59,7 @@ class FilmService extends Service {
             $posterImagePath = saveFile($_FILES['film_poster'], Application::$BASE_DIR . '/public/assets/films/');
         }
         if(isset($_FILES['film_trailer']) && $_FILES['film_trailer']['name'] !== ''){
-            $trailerVideoPath = saveFile($_FILES['film_trailer'], Application::$BASE_DIR . '/public/assets/films/trailers/');
+            $trailerVideoPath = saveFile($_FILES['film_trailer'], Application::$BASE_DIR . '/public/assets/videos/');
         }
 
         $this->filmRepository->updateFilm(

@@ -13,7 +13,7 @@ function filmUpdateForm($data){
     $description = '';
     $genre = '';
     $imagePath = '/assets/films/';
-    $videoPath = '/assets/films/trailers/';
+    $videoPath = '/assets/videos/';
 
     if(!$newFilm){
         $film = $data['film'];
@@ -27,10 +27,9 @@ function filmUpdateForm($data){
         $videoPath = $videoPath . $film['video_path'];
     }
 
-    $html = <<<"EOT"
-        <div class="film-poster-col">
-            <img src="$imagePath" class="poster-image">
-        </div>
+    $html = $newFilm ? '' : "<div class=\"film-poster-col\"><img src=\"$imagePath\" class=\"poster-image\"></div>";
+
+    $html .= <<<"EOT"
         <div class="film-details-col">
             <form class="form-container" id="film-form">
                 <div class="form-group">
