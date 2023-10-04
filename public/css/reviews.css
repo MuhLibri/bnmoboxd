@@ -57,6 +57,19 @@
     background-color: black;
 } */
 
+.review-upper-section {
+    display: flex;
+}
+
+/* #ftr1 {
+    margin-left: 30px;
+} */
+
+.film-poster-edit {
+    width: 300px;
+    height: 500px;
+}
+
 .review-button-container {
     float: right;
 }
@@ -75,6 +88,39 @@
     /* margin: 25px; */
     padding: 20px;
 }
+
+/* .edit-text-box {
+    margin-top: 30px;
+} */
+
+input[type="radio"] {
+    height: 15px;
+    width: 15px;
+}
+
+
+.star-label {
+    margin-right: 20px;
+}
+
+.edit-star {
+    display: flex;
+    text-align: left;
+    /* background-color: aqua; */
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+
+.edit-textarea {
+    height: 300px;
+    width:700px;
+    background-color: black;
+    border:none;
+    color: white;
+    padding: 20px;
+}
+
 
 /* .edit-review {
     background: var(--clr-background-surface);
