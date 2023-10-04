@@ -286,6 +286,7 @@ a {
     justify-content: center;
     flex-wrap: wrap;
 }
+
 .film-container {
     display: flex;
     box-sizing: border-box;
@@ -396,6 +397,11 @@ a {
 
 .film-poster-card:hover h5{
     color: var(--clr-primary);
+}
+
+.review-list-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .stars-container {

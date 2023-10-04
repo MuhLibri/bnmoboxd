@@ -22,7 +22,7 @@ class Controller
 
     public function renderContent($content, $data){
         ob_start();
-        include_once VIEW_DIR . ($this->view !== '' ? '/' .$this->view : '') . "/$content.php";
+        include_once VIEW_DIR . ($this->view !== 'index' ? '/' .$this->view : '') . "/$content.php";
         return ob_get_clean();
     }
 
