@@ -1,5 +1,5 @@
 function onClick() {
-    var x = document.getElementById("myTopnav");
+    const x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
         x.className += " responsive";
     } else {
@@ -7,12 +7,17 @@ function onClick() {
     }
 }
 
-document.getElementById("logoutButton").addEventListener("click", function(e) {
-    e.preventDefault();
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/logout", true);
-    xhr.onload = function () {
-        window.location.href = "/"
-    };
-    xhr.send();
+document.addEventListener("DOMContentLoaded", function () {
+    const logoutButton = document.getElementById("logoutButton");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "/logout", true);
+            xhr.onload = function () {
+                window.location.href = "/";
+            };
+            xhr.send();
+        });
+    }
 });

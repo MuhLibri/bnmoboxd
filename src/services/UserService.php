@@ -33,6 +33,7 @@ class UserService extends Service
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['role'] = $user['role'];
+                $_SESSION['profile_picture_path'] = $user['profile_picture_path'];
                 return;
             }
         }

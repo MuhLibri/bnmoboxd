@@ -1,6 +1,5 @@
 function handleConfirm(e, callback, modalId) {
     e.preventDefault();
-    alert(e)
     handleClose(modalId);
     eval(callback + '()');
 }

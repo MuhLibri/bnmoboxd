@@ -23,8 +23,8 @@ class FilmController extends Controller
     }
 
     public function index(Request $request) {
-        $filmsData = $this->filmService->getFilms();
-        $this->render('index', array_merge($filmsData, ['currentPage' => 1]));
+        $filmsData = $this->filmService->getFilms(['take' => 21]);
+        $this->render('index', array_merge($filmsData, ['currentPage' => 1, 'pageSize' => 21]));
     }
 
     public function show(Request $request) {
@@ -43,6 +43,6 @@ class FilmController extends Controller
         $options = $request->getQuery();
         $filmsData = $this->filmService->getFilms($options);
         $currentPage = $options['page'] ?? 1;
-        return $this->renderComponent('film-posters', array_merge($filmsData, ['currentPage' => $currentPage]));
+        return $this->renderComponent('film-posters', array_merge($filmsData, ['currentPage' => $currentPage, 'pageSize' => 21]));
     }
 }

@@ -15,8 +15,8 @@ class FilmReviewService
         $this->filmReviewRepository = new FilmReviewRepository();
     }
 
-    public function getFilmReviews() {
-        return $this->filmReviewRepository->getAll();
+    public function getLatestReviews($options) {
+        return $this->filmReviewRepository->getLatestReviews($options);
     }
 
     public function getReviewsWithFilmId($id){
