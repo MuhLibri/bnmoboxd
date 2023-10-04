@@ -59,7 +59,8 @@ class FilmController extends Controller
     }
 
     public function delete(Request $request){
-        echo Application::$app->response->jsonEncode(501, ['errors' => []]);
+        $id = $request->getParams()[0];
+        $this->filmService->deleteFilm($id);
     }
     
     public function index(Request $request) {

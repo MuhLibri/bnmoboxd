@@ -37,10 +37,9 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
         const form = document.querySelector("#film-form");
         submitForm(form, window.location.href, function (responseText) {
-            const jsonResponse = JSON.parse(responseText);
-
             switch(formContext()){
                 case CTX_CREATE:
+                    const jsonResponse = JSON.parse(responseText);
                     window.location.href = '/film/' + jsonResponse['id'];
                     break;
                 case CTX_UPDATE:

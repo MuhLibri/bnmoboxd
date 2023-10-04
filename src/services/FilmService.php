@@ -74,6 +74,19 @@ class FilmService extends Service {
         );
     }
 
+    public function deleteFilm(string $id){
+        if(!is_numeric($id) || !preg_match('/^[0-9]+$/', $id)){
+            throw new NotFoundException(true);
+        }
+        
+        $film = $this->getFilm($id);
+        if(!$film){
+            throw new NotFoundException(true);
+        }
+
+        $this->filmRepository->deleteFilm((int)$id);
+    }
+
     private function validateCreateFilmFields(array $data){
         $errors = $this->validateRequired($data, ['title', 'release_year', 'director']);
 

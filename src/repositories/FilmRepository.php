@@ -148,9 +148,9 @@ class FilmRepository extends Repository
         $this->save($queryInsert, $params);
 
         // Get the new tuple's ID (will always be the largest ID in the table thanks to AUTO INCREMENT)
-        $queryGetId = 'SELECT MAX(id) FROM films';
+        $queryGetId = 'SELECT MAX(id) AS id FROM films';
         $id = $this->findOne($queryGetId, []);
-        return (int)$id;
+        return (int)$id['id'];
     }
 
     public function updateFilm(
@@ -196,6 +196,12 @@ class FilmRepository extends Repository
         }
 
         $query = $query . ' WHERE id = :id';
+        $this->save($query, $params);
+    }
+
+    public function deleteFilm(int $id){
+        $query = 'DELETE FROM films WHERE id = :id';
+        $params = ['id' => $id];
         $this->save($query, $params);
     }
 }
