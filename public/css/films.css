@@ -13,11 +13,12 @@
     gap: 30px;
 }
 
-.film-show-container {
+.film-page-container {
+    justify-self: center;
     display: flex;
     flex-direction: row;
     gap: 40px;
-    width: 80vw;
+    width: 70vw;
 }
 
 .film-poster-col {
@@ -33,7 +34,7 @@
     width: 70%;
 }
 
-.film-show-container .film-subtitle {
+.film-page-container .film-subtitle {
     margin-block-end: 1em;
 }
 
@@ -43,6 +44,11 @@
     min-width: 180px;
     min-height: 240px;
     margin-top: 30px;
+}
+
+.film-poster-col button {
+    width: 100%;
+    margin-top: 20px;
 }
 
 .film-title-description .film-title {
@@ -112,6 +118,10 @@
 .film-reviews .review-empty-text {
     color: var(--clr-muted);
     font-style: italic;
+}
+
+#film-form textarea {
+    height: 9em;
 }
 
 .search-bar {
