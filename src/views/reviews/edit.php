@@ -4,8 +4,7 @@ use app\core\Application;
 include_once Application::$BASE_DIR . '/src/views/components/navbar.php';
 
 function showReview($review){
-    $str = "";
-
+    $filmId = $review['film_id'];
     $title = $review['title'];
     $posterImagePath = '/assets/films/' . $review['image_path'];
     $reviewText = $review['review'];
@@ -18,24 +17,25 @@ function showReview($review){
     // Loop to add star images based on the rating value
     $html = <<<"EOT"
         <div class="edit-review-container">
-            <div class="review-upper-section">
+            <form class="review-upper-section" id="review-form">
+                <input type="hidden" id="film_id" name="film_id" value="$filmId">
                 <img class="film-poster-edit" src="$posterImagePath">
                 <div class="review-details">
-                <h6 class="film-title" id="ftr1">$title</h6>
-                <h6>
-                    <span class="review-date">
-                        $dateCreate
-                        $dateUpdate
-                    </span>
-                </h6>
-                <div class="edit-star">
-                    {{star_radio}}
+                    <h6 class="film-title" id="ftr1">$title</h6>
+                    <h6>
+                        <span class="review-date">
+                            $dateCreate
+                            $dateUpdate
+                        </span>
+                    </h6>
+                    <div class="edit-star">
+                        {{star_radio}}
+                    </div>
+                    <div class="edit-text-box">
+                        <textarea class="edit-textarea" id="review" name="review">$reviewText</textarea>
+                    </div>
                 </div>
-                <div class="edit-text-box">
-                    <textarea class="edit-textarea">$reviewText</textarea>
-                </div>
-            </div>
-            </div>
+            </form>
         </div>
     EOT;
 
@@ -44,7 +44,7 @@ function showReview($review){
     for($i = 1; $i <= 5; $i++){
         $checked = $i == $rating ? ' checked' : '';
         $starRadioHtml .= <<<"EOT"
-            <input type="radio" name="star" id="star$i" value="$i" $checked>
+            <input type="radio" id="star$i" name="rating" value="$i" $checked>
             <label class="star-label" for="star$i">
                 <div class="review-stars-container">$starsHtml $i</div>
             </label>
@@ -52,8 +52,7 @@ function showReview($review){
     }
     $html = str_replace('{{star_radio}}', $starRadioHtml, $html);
 
-    $str = $str . $html;
-    return $str;
+    return $html;
 }
 
 ?>

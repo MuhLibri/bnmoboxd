@@ -92,13 +92,19 @@ class FilmReviewRepository extends Repository
 
     public function editReview($reviewId, $review, $rating)
     {
-        $query = 'UPDATE reviews
+        $dtUpdate = new \DateTime(date_default_timezone_get());
+        $timestamp = $dtUpdate->format('Y-m-d h:i:s');
+
+        $query = 'UPDATE film_reviews
               SET review = :review, 
-                  rating = :rating
+                  rating = :rating,
+                  updated_at = :updated_at
               WHERE id = :reviewId';
         $params = [
-            'review' => $reviewId,
-            'rating' => $rating
+            'review' => $review,
+            'rating' => $rating,
+            'updated_at' => $timestamp,
+            'reviewId' => $reviewId
         ];
         return $this->save($query, $params);
     }

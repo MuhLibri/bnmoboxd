@@ -61,7 +61,7 @@ $app->router->get('/film/review', [ReviewsController::class, 'myReviews']);
 $app->router->get('/my-reviews', [ReviewsController::class, 'index']);
 $app->router->post('/my-reviews', [ReviewsController::class, 'create']);
 $app->router->get('/my-reviews/:id', [ReviewsController::class, 'show']);
-$app->router->put('/my-reviews/:id', [ReviewsController::class, 'edit']);
+$app->router->post('/my-reviews/:id', [ReviewsController::class, 'edit']);
 $app->router->delete('/my-reviews/:id', [ReviewsController::class, 'delete']);
 $app->router->get('/profile', [ProfileController::class, 'index']);
 $app->router->post('/profile/edit', [ProfileController::class, 'edit']);
