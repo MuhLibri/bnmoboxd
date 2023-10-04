@@ -1,8 +1,9 @@
 <?php
 
 $currentPage = $data['currentPage'];
+$pageSize = (int)$data['pageSize'];
 $buttonsToShow = 5;
-$totalPages = ceil($data['count'] / 10);
+$totalPages = ceil($data['count'] / $pageSize);
 $startPage = max(1, $currentPage - floor($buttonsToShow / 2));
 $endPage = min($totalPages, $startPage + 5 - 1);
 

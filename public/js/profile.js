@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const url = '/profile/delete';
         xhr.open('DELETE', url, true);
         xhr.onreadystatechange = function () {
-            alert(xhr.responseText);
             if (xhr.readyState === 4) { // Check if the request is complete
                 if (xhr.status === 200) {
                     window.location.href = '/';

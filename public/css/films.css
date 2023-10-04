@@ -1,6 +1,7 @@
 .filter-container {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 }
 .filter-container input {
     max-width: 300px;
@@ -73,6 +74,7 @@
 .film-reviews .review-container {
     background: var(--clr-background-surface);
     box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
 }
 
 .film-reviews .profile-picture {
@@ -115,4 +117,25 @@
 
 #film-form textarea {
     height: 9em;
+}
+
+.search-bar {
+    min-width: 300px;
+    font-size: 14px;
+}
+
+.search-container {
+    position: relative;
+    display: inline-block;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    right: 5px; /* Adjust the position as needed */
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    width: 30px;
+    height: auto;
 }

@@ -30,7 +30,9 @@
             <p class="text-white">Have an account? <a href="/login" class="text-primary font-bold">Login</a> </p>
         </div>
         <label class="form-error" id="auth-form-error"></label>
-        <button type="submit" class="btn-primary font-bold">Register</button>
+        <div class="btn-group">
+            <button type="submit" class="btn-primary font-bold">Register</button>
+        </div>
     </form>
 </div>
 <script defer src="/js/form-handler.js"></script>

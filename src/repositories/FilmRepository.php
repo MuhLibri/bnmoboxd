@@ -23,7 +23,8 @@ class FilmRepository extends Repository
         return $this->findOne($query, $params);
     }
 
-    public function getAll($options = []) {
+    public function getAll($options = []): array
+    {
         $params = [];
         $selectFilmsQuery = 'SELECT f.*, avg_rating.rating ';
         $selectCountQuery = 'SELECT COUNT(*) film_count ';
@@ -36,11 +37,11 @@ class FilmRepository extends Repository
                 ON f.id = avg_rating.film_id
                 ';
         $isFilterOn = false;
-        if (isset($options['search']) || (isset($options['genre']) && $options['genre'] != 'all') || isset($options['rating'])) {
+        if (isset($options['search']) || isset($options['genre']) || isset($options['rating'])) {
             $query .= ' WHERE ';
             if (isset($options['search'])) {
                 $search = '%'. $options['search'] . '%';
-                $query .= ' title LIKE :search ';
+                $query .= ' (title LIKE :search OR director LIKE :search)';
                 $params = array_merge($params, ['search' => $search]);
                 $isFilterOn = true;
             }
