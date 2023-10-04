@@ -31,6 +31,40 @@ function filmInfo($film){
     EOT;
 }
 
+function createReviewModal($filmId) {
+    return <<<"EOT"
+        <div class="modal-container" id="create-review-modal">
+            <h2>Add Review</h2>
+            <div class="form-card">
+                <form class="form-container" id="create-review-form">
+                    <input type="hidden" value="$filmId" name="film_id">
+                    <div class="form-group">
+                        <label for="rating">Rating</label>
+                        <select id="rating" name="rating">
+                            <option value="" disabled selected>Rating</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <label class="form-error" id="rating-form-error"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Review</label>
+                        <textarea id="review" name="review" rows="8"></textarea>
+                        <label class="form-error" id="review-form-error"></label>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-primary" id="create-review-btn">Add</button>
+                        <button class="btn-danger" id="cancel-add-review-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        EOT;
+}
+
 function reviewList($reviews){
     $str = "";
     if(!empty($reviews)){
@@ -88,6 +122,11 @@ function reviewList($reviews){
                         </a>
                     EOT;
                 }
+                if(isset($_SESSION['username'])) {
+                    echo <<<"EOT"
+                        <button class="btn-primary" type="button" id="add-review-btn">Add Review</button>
+                    EOT;
+                }
                 if(isset($data['film']['video_path'])) {
                     echo '<button class="btn-primary" id="watch-trailer-btn">Watch Trailer</button>';
                 }
@@ -103,7 +142,7 @@ function reviewList($reviews){
                 <?php echo reviewList($data['reviews']); ?>
             </div>
         </div>
-        <div class="trailer-container" id="trailer-container">
+        <div class="modal-container" id="trailer-container">
             <?php
             if (isset($data['film']['video_path'])) {
                 $videoPath = '/assets/videos/' . $data['film']['video_path'];
@@ -114,6 +153,9 @@ function reviewList($reviews){
             ?>
             <button class="btn-danger" id="close-trailer-btn">Close</button>
         </div>
+        <?php echo createReviewModal($data['film']['id']) ?>
     </div>
 </div>
+<script defer src="/js/form-handler.js"></script>
+<script defer src="/js/confirmation-modal.js"></script>
 <script defer src="/js/film-detail.js"></script>
