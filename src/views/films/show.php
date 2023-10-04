@@ -74,8 +74,8 @@ function reviewList($reviews){
     return $str;
 }
 ?>
-<div class="base-container">
-    <div class="film-show-container">
+<div class="base-container display-grid">
+    <div class="film-page-container">
         <div class="film-poster-col">
             <?php echo filmPosterImage($data['film']); ?>
         </div>

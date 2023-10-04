@@ -32,11 +32,18 @@ class FilmController extends Controller
     }
     
     public function createPage(Request $request){
-        echo 'Wow a new film';
+        $this->render('update', []);
     }
 
     public function editPage(Request $request){
-        echo 'Wow you are updating film ' . $request->getParams()[0];
+        $id = $request->getParams()[0];
+        $film = $this->filmService->getFilm($id);
+
+        if($film){
+            $this->render('update', ['film' => $film]);
+        }else{
+            throw new NotFoundException(true);
+        }
     }
 
     public function create(Request $request){

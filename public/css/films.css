@@ -12,11 +12,12 @@
     gap: 30px;
 }
 
-.film-show-container {
+.film-page-container {
+    justify-self: center;
     display: flex;
     flex-direction: row;
     gap: 40px;
-    width: 80vw;
+    width: 70vw;
 }
 
 .film-poster-col {
@@ -32,7 +33,7 @@
     width: 70%;
 }
 
-.film-show-container .film-subtitle {
+.film-page-container .film-subtitle {
     margin-block-end: 1em;
 }
 
@@ -110,4 +111,8 @@
 .film-reviews .review-empty-text {
     color: var(--clr-muted);
     font-style: italic;
+}
+
+#film-form textarea {
+    height: 9em;
 }
