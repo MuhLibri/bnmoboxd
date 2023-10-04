@@ -15,18 +15,19 @@ function filmInfo($film){
     $title = $film['title'];
     $year = $film['release_year'];
     $genre = $film['genre'];
+    $director = $film['director'];
     $description = $film['description'];
 
     return <<<"EOT"
-        <div class="film-title-description">
-            <h5 class="section-title film-title">$title</h5>
-            <h6 class="film-subtitle">
-                <span class="release-year">$year</span>
-                •
-                <span class="film-genre">$genre</span>
-            </h6>
-            <p class="text-white">$description</p>
-        </div>
+        <h5 class="section-title film-title">$title</h5>
+        <h6 class="film-subtitle">
+            <span class="release-year">$year</span>
+            •
+            <span class="film-genre-director">$genre</span>
+            •
+            <span class="film-genre-director">Directed by $director</span>
+        </h6>
+        <p class="text-white">$description</p>
     EOT;
 }
 

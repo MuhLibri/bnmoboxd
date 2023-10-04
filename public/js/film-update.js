@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const cancelButton = document.querySelector('#cancel-btn');
     cancelButton.addEventListener('click', function (e) {
         e.preventDefault();
-        window.location.href = window.location.href.replace(/\/\w+$/, '');
+        handleOpen('#confirm-cancel-modal');
     });
 
     const deleteButton = document.querySelector('#delete-btn');
@@ -50,6 +50,12 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         })
         handleClose('#confirm-save-modal');
+    });
+
+    const confirmCancelButton = document.querySelector('#confirm-cancel-btn');
+    confirmCancelButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.location.href = window.location.href.replace(/\/\w+$/, '');
     });
 
     const confirmDeleteButton = document.querySelector('#confirm-delete-btn');
