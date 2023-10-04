@@ -16,9 +16,9 @@ function isNavLinkActive($currentUrl, $linkUrl) {
 ?>
 
 <div class="topnav" id="myTopnav">
-    <div class="logo=container">
+    <a class="logo-container" href="/" id="logo-link">
         <img class="nav-logo" src="/assets/logo.png" alt="Logo">
-    </div>
+    </a>
     <div class="nav-items">
         <?php
         foreach ($navLinks as $text => $url) {

@@ -132,6 +132,9 @@
 }
 
 @media screen and (max-width: 600px) {
+    #logo-link {
+        display: block;
+    }
     .topnav.responsive {
         position: relative;
         flex-direction: column;
