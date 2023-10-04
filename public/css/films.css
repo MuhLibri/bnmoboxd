@@ -15,6 +15,7 @@
 
 .film-page-container {
     justify-self: center;
+    justify-content: center;
     display: flex;
     flex-direction: row;
     gap: 40px;
