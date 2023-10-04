@@ -51,19 +51,22 @@
     margin-top: 20px;
 }
 
+.film-details-col .section-title {
+    text-align: left;
+}
+
 .film-title-description .film-title {
     font-size: 40px;
     line-height: 40px;
 }
 
-.film-title-description .film-genre {
+.film-title-description .film-genre-director {
     color: var(--clr-on-surface-emphasis);
 }
 
 .film-title-description p {
     font-size: 20px;
 }
-
 
 .film-reviews {
     display: flex;
@@ -73,13 +76,15 @@
 }
 
 .film-reviews .section-title {
-    margin-bottom: 20px;
+    margin: 20px 0 20px 0;
 }
 
 .film-reviews .review-container {
     background: var(--clr-background-surface);
     box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
     width: 100%;
+    height: fit-content;
+    justify-content: left;
 }
 
 .film-reviews .profile-picture {
@@ -91,8 +96,7 @@
 
 .film-reviews .review-details {
     width: max-content;
-    margin-left: 25px;
-    margin-right: 25px;
+    margin: 0 25px 0 25px;
 }
 
 .film-reviews .review-date {
@@ -111,8 +115,6 @@
 .film-reviews .review-stars-container {
     justify-content: left;
     gap: 12px;
-    margin-top: 5px;
-    margin-bottom: 5px;
 }
 
 .film-reviews .review-empty-text {
