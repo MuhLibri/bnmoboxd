@@ -54,14 +54,10 @@ $app->router->get('/films/search', [FilmController::class, 'search']);
 $app->router->get('/film/:id', [FilmController::class, 'show']);
 $app->router->get('/film/review', [ReviewsController::class, 'myReviews']);
 $app->router->get('/my-reviews', [ReviewsController::class, 'index']);
-<<<<<<< HEAD
-$app->router->get('/my-reviews/:id/edit', [ReviewsController::class, 'edit']);
-=======
 $app->router->post('/my-reviews', [ReviewsController::class, 'create']);
 $app->router->get('/my-reviews/:id', [ReviewsController::class, 'show']);
 $app->router->put('/my-reviews/:id', [ReviewsController::class, 'edit']);
 $app->router->delete('/my-reviews/:id', [ReviewsController::class, 'delete']);
->>>>>>> f73e462 (feat: add film reviews service)
 $app->router->get('/profile', [ProfileController::class, 'index']);
 $app->router->post('/profile/edit', [ProfileController::class, 'edit']);
 $app->router->delete('/profile/delete', [ProfileController::class, 'delete']);

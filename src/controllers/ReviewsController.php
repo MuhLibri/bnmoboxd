@@ -17,7 +17,7 @@ class ReviewsController extends Controller
     public function __construct() {
         require_once Application::$BASE_DIR . '/src/middlewares/AuthMiddleware.php';
         require_once Application::$BASE_DIR . '/src/services/FilmReviewService.php';
-
+        $this->view = 'reviews';
         $this->filmReviewService = new FilmReviewService();
         $this->middlewares = [
             "index" => AuthMiddleware::class
@@ -27,6 +27,7 @@ class ReviewsController extends Controller
     public function index() {
         $userId = $_SESSION['user_id'];
         $reviewsData = $this->filmReviewService->getUserReviews($userId, []);
+        $this->render('index', $reviewsData);
     }
 
     /**

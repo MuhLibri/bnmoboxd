@@ -326,7 +326,7 @@ a {
 
 .review-container img {
     display: inline;
-    margin: 0 auto;
+    margin: 0;
     height: 100%;
     width: auto;
 }
