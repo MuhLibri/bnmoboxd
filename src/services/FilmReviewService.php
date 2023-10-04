@@ -29,7 +29,7 @@ class FilmReviewService extends Service
 
     public function getUserReviews(int $userId, $options= []): array
     {
-        return $this->filmReviewRepository->getByUserId($userId, $options = []);
+        return $this->filmReviewRepository->getByUserId($userId, $options);
     }
 
     /**
@@ -55,7 +55,7 @@ class FilmReviewService extends Service
     {
         $errors = $this->validateRequired($reviewData, ['film_id', 'review', 'rating']);
         $this->handleValidationErrors($errors);
-        $this->filmReviewRepository->addReview($reviewData['film_id'], $userId, $reviewData['review'], $reviewData['rating']);
+        $this->filmReviewRepository->addReview((int) $reviewData['film_id'], (int) $userId, $reviewData['review'], (int) $reviewData['rating']);
     }
 
     /**

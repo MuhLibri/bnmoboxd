@@ -70,14 +70,14 @@ class FilmReviewRepository extends Repository
         return $this->findOne($query, $params);
     }
 
-    public function addReview($filmId, $userId, $review, $rating)
+    public function addReview(int $filmId, int $userId, string $review, int $rating)
     {
-        $query = 'INSERT INTO film_reviews (film_id, user_id, rating, review) VALUES (:filmId, :userId, :review, :rating)';
+        $query = 'INSERT INTO film_reviews (film_id, user_id, review, rating) VALUES (:filmId, :userId, :review, :rating);';
         $params = [
-            'filmd_id' => $filmId,
-            'user_id' => $userId,
-            'rating' => $rating,
-            'review' => $review
+            'filmId' => $filmId,
+            'userId' => $userId,
+            'review' => $review,
+            'rating' => $rating
         ];
         return $this->save($query, $params);
     }
