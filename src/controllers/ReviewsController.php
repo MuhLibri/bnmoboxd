@@ -38,6 +38,7 @@ class ReviewsController extends Controller
         $reviewId = $request->getParams()[0];
         $userId = $_SESSION['user_id'];
         $review = $this->filmReviewService->getReview($reviewId, $userId);
+        $this->render('edit', ['reviewData' => $review]);
     }
 
     /**

@@ -13,28 +13,24 @@ function showReview($review){
     // $dtUpdate = new DateTime($review['updated_at']);
     // $dateCreate = $dtCreate->format('M d, Y');
     // $dateUpdate = $dtCreate != $dtUpdate ? ' • Updated on ' . $dtUpdate->format('M d, Y') : '';
-    $name = "Star Wars a New Hope";
-    $profilePicturePath = '/assets/films/star-wars-a-new-hope.jpeg';
-    $reviewText = "suka baliik";
-    $rating = 1;
-    $dtCreate = new DateTime(date_default_timezone_get());
-    $dtUpdate = new DateTime(date_default_timezone_get());
+    $name = $review['title'];
+    $filmPosterPath = '/assets/films/' . $review['image_path'];
+    $reviewText = $review['review'];
+    $rating = $review['rating'];
+    $dtCreate = new DateTime($review['updated_at'] ?? $review['created_at']);
     $dateCreate = $dtCreate->format('M d, Y');
-    $dateUpdate = '';
 
-    // Loop to add star images based on the rating value
     $starsHtml = str_repeat('<img src="/assets/app/star.png" alt="star" class="stars-img">', $rating);
     $html = <<<"EOT"
         <div class="edit-review-container">
             <div class="film-poster">
-                <img src="$profilePicturePath">
+                <img src="$filmPosterPath">
             </div>
             <div class="review-details">
                 <h6>
                     $name
                     <span class="review-date">
                         $dateCreate
-                        $dateUpdate
                     </span>
                 </h6>
                 <div class="review-stars-container">$starsHtml</div>
@@ -51,7 +47,7 @@ function showReview($review){
 <div class="base-container">
     <div class="edit-review">
         <div>
-            <?php echo showReview(1) ?>
+            <?php echo showReview($data['reviewData']) ?>
         </div>
         <div class="review-button-container">
             <input type="image" class="review-button" src="/assets/app/edit.png" name="Edit"/>

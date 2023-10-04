@@ -336,7 +336,7 @@ a {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background: black;
+    background: var(--clr-background-disabled);
     padding: 1vw;
     border-radius: var(--radius-md);
     width: 240px;

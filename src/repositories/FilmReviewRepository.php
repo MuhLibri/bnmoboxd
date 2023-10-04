@@ -65,7 +65,7 @@ class FilmReviewRepository extends Repository
 
     public function getByReviewId(int $reviewId)
     {
-        $query = 'SELECT fr.* FROM film_reviews AS fr WHERE id = :reviewId';
+        $query = 'SELECT fr.*, f.* FROM film_reviews AS fr INNER JOIN films f ON f.id = fr.film_id WHERE fr.id = :reviewId';
         $params = ['reviewId' => $reviewId];
         return $this->findOne($query, $params);
     }
