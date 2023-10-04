@@ -8,7 +8,6 @@ $navLinks = [
 
 if (!empty($_SESSION['username'])) {
     $navLinks['MY REVIEWS'] = '/my-reviews';
-    $navLinks['WATCH LIST'] = '/watch-list';
 }
 
 function isNavLinkActive($currentUrl, $linkUrl) {
