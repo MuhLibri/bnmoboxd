@@ -24,6 +24,10 @@ class FilmService extends Service {
         return $this->filmRepository->getById($id);
     }
 
+    public function createFilm(array $data){
+        $this->validateCreateFilmFields($data);
+    }
+
     public function updateFilm(array $data){
         $this->validateUpdateFilmFields($data);
 
@@ -49,11 +53,21 @@ class FilmService extends Service {
         );
     }
 
+    private function validateCreateFilmFields(array $data){
+        $errors = $this->validateRequired($data, ['title', 'release-year', 'director']);
+
+        if(!isset($errors['release-year'])){
+            $errors = array_merge($errors, $this->validateReleaseYear($data['release-year']));
+        }
+
+        $this->handleValidationErrors($errors);
+    }
+
     private function validateUpdateFilmFields(array $data){
         $errors = $this->validateRequired($data, ['title', 'release-year', 'director']);
         $id = $data['id'];
         if(!is_numeric($id) || !preg_match('/^[0-9]+$/', $id)){
-            throw new ForbiddenException(true);
+            throw new NotFoundException(true);
         }
 
         $film = $this->filmRepository->getById($id);

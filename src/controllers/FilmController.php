@@ -47,7 +47,8 @@ class FilmController extends Controller
     }
 
     public function create(Request $request){
-        echo Application::$app->response->jsonEncode(501, ['errors' => []]);
+        $data = $request->getBody();
+        $this->filmService->createFilm($data);
     }
 
     public function edit(Request $request){

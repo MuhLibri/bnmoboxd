@@ -118,8 +118,12 @@ class FilmRepository extends Repository
         string $posterImagePath = null,
         string $trailerVideoPath = null
     ){
+        $dtUpdate = new \DateTime(date_default_timezone_get());
+        $timestamp = $dtUpdate->format('Y-m-d h:i:s');
+
         $query = 'UPDATE films
             SET
+                updated_at = :updated_at,
                 title = :title,
                 release_year = :release_year,
                 director = :director,
@@ -128,6 +132,7 @@ class FilmRepository extends Repository
         ';
 
         $params = [
+            'updated_at' => $timestamp,
             'id' => $id,
             'title' => $title,
             'release_year' => $releaseYear,
