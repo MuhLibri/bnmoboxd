@@ -82,6 +82,15 @@ function filmUpdateForm($data){
                         </div>
                      </div>
                 </div>
+                <div class="modal-container" id="confirm-cancel-modal">
+                    <div class="confirmation-modal">
+                        <h2>Are you sure you want to cancel? Any unsaved changes will be lost.</h2>
+                        <div class="btn-group">
+                            <button class="btn-primary" type="button" id="confirm-cancel-btn">Yes</button>
+                            <button class="btn-danger" type="button" onclick="handleClose('#confirm-cancel-modal')">Cancel</button>
+                        </div>
+                     </div>
+                </div>
                 <div class="modal-container" id="confirm-delete-modal">
                     <div class="confirmation-modal">
                         <h2>Are you sure you want to delete this film?</h2>
