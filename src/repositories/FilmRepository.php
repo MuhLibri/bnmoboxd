@@ -80,28 +80,7 @@ class FilmRepository extends Repository
                 }
             }
         }
-        $isLimited = false;
-        $pageSize = 10;
-        if (isset($options['take']) && is_numeric($options['take'])) {
-            $pageSize = $options['take'];
-            $query .= " LIMIT $pageSize";
-            $isLimited = true;
-        }
-
-        if (isset($options['page']) && is_numeric($options['page'])) {
-            if (!$isLimited) {
-                $query .= " LIMIT $pageSize";
-            }
-            $page = (int)$options['page'];
-
-            if ($page < 1) {
-                $page = 1;
-            }
-
-            $offset = ($page - 1) * $pageSize;
-
-            $query .= " OFFSET $offset";
-        }
+        $query = $this->buildPaginationQuery($query, $options);
         $selectFilmsQuery .= $query;
         $films = $this->findAll($selectFilmsQuery,$params);
         $count = $this->findOne($selectCountQuery, $params);

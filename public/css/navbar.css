@@ -167,4 +167,8 @@
         background-color: transparent;
         padding: 0;
     }
+
+    .nav-login-btn {
+        background-color: transparent;
+    }
 }

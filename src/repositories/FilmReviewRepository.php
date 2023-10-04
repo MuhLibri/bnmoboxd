@@ -47,4 +47,60 @@ class FilmReviewRepository extends Repository
 
         return $this->findAll($query, $params);
     }
+
+    public function getByUserId($userId,$options = [])
+    {
+        $params = ['userId' => (int)$userId];
+        $selectQuery = 'SELECT f.*, fr.* ';
+        $countQuery = 'SELECT COUNT(*) AS reviews_count ';
+        $query = 'FROM film_reviews AS fr 
+                INNER JOIN films AS f ON fr.film_id = f.id
+                WHERE fr.user_id = :userId' ;
+        $countQuery .= $query;
+        $selectQuery .= $this->buildPaginationQuery($query, $options);
+        $reviews = $this->findAll($selectQuery, $params);
+        $count = $this->findOne($countQuery, $params);
+        return ['reviews' => $reviews, 'count' => $count['reviews_count']];
+    }
+
+    public function getByReviewId(int $reviewId)
+    {
+        $query = 'SELECT fr.* FROM film_reviews AS fr WHERE id = :reviewId';
+        $params = ['reviewId' => $reviewId];
+        return $this->findOne($query, $params);
+    }
+
+    public function addReview($filmId, $userId, $review, $rating)
+    {
+        $query = 'INSERT INTO film_reviews (film_id, user_id, rating, review) VALUES (:filmId, :userId, :review, :rating)';
+        $params = [
+            'filmd_id' => $filmId,
+            'user_id' => $userId,
+            'rating' => $rating,
+            'review' => $review
+        ];
+        return $this->save($query, $params);
+    }
+
+    public function editReview($reviewId, $review, $rating)
+    {
+        $query = 'UPDATE reviews
+              SET review = :review, 
+                  rating = :rating
+              WHERE id = :reviewId';
+        $params = [
+            'review' => $reviewId,
+            'rating' => $rating
+        ];
+        return $this->save($query, $params);
+    }
+
+    public function deleteReview(int $id)
+    {
+        $query = 'DELETE from film_reviews WHERE id = :id';
+        $params = [
+            'id' => $id
+        ];
+        $this->save($query, $params);
+    }
 }

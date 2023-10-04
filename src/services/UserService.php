@@ -17,6 +17,13 @@ class UserService extends Service
         $this->userRepository = new UserRepository();
     }
 
+    public function setSession($user) {
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['role'] = $user['role'];
+        $_SESSION['profile_picture_path'] = $user['profile_picture_path'];
+    }
+
     /**
      * @throws BadRequestException
      */
@@ -30,10 +37,7 @@ class UserService extends Service
         if ($user) {
             $verify = password_verify($credentials['password'], $user['password_hash']);
             if ($verify) {
-                $_SESSION['username'] = $user['username'];
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['role'] = $user['role'];
-                $_SESSION['profile_picture_path'] = $user['profile_picture_path'];
+               $this->setSession($user);
                 return;
             }
         }
@@ -51,6 +55,8 @@ class UserService extends Service
         $this->validateRegisterFields($registerData);
         $hashedPassword = $this->hashPassword($registerData['password']);
         $this->userRepository->addUser($registerData['username'], $registerData['email'], $hashedPassword, $registerData['first_name'], $registerData['last_name']);
+        $user = $this->userRepository->getUserByUsername($registerData['username']);
+        $this->setSession($user);
     }
 
     public function logout()
@@ -59,8 +65,14 @@ class UserService extends Service
         session_destroy();
     }
 
+    /**
+     * @throws NotFoundException
+     */
     public function getUserProfile($username): array {
         $user = $this->userRepository->getUserByUsername($username);
+        if (!$user) {
+            throw new NotFoundException();
+        }
         return [
             'username' => $user['username'],
             'email' => $user['email'],
@@ -163,12 +175,8 @@ class UserService extends Service
      */
     public function deleteUser($userId)
     {
-        $currentUser = $this->userRepository->getUserById($userId);
-
-        if (!$currentUser) {
-            throw new NotFoundException(true);
-        }
-        $this->userRepository->deleteUser((int)$userId);
+        $currentUser = $this->getUserProfile($userId);
+        $this->userRepository->deleteUser((int)$currentUser['id']);
         $this->logout();
     }
 }
