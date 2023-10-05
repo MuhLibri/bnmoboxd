@@ -61,6 +61,10 @@ VALUES
     ('user4', 'Bocchi', 'user4@example.com', '$2y$10$Rj8KgMT1OnRPz.pMH3A/U.3CDqwqgNamF8yFCkYi91FVy7pmXLyZq', 'bocchi.jpg'),
     ('user5', 'Nam Joo Hyuk', 'user5@example.com', '$2y$10$Rj8KgMT1OnRPz.pMH3A/U.3CDqwqgNamF8yFCkYi91FVy7pmXLyZq', 'njh.jpeg');
 
+INSERT INTO users (username, first_name, email, password_hash, profile_picture_path, role)
+VALUES
+    ('admin', 'Erling Haaland', 'haaland@example.com', '$2y$10$Rj8KgMT1OnRPz.pMH3A/U.3CDqwqgNamF8yFCkYi91FVy7pmXLyZq', 'dummy.jpg', 'admin');
+
 -- Insert sample data for 'films' table
 INSERT INTO films (title, release_year, director, description, image_path, genre)
 VALUES

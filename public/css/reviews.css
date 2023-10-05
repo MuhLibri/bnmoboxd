@@ -24,6 +24,10 @@
     height: auto;
 }
 
+#reviews-page-container {
+    gap: 10px;
+}
+
 #review-container-flex .poster-image {
     width: 140px;
     height: 200px;

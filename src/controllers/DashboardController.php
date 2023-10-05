@@ -14,6 +14,7 @@ class DashboardController extends Controller
     public function __construct() {
         require_once Application::$BASE_DIR . '/src/services/FilmReviewService.php';
         require_once Application::$BASE_DIR . '/src/services/FilmService.php';
+        $this->view = 'index';
         $this->filmReviewService = new FilmReviewService();
         $this->filmService = new FilmService();
     }

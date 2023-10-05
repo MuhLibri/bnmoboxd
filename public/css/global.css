@@ -286,6 +286,7 @@ a {
     justify-content: center;
     flex-wrap: wrap;
 }
+
 .film-container {
     display: flex;
     box-sizing: border-box;
@@ -336,7 +337,7 @@ a {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background: black;
+    background: var(--clr-background-disabled);
     padding: 1vw;
     border-radius: var(--radius-md);
     width: 240px;
@@ -396,6 +397,11 @@ a {
 
 .film-poster-card:hover h5{
     color: var(--clr-primary);
+}
+
+.review-list-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .stars-container {

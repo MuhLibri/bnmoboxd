@@ -36,8 +36,8 @@ function filmInfo($film){
 function createReviewModal($filmId) {
     return <<<"EOT"
         <div class="modal-container" id="create-review-modal">
-            <h2>Add Review</h2>
             <div class="form-card">
+                <h2>Add Review</h2>
                 <form class="form-container" id="create-review-form">
                     <input type="hidden" value="$filmId" name="film_id">
                     <div class="form-group">
