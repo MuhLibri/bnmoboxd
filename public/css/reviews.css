@@ -129,10 +129,18 @@ input[type="radio"] {
 .edit-textarea {
     height: 300px;
     width:700px;
-    background-color: black;
+    background-color: var(--clr-background-disabled);
     border:none;
     color: white;
     padding: 20px;
+}
+
+.review-radio {
+    margin-top: 8px;
+}
+
+.stars-img {
+    margin-bottom: 4px;
 }
 
 

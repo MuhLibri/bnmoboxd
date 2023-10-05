@@ -36,6 +36,12 @@ function showReview($review){
                     </div>
                 </div>
             </form>
+            <div class="btn-group">
+                <button type="button" class="btn-primary" id="save">Save</button>
+                <button type="button" class="btn-danger" id="save">Delete</button>
+                <!-- <button src="/assets/app/edit.png" class="review-button">Edit</button> -->
+                <!-- <button class="review-button">Delete</button> -->
+            </div>
         </div>
     EOT;
 
@@ -44,7 +50,7 @@ function showReview($review){
     for($i = 1; $i <= 5; $i++){
         $checked = $i == $rating ? ' checked' : '';
         $starRadioHtml .= <<<"EOT"
-            <input type="radio" id="star$i" name="rating" value="$i" $checked>
+            <input type="radio" id="star$i" name="rating" value="$i" $checked class="review-radio">
             <label class="star-label" for="star$i">
                 <div class="review-stars-container">$starsHtml $i</div>
             </label>
@@ -61,12 +67,6 @@ function showReview($review){
     <div class="edit-review">
         <div>
             <?php echo showReview($data['review']); ?>
-        </div>
-        <div class="review-button-container">
-            <input type="image" class="review-button" id="save" src="/assets/app/save-review.png" name="Save"/>
-            <input type="image" class="review-button" id="delete" src="/assets/app/delete.png" name="Delete"/>
-            <!-- <button src="/assets/app/edit.png" class="review-button">Edit</button> -->
-            <!-- <button class="review-button">Delete</button> -->
         </div>
     </div>
 </div>

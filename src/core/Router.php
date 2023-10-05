@@ -52,10 +52,10 @@ class Router
                     $this->request->setParams($matches);
                     return $this->routes[$route][$method];
                 }
-                throw new NotFoundException();
+                throw new NotFoundException(true);
             }
         }
-        throw new NotFoundException();
+        throw new NotFoundException(true);
     }
 
     /**

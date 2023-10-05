@@ -9,7 +9,6 @@ class UserRepository extends Repository
 {
     public function __construct()
     {
-        require_once Application::$BASE_DIR . '/src/modeLS/User.php';
         parent::__construct();
     }
 
