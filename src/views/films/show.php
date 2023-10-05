@@ -72,7 +72,7 @@ function reviewList($reviews){
     if(!empty($reviews)){
         foreach($reviews as $review){
             $name = $review['first_name'] . ' ' . $review['last_name'];
-            $profilePicturePath = '/assets/users/' . $review['profile_picture_path'];
+            $profilePicturePath = '/assets/users/' . ($review['profile_picture_path'] ?? 'blank.jpeg');
             $reviewText = $review['review'];
             $rating = $review['rating'];
             $dtCreate = new DateTime($review['created_at']);

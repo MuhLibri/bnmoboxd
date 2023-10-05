@@ -10,17 +10,27 @@ use app\exceptions\ForbiddenException;
 use app\exceptions\NotFoundException;
 use app\middlewares\AuthMiddleware;
 use app\services\FilmReviewService;
+use app\services\FilmService;
 
-class ReviewsController extends Controller
-{
+class ReviewsController extends Controller{
+    private FilmService $filmService;
     private FilmReviewService $filmReviewService;
+
     public function __construct() {
-        require_once Application::$BASE_DIR . '/src/middlewares/AuthMiddleware.php';
+        require_once Application::$BASE_DIR . '/src/services/FilmService.php';
         require_once Application::$BASE_DIR . '/src/services/FilmReviewService.php';
-        $this->view = 'reviews';
+        require_once Application::$BASE_DIR . '/src/middlewares/AuthMiddleware.php';
+
+        $this->filmService = new FilmService();
         $this->filmReviewService = new FilmReviewService();
+        $this->view = 'reviews';
         $this->middlewares = [
-            "index" => AuthMiddleware::class
+            "index" => AuthMiddleware::class,
+            "createPage" => AuthMiddleware::class,
+            "editPage" => AuthMiddleware::class,
+            "create" => AuthMiddleware::class,
+            "edit" => AuthMiddleware::class,
+            "delete" => AuthMiddleware::class
         ];
     }
 
@@ -38,7 +48,8 @@ class ReviewsController extends Controller
         $reviewId = $request->getParams()[0];
         $userId = $_SESSION['user_id'];
         $review = $this->filmReviewService->getReview($reviewId, $userId);
-        $this->render('edit', ['reviewData' => $review]);
+        $review['id'] = $reviewId;
+        $this->render('edit', ['review' => $review]);
     }
 
     /**

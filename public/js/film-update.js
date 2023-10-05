@@ -36,19 +36,21 @@ document.addEventListener("DOMContentLoaded", function () {
     confirmSaveButton.addEventListener('click', function (e) {
         e.preventDefault();
         const form = document.querySelector("#film-form");
-        submitForm(form, window.location.href, function (responseText) {
-            switch(formContext()){
-                case CTX_CREATE:
+        switch(formContext()){
+            case CTX_CREATE:
+                submitForm(form, window.location.href, function(responseText){
                     const jsonResponse = JSON.parse(responseText);
                     window.location.href = '/film/' + jsonResponse['id'];
-                    break;
-                case CTX_UPDATE:
+                });
+                break;
+            case CTX_UPDATE:
+                putForm(form, window.location.href, function(responseText){
                     window.location.href = window.location.href.replace('/edit', '');
-                    break;
-                default:
-                    window.location.href = '/'
-            }
-        })
+                });
+                break;
+            default:
+                window.location.href = '/';
+        }
         handleClose('#confirm-save-modal');
     });
 

@@ -29,6 +29,27 @@ function submitForm(form, url, onSuccess) {
 
     xhr.send(formData);
 }
+
+function putForm(form, url, onSuccess){
+    const formData = new FormData(form);
+    const dataObj = formDataToObj(formData);
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("put", url, true);
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            onSuccess(xhr.responseText);
+        } else {
+            const jsonResponse = JSON.parse(xhr.responseText);
+            updateErrorMessages(jsonResponse);
+        }
+    };
+
+    xhr.setRequestHeader("content-type", "application/json");
+    xhr.send(JSON.stringify(dataObj));
+}
+
 function updateErrorMessages(response) {
     const errorElements = document.querySelectorAll(".form-error");
     errorElements.forEach(function (element) {
@@ -43,4 +64,16 @@ function updateErrorMessages(response) {
             errorElement.textContent = response.errors[key] || '';
         }
     }
+}
+
+function formDataToObj(formData){
+    const dataObj = {};
+    const dataIter = formData.entries();
+    let dataItem = dataIter.next();
+    while(!dataItem.done){
+        const dataKV = dataItem.value;
+        dataObj[dataKV[0]] = dataKV[1];
+        dataItem = dataIter.next();
+    }
+    return dataObj;
 }
