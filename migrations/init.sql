@@ -65,10 +65,14 @@ INSERT INTO users (username, first_name, email, password_hash, profile_picture_p
 VALUES
     ('admin', 'Erling Haaland', 'haaland@example.com', '$2y$10$Rj8KgMT1OnRPz.pMH3A/U.3CDqwqgNamF8yFCkYi91FVy7pmXLyZq', 'dummy.jpg', 'admin');
 
+INSERT INTO films (title, release_year, director, description, image_path, genre, video_path)
+VALUES
+    ('Barbie', 2023, 'Greta Gerwig', 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg', 'Fantasy', 'barbie.mp4');
+
+
 -- Insert sample data for 'films' table
 INSERT INTO films (title, release_year, director, description, image_path, genre)
 VALUES
-    ('Barbie', 2023, 'Greta Gerwig', 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg', 'Fantasy'),
     ('Oppenheimer', 2022, 'Christopher Nolan', 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg', 'Drama'),
     ('Spiderman: Into The Spiderverse', 2021, 'Rodney Rothman, Peter Ramsey, Bob Persichetti', 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg', 'Action'),
     ('Mission Impossible', 2023, 'Tom Cruise', 'Ethan Hunt and his IMF team must track down a dangerous weapon before it falls into the wrong hands.', 'mission-impossible.jpeg', 'Action'),
