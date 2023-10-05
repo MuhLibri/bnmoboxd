@@ -38,7 +38,7 @@ function showReview($review){
             </form>
             <div class="btn-group">
                 <button type="button" class="btn-primary" id="save">Save</button>
-                <button type="button" class="btn-danger" id="save">Delete</button>
+                <button type="button" class="btn-danger" id="delete">Delete</button>
                 <!-- <button src="/assets/app/edit.png" class="review-button">Edit</button> -->
                 <!-- <button class="review-button">Delete</button> -->
             </div>
