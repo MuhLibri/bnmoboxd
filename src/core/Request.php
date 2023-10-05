@@ -54,6 +54,18 @@ class Request
             foreach ($_POST as $key => $value) {
                 $data[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
+        }elseif($this->method === "put"){
+            $putStream = fopen('php://input', 'r');
+            $putData = '';
+            while($putChunk = fread($putStream, 1024)){
+                $putData .= $putChunk;
+            }
+            fclose($putStream);
+
+            $putJson = json_decode($putData);
+            foreach($putJson as $key => $value){
+                $data[$key] = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
+            }
         }
         return $data;
     }

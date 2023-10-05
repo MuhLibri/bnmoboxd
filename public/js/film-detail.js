@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const trailerButton = document.getElementById('watch-trailer-btn');
-    trailerButton.addEventListener('click', function (e) {
+    trailerButton?.addEventListener('click', function (e) {
         e.preventDefault();
         handleOpen('#trailer-container');
     });

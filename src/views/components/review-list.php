@@ -35,7 +35,7 @@ EOT;
     echo $str;
 }
 else {
-    echo '<p class="review-empty-text">No reviews.</p>';
+    echo '<p class="empty-text">No reviews.</p>';
 }
 
 if (isset($data['count']) && isset($data['currentPage'])) {

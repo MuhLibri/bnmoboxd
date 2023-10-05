@@ -55,64 +55,12 @@ function showReview($review){
     return $html;
 }
 
-function emptyReview($film){
-    $filmId = $film['id'];
-    $title = $film['title'];
-    $posterImagePath = '/assets/films/' . $film['image_path'];
-    $reviewText = '';
-    $subtitle = 'Writing a new review';
-
-    // Loop to add star images based on the rating value
-    $html = <<<"EOT"
-        <div class="edit-review-container">
-            <form class="review-upper-section" id="review-form">
-                <input type="hidden" id="film_id" name="film_id" value="$filmId">
-                <img class="film-poster-edit" src="$posterImagePath">
-                <div class="review-details">
-                    <h6 class="film-title" id="ftr1">$title</h6>
-                    <h6>
-                        <span class="review-date">
-                            $subtitle
-                        </span>
-                    </h6>
-                    <div class="edit-star">
-                        {{star_radio}}
-                    </div>
-                    <div class="edit-text-box">
-                        <textarea class="edit-textarea" id="review" name="review">$reviewText</textarea>
-                    </div>
-                </div>
-            </form>
-        </div>
-    EOT;
-
-    $starsHtml = '<img src="/assets/app/star.png" alt="star" class="stars-img">';
-    $starRadioHtml = '';
-    for($i = 1; $i <= 5; $i++){
-        $starRadioHtml .= <<<"EOT"
-            <input type="radio" id="star$i" name="rating" value="$i">
-            <label class="star-label" for="star$i">
-                <div class="review-stars-container">$starsHtml $i</div>
-            </label>
-        EOT;
-    }
-    $html = str_replace('{{star_radio}}', $starRadioHtml, $html);
-
-    return $html;
-}
-
 ?>
 
 <div class="base-container">
     <div class="edit-review">
         <div>
-            <?php
-                if(isset($data['review'])){
-                    echo showReview($data['review']);
-                }elseif(isset($data['film'])){
-                    echo emptyReview($data['film']);
-                }
-            ?>
+            <?php echo showReview($data['review']); ?>
         </div>
         <div class="review-button-container">
             <input type="image" class="review-button" id="save" src="/assets/app/save-review.png" name="Save"/>
