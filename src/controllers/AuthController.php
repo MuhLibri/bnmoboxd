@@ -14,7 +14,7 @@ class AuthController extends Controller
     public function __construct() {
         require_once Application::$BASE_DIR . '/src/services/UserService.php';
         $this->userService = new UserService();
-        $this->view = "auth";
+        $this->view = 'auth';
     }
 
     public function loginPage() {

@@ -33,6 +33,9 @@ class Router
         $this->routes[$url]['delete'] = $handler;
     }
 
+    /**
+     * @throws NotFoundException
+     */
     public function findHandler()
     {
         $path = $this->request->getPath();
@@ -49,12 +52,10 @@ class Router
                     $this->request->setParams($matches);
                     return $this->routes[$route][$method];
                 }
-                $this->response->setStatusCode(405);
-                return null;
+                throw new NotFoundException();
             }
         }
-        $this->response->setStatusCode(404);
-        return null;
+        throw new NotFoundException();
     }
 
     /**
@@ -63,9 +64,6 @@ class Router
     public function resolve()
     {
         $handler = $this->findHandler();
-        if (!$handler) {
-            throw new NotFoundException(true);
-        }
         if (is_array($handler)) {
             $controller = new $handler[0];
             $method = $handler[1];

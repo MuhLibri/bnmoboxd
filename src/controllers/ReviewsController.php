@@ -12,7 +12,7 @@ use app\middlewares\AuthMiddleware;
 use app\services\FilmReviewService;
 use app\services\FilmService;
 
-class ReviewsController extends Controller{
+class ReviewsController extends Controller {
     private FilmService $filmService;
     private FilmReviewService $filmReviewService;
 
@@ -45,7 +45,7 @@ class ReviewsController extends Controller{
      * @throws ForbiddenException
      */
     public function show(Request $request) {
-        $reviewId = $request->getParams()[0];
+        $reviewId = $this->getReviewIdFromParam($request->getParams());
         $userId = $_SESSION['user_id'];
         $review = $this->filmReviewService->getReview($reviewId, $userId);
         $review['id'] = $reviewId;
@@ -68,7 +68,7 @@ class ReviewsController extends Controller{
      */
     public function edit(Request $request) {
         $reviewData = $request->getBody();
-        $reviewId = $request->getParams()[0];
+        $reviewId = $this->getReviewIdFromParam($request->getParams());
         $userId = $_SESSION['user_id'];
         $this->filmReviewService->edit($reviewData, $userId, $reviewId);
     }
@@ -78,7 +78,7 @@ class ReviewsController extends Controller{
      * @throws NotFoundException
      */
     public function delete(Request $request) {
-        $reviewId = $request->getParams()[0];
+        $reviewId = $this->getReviewIdFromParam($request->getParams());
         $userId = $_SESSION['user_id'];
         $this->filmReviewService->delete($reviewId, $userId);
     }
@@ -88,5 +88,16 @@ class ReviewsController extends Controller{
         $userId = $_SESSION['user_id'];
         $reviewsData = $this->filmReviewService->getUserReviews($userId, $options);
         return $this->renderComponent('review-list', array_merge($reviewsData, ['currentPage' => $options['page'], 'pageSize' => 5]));
+    }
+
+    /**
+     * @throws NotFoundException
+     */
+    private function getReviewIdFromParam($params) {
+        $reviewId = $params[0];
+        if(!is_numeric($reviewId) || !preg_match('/^[0-9]+$/', $reviewId)){
+            throw new NotFoundException(true);
+        }
+        return $reviewId;
     }
 }
