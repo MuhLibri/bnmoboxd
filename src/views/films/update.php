@@ -27,7 +27,7 @@ function filmUpdateForm($data){
         $videoPath = $videoPath . $film['video_path'];
     }
 
-    $html = $newFilm ? '' : "<div class=\"film-poster-col\"><img src=\"$imagePath\" class=\"poster-image\"></div>";
+    $html = $newFilm ? '' : "<div class=\"film-poster-col\"><img src=\"$imagePath\" class=\"poster-image\" alt=\"Current film poster\"></div>";
 
     $html .= <<<"EOT"
         <div class="film-details-col">
@@ -38,7 +38,7 @@ function filmUpdateForm($data){
                     <label class="form-error" id="title-form-error"></label>
                 </div>
                 <div class="form-group">
-                    <label for="release-year">Release Year</label>
+                    <label for="release_year">Release Year</label>
                     <input type="text" id="release_year" name="release_year" formnovalidate value="$releaseYear">
                     <label class="form-error" id="release-year-form-error"></label>
                 </div>
@@ -59,12 +59,12 @@ function filmUpdateForm($data){
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="film-poster">Poster</label>
+                    <label for="film_poster">Poster</label>
                     <input type="file" id="film_poster" name="film_poster" accept="image/*">
                     <label class="form-error" id="film-poster-form-error"></label>
                 </div>
                 <div class="form-group">
-                    <label for="film-trailer">Trailer</label>
+                    <label for="film_trailer">Trailer</label>
                     <input type="file" id="film_trailer" name="film_trailer" accept="video/*">
                 </div>
                 <div class="btn-group">
