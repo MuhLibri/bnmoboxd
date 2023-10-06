@@ -89,6 +89,7 @@ Admin
 
 ### Tampilan Mobile
 ![image](documentations/mobile-view/image1.png)
+![image](documentations/mobile-view/image2.png)
 ![image](documentations/mobile-view/image3.png)
 ![image](documentations/mobile-view/image4.png)
 ![image](documentations/mobile-view/image5.png)
@@ -100,6 +101,7 @@ Admin
 
 ### Google Lighthouse
 ![image](documentations/lighthouse/image1.png)
+![image](documentations/lighthouse/image2.png)
 ![image](documentations/lighthouse/image3.png)
 ![image](documentations/lighthouse/image4.png)
 ![image](documentations/lighthouse/image5.png)
@@ -112,37 +114,37 @@ Admin
 
 ## Pembagian Tugas
 ### Server Side
-Docker: 13521044
-Setting up database: 13521044
-Setting up core (service, router, request, dll): 13521044
-Auth: 13521044
-Homepage: 13521044
-Films and search 13521044
-Edit profile: 13521044
-Exception page 13521044
-Add new film: 13521107
-Edit Film: 13521107 
-Delete Film: 13521107 
-Film Details 13521107
-Add review: 13521047
-My reviews:  13521047
-Edit review: 13521047
-Delete review: 13521047
-Seeding database: 13521047
+* Docker: 13521044
+* Setting up database: 13521044
+* Setting up core (service, router, request, dll): 13521044
+* Auth: 13521044
+* Homepage: 13521044
+* Films and search 13521044
+* Edit profile: 13521044
+* Exception page: 13521044
+* Add new film: 13521107
+* Edit Film: 13521107 
+* Delete Film: 13521107 
+* Film Details 13521107
+* Add review: 13521047
+* My reviews: 13521047
+* Edit review: 13521047
+* Delete review: 13521047
+* Seeding database: 13521047
 
 ### Client Side
-Home page: 13521044
-Films and search: 13521044
-Add new film: 13521107
-Edit Film: 13521107 
-Delete Film: 13521107 
-Film Details 13521107 
-Add review: 13521047
-My reviews:  13521047
-Edit review: 13521047
-Delete review: 13521047
-Edit profile: 13521044
-Exception page 13521044
+* Home page: 13521044
+* Films and search: 13521044
+* Edit profile: 13521044
+* Exception page: 13521044
+* Add new film: 13521107
+* Edit Film: 13521107 
+* Delete Film: 13521107 
+* Film Details: 13521107 
+* Add review: 13521047
+* My reviews:  13521047
+* Edit review: 13521047
+* Delete review: 13521047
 
 
 ## Authors
