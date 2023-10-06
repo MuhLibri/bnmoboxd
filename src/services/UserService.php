@@ -169,6 +169,9 @@ class UserService extends Service
             $profilePicturePath = saveFile($_FILES['profile_picture'], Application::$BASE_DIR . '/public/assets/users/');
         }
         $this->userRepository->updateUser((int)$updateData['user_id'], $updateData['username'], $updateData['email'], $updateData['first_name'], $updateData['last_name'], $profilePicturePath);
+        
+        $newProfile = $this->userRepository->getUserById($updateData['user_id']);
+        $this->setSession($newProfile);
     }
 
     /**
