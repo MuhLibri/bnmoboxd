@@ -45,7 +45,7 @@ class ProfileController extends Controller
      * @throws NotFoundException
      */
     public function delete() {
-        $userId = $_SESSION['user_id'];
-        $this->userService->deleteUser($userId);
+        $username = $_SESSION['username'];
+        $this->userService->deleteUser($username);
     }
 }
