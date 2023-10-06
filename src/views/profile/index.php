@@ -42,15 +42,15 @@ $html = <<<EOT
                 <input type="file" id="profile-picture" name="profile_picture" accept="image/*">
             </div>
             <div class="btn-group">
-                <button class="btn-primary" id="save-btn">Save Changes</button>
-                <button class = "btn-danger" id="delete-btn"">Delete Account</button>
+                <button type="button" class="btn-primary" id="save-btn">Save Changes</button>
+                <button type="button" class="btn-danger" id="delete-btn"">Delete Account</button>
             </div>
             <div class="modal-container" id="confirm-edit-modal">
                 <div class="confirmation-modal">
                     <h2>Are you sure you want to edit your profile?</h2>
                     <div class="btn-group">
-                        <button class="btn-primary" id="confirm-edit-btn">Yes</button>
-                        <button class="btn-danger" onclick="handleClose('#confirm-edit-modal')">Cancel</button>
+                        <button type="button" class="btn-primary" id="confirm-edit-btn">Yes</button>
+                        <button type="button" class="btn-danger" onclick="handleClose('#confirm-edit-modal')">Cancel</button>
                     </div>
                  </div>
             </div>
@@ -58,8 +58,8 @@ $html = <<<EOT
                 <div class="confirmation-modal">
                     <h2>Are you sure you want to delete your account?</h2>
                     <div class="btn-group">
-                        <button class="btn-primary" id="confirm-delete-btn">Yes</button>
-                        <button class="btn-danger" onclick="handleClose('#confirm-delete-modal')">Cancel</button>
+                        <button type="button" class="btn-primary" id="confirm-delete-btn">Yes</button>
+                        <button type="button" class="btn-danger" onclick="handleClose('#confirm-delete-modal')">Cancel</button>
                     </div>
                  </div>
             </div>

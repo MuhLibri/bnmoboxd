@@ -20,9 +20,10 @@ include_once Application::$BASE_DIR . '/src/views/components/navbar.php';
                     <option value="Action">Action</option>
                     <option value="Comedy">Comedy</option>
                     <option value="Drama">Drama</option>
+                    <option value="Sci-Fi">Sci-Fi</option>
                     <option value="Horror">Horror</option>
                     <option value="Fantasy">Fantasy</option>
-                    <option value="Fantasy">Other</option>
+                    <option value="Other">Other</option>
                 </select>
                 <select id="ratingFilter">
                     <option value="" disabled selected>Rating</option>
