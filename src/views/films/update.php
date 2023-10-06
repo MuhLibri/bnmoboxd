@@ -122,7 +122,7 @@ function filmUpdateForm($data){
     return $html;
 }
 ?>
-<div class="base-container display-grid">
+<div class="base-container display-grid no-gap">
     <h5 class="section-title"><?php echo isset($data['film']) ? 'Edit Film' : 'New Film'; ?></h5>
     <div class="film-page-container">
         <?php echo filmUpdateForm($data); ?>

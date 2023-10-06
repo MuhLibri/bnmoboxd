@@ -49,7 +49,6 @@
     height: auto;
     min-width: 180px;
     min-height: 240px;
-    margin-top: 30px;
 }
 
 .film-poster-col button {
@@ -152,4 +151,18 @@
     width: 80vw;
     height: auto;
     max-width: 500px;
+}
+
+@media screen and (max-width: 600px) {
+    .film-page-container {
+        flex-direction: column;
+    }
+
+    .film-poster-col {
+        width: 100%;
+    }
+
+    .film-details-col {
+        width: 100%;
+    }
 }
