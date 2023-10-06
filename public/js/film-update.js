@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
                 break;
             case CTX_UPDATE:
-                putForm(form, window.location.href, function(responseText){
+                submitForm(form, window.location.href, function(responseText){
                     window.location.href = window.location.href.replace('/edit', '');
                 });
                 break;
