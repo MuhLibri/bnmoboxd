@@ -19,7 +19,7 @@ function showReview($review){
         <div class="edit-review-container">
             <form class="review-upper-section" id="review-form">
                 <input type="hidden" id="film_id" name="film_id" value="$filmId">
-                <img class="film-poster-edit" src="$posterImagePath">
+                <img alt="film poster" class="film-poster-edit" src="$posterImagePath">
                 <div class="review-details">
                     <h6 class="film-title" id="ftr1">$title</h6>
                     <h6>
@@ -32,7 +32,7 @@ function showReview($review){
                         {{star_radio}}
                     </div>
                     <div class="edit-text-box">
-                        <textarea class="edit-textarea" id="review" name="review">$reviewText</textarea>
+                        <textarea class="edit-textarea" id="review" name="review" aria-label="Edit Review">$reviewText</textarea>
                     </div>
                 </div>
             </form>

@@ -20,7 +20,7 @@ if(!empty($data['reviews'])){
         $starsHtml = str_repeat('<img src="/assets/app/star.png" alt="star" class="stars-img">', $rating);
         $html = <<<EOT
 <a href="/my-reviews/$id" class="review-container" id="review-container-flex">                                                                                                                                     
-    <img src="$filmPosterPath" class="poster-image">
+    <img alt="film poster" src="$filmPosterPath" class="poster-image">
     <div class="review-details">
         <h6>
             $name

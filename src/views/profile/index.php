@@ -14,12 +14,12 @@ $html = <<<EOT
     <div class="form-card">
         <h2>Profile</h2>
         <div class="user-profile">
-            <img src="$profilePicturePath">
+            <img alt="Profile picture" src="$profilePicturePath">
         </div>
         <form class="form-container" id="profile-form">
             <div class="form-group">
                 <label for="first_name">First Name</label>
-                <input type="text" id="first-name" name="first_name" formnovalidate value="$firstName">
+                <input type="text" id="first_name" name="first_name" formnovalidate value="$firstName">
                 <label class="form-error" id="first-name-form-error"></label>
             </div>
             <div class="form-group">
