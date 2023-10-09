@@ -20,6 +20,8 @@ All
 - Mencari film berdasarkan nama/direktor
 - Memfilter film berdasarkan genre/rating
 - Mengurutkan film berdasarkan judul/rating/tanggal rilis
+- Melakukan Register
+- Melakukan Login
 
 User
 - Mengubah detail akun (profil picture, first name, last name, email, username)
@@ -36,7 +38,7 @@ Admin
 
 ## Requirements
 1. Docker
-2. PHP
+2. PHP 8 or later
 
 
 ## Cara Instalasi
@@ -52,10 +54,10 @@ Admin
     sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
    ```
 
-   Untuk memverifikasi apakah docker telah terinstall, maka coba jalankan `docker run hello-world` and for UNIX users don't forget to add `sudo`
+   Untuk memverifikasi apakah docker telah terinstall, maka coba jalankan `docker run hello-world`.
 
 2. Clone repository
-3. Secara default, aplikasi ini menggunakan port `8080, 3306` dan jika pada komputer anda telah menggunakan port tersebut, maka ubahlah port pada file `docker-compose.yml`. Anda dapat melihat caranya pada link [berikut](https://docs.docker.com/compose/gettingstarted/)
+3. Secara default, aplikasi ini menggunakan port `8080, 8002` dan jika pada komputer anda telah menggunakan port tersebut, maka ubahlah port pada file `docker-compose.yml`.
 
 
 ## Cara Menjalankan Server
@@ -114,38 +116,42 @@ Admin
 
 ## Pembagian Tugas
 ### Server Side
-* Docker: 13521044
-* Setting up database: 13521044
-* Setting up core (service, router, request, dll): 13521044
-* Auth: 13521044
-* Homepage: 13521044
-* Films and search 13521044
-* Edit profile: 13521044
-* Exception page: 13521044
-* Add new film: 13521107
-* Edit Film: 13521107 
-* Delete Film: 13521107 
-* Film Details 13521107
-* Add review: 13521047
-* My reviews: 13521047
-* Edit review: 13521047
-* Delete review: 13521047
-* Seeding database: 13521047
+| 13521044                                 | 13521047    | 13521107                |
+|------------------------------------------|-------------|-------------------------|
+| Set Up Architecture                      | Review CRUD | Film CRUD               |
+| Set Up Database                          | DB Seeding  | DB Seeding              |
+| Set Up Repository Base Functions         |             | Video Upload            |
+| Middlewares                              |             | Debugging auth services |
+| Exceptions and Exception Handling        |             | Debugging film services |
+| Search Films (Filter & Pagination)       |             |                         |
+| Auth Services (Login, logout & Register) |             |                         |
+| Form Validation                          |             |                         |
+| Profile CRUD                             |             |                         |
+| Review CRUD                              |             |                         |
+| Migrations                               |             |                         |
+| Utilities                                |             |                         |
 
 ### Client Side
-* Home page: 13521044
-* Films and search: 13521044
-* Edit profile: 13521044
-* Exception page: 13521044
-* Add new film: 13521107
-* Edit Film: 13521107 
-* Delete Film: 13521107 
-* Film Details: 13521107 
-* Add review: 13521047
-* My reviews:  13521047
-* Edit review: 13521047
-* Delete review: 13521047
+| 13521044                                 | 13521047    | 13521107                |
+|------------------------------------------|-------------|-------------------------|
+| Set Up Architecture                      | Review CRUD | Film CRUD               |
+| Set Up Database                          | DB Seeding  | DB Seeding              |
+| Set Up Repository Base Functions         |             | Video Upload            |
+| Middlewares                              |             | Debugging auth services |
+| Exceptions and Exception Handling        |             | Debugging film services |
+| Search Films (Filter & Pagination)       |             |                         |
+| Auth Services (Login, logout & Register) |             |                         |
+| Form Validation                          |             |                         |
+| Profile CRUD                             |             |                         |
+| Review CRUD                              |             |                         |
+| Migrations                               |             |                         |
+| Utilities                                |             |                         |
 
+
+## Bonus
+1. All Responsive Page
+2. Google Lighthouse 
+3. Docker
 
 ## Authors
 |              Nama              |   NIM    |
