@@ -132,20 +132,19 @@ Admin
 | Utilities                                |             |                         |
 
 ### Client Side
-| 13521044                                 | 13521047    | 13521107                |
-|------------------------------------------|-------------|-------------------------|
-| Set Up Architecture                      | Review CRUD | Film CRUD               |
-| Set Up Database                          | DB Seeding  | DB Seeding              |
-| Set Up Repository Base Functions         |             | Video Upload            |
-| Middlewares                              |             | Debugging auth services |
-| Exceptions and Exception Handling        |             | Debugging film services |
-| Search Films (Filter & Pagination)       |             |                         |
-| Auth Services (Login, logout & Register) |             |                         |
-| Form Validation                          |             |                         |
-| Profile CRUD                             |             |                         |
-| Review CRUD                              |             |                         |
-| Migrations                               |             |                         |
-| Utilities                                |             |                         |
+| 13521044                                  | 13521047                    | 13521107                  |
+|-------------------------------------------|-----------------------------|---------------------------|
+| Home Page                                 | Reviews Page                | Film Details Page         |
+| Navbar                                    | Edit Reviews Page           | Edit Film Page            |
+| Base Layout                               | Delete Review Functionality | Add Film Page             |
+| Films Page (including filter, pagination) | Google Lighthouse           | Delete Film Functionality |
+| Edit Profile Page                         |                             |                           |
+| Login Page                                |                             |                           |
+| Register Page                             |                             |                           |
+| Show Trailer Modal                        |                             |                           |
+| Modal Functionalities                     |                             |                           |
+| Form Submitter                            |                             |                           |
+| Exception Page                            |                             |                           |
 
 
 ## Bonus
