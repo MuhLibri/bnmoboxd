@@ -14,6 +14,7 @@ Ada tiga level yang akan digunakan untuk mengklasifikasikan hak akses dari fitur
 3. Admin (Hanya admin yang dapat mengkases)
 
 Berikut adalah fitur-fitur yang ada beserta klasifikasi hak aksesnya:
+
 All
 - Menampilkan rekomendasi film
 - Melihat detail film (judul, poster, deskripsi, review, genre, direktor, dan trailer)
