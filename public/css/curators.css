@@ -36,6 +36,7 @@
     min-height: 100px;
     height: auto;
     gap: 10px;
+    border-radius: var(--radius-md);
 }
 
 #cc1:hover {
@@ -60,10 +61,33 @@
     margin-bottom: 50px;
 }
 
-.btn-group {
-    width: 70%;
+.status-section {
+    width: 50%;
     height: 100%;
     margin: auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.subscribe-section {
+    width: 70%;
+    min-width: 50%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.inner-subscribe {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.status-text {
+     margin-bottom: 20px;
 }
 
 .btn-subscribe {

@@ -19,8 +19,11 @@ function showCuratorProfile($data) {
             <h6 class="curator-info">$reviewCount review</h6>
             <h6 class="curator-info">$subscriber subscriber</h6>
         </div>
-        <div class="btn-group">
-            <button type="button" class="btn-subscribe" id="subscribe">$status</button>
+        <div class="subscribe-section">
+            <div class="inner-subscribe">
+                <h5 class="status-text">$status</h5>
+                <button type="button" class="btn-subscribe" id="subscribe">Subscribe</button>
+            </div>
         </div>
     </div>
     EOT;

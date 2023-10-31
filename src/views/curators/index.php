@@ -13,6 +13,7 @@ function curatorList($data) {
             $name = "Lizaaaa";
             $reviewCount = 5;
             $subscriber = $curator['count'];
+            $status = $curator['status'];
             $profileImg = '/assets/users/blank.jpeg';
             $html = <<<EOT
             <a href="/curators/$id" class="curator-container" id="cc1">
@@ -23,6 +24,9 @@ function curatorList($data) {
                     <h6>$name</h6>
                     <h6 class="curator-info">$reviewCount review</h6>
                     <h6 class="curator-info">$subscriber subscriber</h6>
+                </div>
+                <div class="status-section">
+                    <h5 class="status-text">$status</h5>
                 </div>
             </a>
             EOT;
