@@ -15,6 +15,7 @@ use app\services\FilmReviewService;
 
 class CuratorsController extends Controller {
     private FilmReviewService $filmReviewService;
+    private CuratorsService $curatorsService; 
 
     public function __construct() {
         require_once Application::$BASE_DIR . '/src/services/FilmReviewService.php';
@@ -35,19 +36,14 @@ class CuratorsController extends Controller {
     }
 
     public function index() {
-        $this->render('index', ['id' => 1, 'currentPage' => 1, 'pageSize' => 5]);
+        $curators = ['curators' => [['id' => 1, 'count' => $this->curatorsService->getSubscriber(1)], ['id' => 2, 'count' => $this->curatorsService->getSubscriber(2)]]];
+        $this->render('index', array_merge($curators, ['currentPage' => 1, 'pageSize' => 5]));
     }
 
     public function show(Request $request) {
-        // $reviewId = $this->getReviewIdFromParam($request->getParams());
-        // $userId = $_SESSION['user_id'];
-        // $review = $this->filmReviewService->getReview($reviewId, $userId);
-        // $review['id'] = $reviewId;
-        // $this->render('edit', ['review' => $review]);
-
-        $data['id'] = ($request->getParams())[0];
+        $id = ($request->getParams())[0];
         $userId = $_SESSION['user_id'];
         $reviewsData = $this->filmReviewService->getUserReviews($userId, ['take' => 5]);
-        $this->render('show', array_merge($reviewsData, ['currentPage' => 1, 'pageSize' => 5, 'id' => $data['id']]));
+        $this->render('show', array_merge($reviewsData, ['subscriber' => $this->curatorsService->getSubscriber($id), 'status' => $this->curatorsService->getSubscriptionStatus($id, $userId), 'currentPage' => 1, 'pageSize' => 5]));
     }
 } 

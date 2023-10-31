@@ -6,8 +6,9 @@ include_once Application::$BASE_DIR . '/src/views/components/navbar.php';
 function showCuratorProfile($data) {
     $name = "Lizaaa";
     $reviewCount = 5;
-    $subscriber = 100;
+    $subscriber = $data['subscriber'];
     $profileImg = '/assets/users/blank.jpeg';
+    $status = $data['status'];
     $html = <<<EOT
     <div class="curator-container" id="cc2">
         <div class="user-profile">
@@ -19,7 +20,7 @@ function showCuratorProfile($data) {
             <h6 class="curator-info">$subscriber subscriber</h6>
         </div>
         <div class="btn-group">
-            <button type="button" class="btn-subscribe" id="subscribe">Subscribe</button>
+            <button type="button" class="btn-subscribe" id="subscribe">$status</button>
         </div>
     </div>
     EOT;
@@ -29,7 +30,7 @@ function showCuratorProfile($data) {
 
 function showCuratorReviews($data) {
     $str = "";
-    $subscribed = TRUE;
+    $subscribed = $data['status'] == 'ACCEPTED';
     if ($subscribed) {
         $reviews = $data['reviews'];
         foreach($reviews as $review) {

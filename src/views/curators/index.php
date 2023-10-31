@@ -5,13 +5,14 @@ include_once Application::$BASE_DIR . '/src/views/components/navbar.php';
 
 function curatorList($data) {
     $str = "";
-    $curators = array(1, 2, 3, 4);
+    // echo $data['curators'][0];
+    $curators = $data['curators'];
     if (!empty($curators)) {
         foreach ($curators as $curator) {
-            $id = $data['id'];
+            $id = $curator['id'];
             $name = "Lizaaaa";
             $reviewCount = 5;
-            $subscriber = 100;
+            $subscriber = $curator['count'];
             $profileImg = '/assets/users/blank.jpeg';
             $html = <<<EOT
             <a href="/curators/$id" class="curator-container" id="cc1">
