@@ -13,6 +13,7 @@ require_once __DIR__ . '/../src/controllers/DashboardController.php';
 require_once __DIR__ . '/../src/controllers/AuthController.php';
 require_once __DIR__ . '/../src/controllers/ReviewsController.php';
 require_once __DIR__ . '/../src/controllers/ProfileController.php';
+require_once __DIR__ . '/../src/controllers/ApiController.php';
 require_once __DIR__ . '/../src/exceptions/BaseException.php';
 require_once __DIR__ . '/../src/exceptions/NotFoundException.php';
 require_once __DIR__ . '/../src/exceptions/ForbiddenException.php';
@@ -26,6 +27,7 @@ use app\controllers\FilmController;
 use app\controllers\AuthController;
 use app\controllers\ReviewsController;
 use app\controllers\ProfileController;
+use app\controllers\ApiController;
 
 if (!session_id()) {
     session_start();
@@ -66,4 +68,5 @@ $app->router->delete('/my-reviews/:id', [ReviewsController::class, 'delete']);
 $app->router->get('/profile', [ProfileController::class, 'index']);
 $app->router->put('/profile/edit', [ProfileController::class, 'edit']);
 $app->router->delete('/profile/delete', [ProfileController::class, 'delete']);
+$app->router->get('/api/films', [ApiController::class, 'search']);
 $app->run();
