@@ -4,6 +4,7 @@ function filmCard($data){
     if (!empty($data)){
         foreach($data as $film){
             $title = strlen($film['title']) > 30 ? substr($film['title'],0, 30) . '...'  : $film['title'];
+            $id = $film['id'];
             $imagePath = '/assets/films/' . $film['image_path'];
             $releaseYear = $film['release_year'];
             $name = $film['first_name'] . ' ' . $film['last_name'];
@@ -13,7 +14,7 @@ function filmCard($data){
             // Loop to add star images based on the rating value
             $starsHtml = str_repeat('<img src="/assets/app/star.png" alt="star" class="stars-img">', $rating);
             $html = <<<"EOT"
-            <a href="#" class="film-container">
+            <a href="/film/$id" class="film-container">
                 <img src="$imagePath" alt="$imagePath" class="poster-image">
                 <div class="film-details-container">
                     <h5 class="film-title">$title<span class="release-year"> $releaseYear </span></h5>

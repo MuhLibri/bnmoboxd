@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     confirmEditButton.addEventListener('click', function (e) {
         e.preventDefault();
         const form = document.querySelector("#profile-form");
-        putForm(form, "/profile/edit", function (responseText) {
+        submitForm(form, "/profile/edit", function (responseText) {
             window.location.href = "/profile"
         })
         handleClose('#confirm-edit-modal');

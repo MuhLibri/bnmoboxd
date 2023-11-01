@@ -53,7 +53,7 @@ function createReviewModal($filmId) {
                         <label class="form-error" id="rating-form-error"></label>
                     </div>
                     <div class="form-group">
-                        <label for="">Review</label>
+                        <label for="review">Review</label>
                         <textarea id="review" name="review" rows="8"></textarea>
                         <label class="form-error" id="review-form-error"></label>
                     </div>
@@ -85,7 +85,7 @@ function reviewList($reviews){
             $html = <<<"EOT"
                 <div class="review-container">
                     <div class="profile-picture">
-                        <img src="$profilePicturePath">
+                        <img src="$profilePicturePath" alt="$name">
                     </div>
                     <div class="review-details">
                         <h6>

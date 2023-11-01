@@ -74,6 +74,7 @@ class UserService extends Service
             throw new NotFoundException();
         }
         return [
+            'id' => $user['id'],
             'username' => $user['username'],
             'email' => $user['email'],
             'firstName' => $user['first_name'],
@@ -168,14 +169,17 @@ class UserService extends Service
             $profilePicturePath = saveFile($_FILES['profile_picture'], Application::$BASE_DIR . '/public/assets/users/');
         }
         $this->userRepository->updateUser((int)$updateData['user_id'], $updateData['username'], $updateData['email'], $updateData['first_name'], $updateData['last_name'], $profilePicturePath);
+        
+        $newProfile = $this->userRepository->getUserById($updateData['user_id']);
+        $this->setSession($newProfile);
     }
 
     /**
      * @throws NotFoundException
      */
-    public function deleteUser($userId)
+    public function deleteUser($username)
     {
-        $currentUser = $this->getUserProfile($userId);
+        $currentUser = $this->getUserProfile($username);
         $this->userRepository->deleteUser((int)$currentUser['id']);
         $this->logout();
     }

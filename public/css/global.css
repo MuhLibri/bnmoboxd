@@ -502,6 +502,10 @@ a {
     display: grid;
 }
 
+.no-gap {
+    gap: 0;
+}
+
 .form-logo {
     width: 250px;
 }

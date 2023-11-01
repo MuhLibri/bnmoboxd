@@ -5,7 +5,7 @@
         <form class="form-container" id="register-form">
             <div class="form-group">
                 <label for="first_name">First Name</label>
-                <input type="text" id="first-name" name="first_name" formnovalidate>
+                <input type="text" id="first_name" name="first_name" formnovalidate>
                 <label class="form-error" id="first-name-form-error"></label>
             </div>
             <div class="form-group">
