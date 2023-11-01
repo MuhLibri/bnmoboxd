@@ -18,48 +18,20 @@ function handlePageChange(page) {
 document.addEventListener("DOMContentLoaded", function () {
     const subscribeButton = document.querySelector('#subscribe');
     subscribeButton?.addEventListener('click', function (e) {
-        console.log('hai');
         e.preventDefault();
-        handleOpen('#confirm-edit-modal');
+        handleOpen('#confirm-subscribe-modal');
     });
 
-    const deleteButton = document.querySelector('#delete');
-    deleteButton?.addEventListener('click', function (e) {
-        e.preventDefault();
-        handleOpen('#confirm-delete-modal');
-    });
-
-    const confirmEditButton = document.querySelector('#confirm-edit-btn');
+    const confirmEditButton = document.querySelector('#confirm-subscribe-btn');
     confirmEditButton?.addEventListener('click', function (e) {
+        console.log("a");
         e.preventDefault();
-        const form = document.querySelector("#review-form");
-        submitForm(form, window.location.href, function (responseText) {
-            window.location.href = "/my-reviews";
-        })
-        handleClose('#confirm-edit-modal');
-    });
-
-    const confirmCancelButton = document.querySelector('#confirm-cancel-btn');
-    confirmCancelButton?.addEventListener('click', function (e) {
-        e.preventDefault();
-        window.location.href = window.location.href.replace(/\/\w+$/, '');
-    });
-
-    const confirmDeleteButton = document.querySelector('#confirm-delete-btn');
-    confirmDeleteButton?.addEventListener('click', function (e) {
-        e.preventDefault();
-        const xhr = new XMLHttpRequest();
-        const url = window.location.href;
-        xhr.open('DELETE', url, true);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) { // Check if the request is complete
-                if (xhr.status === 200) {
-                    window.location.href = '/my-reviews';
-                } else {
-                    alert('Failed to delete review');
-                }
-            }
-        };
-        xhr.send();
+        // Handle subcribe/unsubscribe
+        
+        // const form = document.querySelector("#review-form");
+        // submitForm(form, window.location.href, function (responseText) {
+        //     window.location.href = "/curators/:id";
+        // })
+        handleClose('#confirm-subscribe-modal');
     });
 });

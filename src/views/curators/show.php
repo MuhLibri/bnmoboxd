@@ -29,15 +29,15 @@ function showCuratorProfile($data) {
         <div class="subscribe-section">
             <div class="inner-subscribe">
                 <h6 class="status-text">$status</h6>
-                <button type="button" class="btn-subscribe" id="subscribe" onclick="t">$button</button>
+                <button type="button" class="btn-subscribe" id="subscribe">$button</button>
             </div>
         </div>
-        <div class="modal-container" id="confirm-edit-modal">
+        <div class="modal-container" id="confirm-subscribe-modal">
             <div class="confirmation-modal">
                 <h2>Are you sure you want to $button</h2>
                 <div class="btn-group">
-                    <button type="button" class="btn-primary" id="confirm-edit-btn">Yes</button>
-                    <button type="button" class="btn-danger" onclick="handle('#confirm-edit-modal')">No</button>
+                    <button type="button" class="btn-primary" id="confirm-subscribe-btn">Yes</button>
+                    <button type="button" class="btn-danger" onclick="handleClose('#confirm-subscribe-modal')">No</button>
                 </div>
             </div>
         </div>
