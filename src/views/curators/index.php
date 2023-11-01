@@ -26,7 +26,7 @@ function curatorList($data) {
                     <h6 class="curator-info">$subscriber subscriber</h6>
                 </div>
                 <div class="status-section">
-                    <h5 class="status-text">$status</h5>
+                    <h6 class="status-text">$status</h6>
                 </div>
             </a>
             EOT;

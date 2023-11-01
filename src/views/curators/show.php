@@ -9,6 +9,13 @@ function showCuratorProfile($data) {
     $subscriber = $data['subscriber'];
     $profileImg = '/assets/users/blank.jpeg';
     $status = $data['status'];
+    $button = 'Subscribe';
+    if ($status == 'ACCEPTED') {
+        $button = 'Unsubscribe';
+    }
+    else if ($status == 'PENDING') {
+        $button = 'CANCEL';
+    }
     $html = <<<EOT
     <div class="curator-container" id="cc2">
         <div class="user-profile">
@@ -21,8 +28,17 @@ function showCuratorProfile($data) {
         </div>
         <div class="subscribe-section">
             <div class="inner-subscribe">
-                <h5 class="status-text">$status</h5>
-                <button type="button" class="btn-subscribe" id="subscribe">Subscribe</button>
+                <h6 class="status-text">$status</h6>
+                <button type="button" class="btn-subscribe" id="subscribe" onclick="t">$button</button>
+            </div>
+        </div>
+        <div class="modal-container" id="confirm-edit-modal">
+            <div class="confirmation-modal">
+                <h2>Are you sure you want to $button</h2>
+                <div class="btn-group">
+                    <button type="button" class="btn-primary" id="confirm-edit-btn">Yes</button>
+                    <button type="button" class="btn-danger" onclick="handle('#confirm-edit-modal')">No</button>
+                </div>
             </div>
         </div>
     </div>
@@ -90,12 +106,15 @@ function showCuratorReviews($data) {
     <div class="review-list" id="rl1">
         <?php
             echo showCuratorReviews($data);
-            if (isset($data['count']) && isset($data['currentPage'])) {
+            if (isset($data['count']) && isset($data['currentPage']) && $data['status'] == 'ACCEPTED') {
                 include Application::$BASE_DIR . '/src/views/components/pagination.php';
             }
         ?>
     </div>
 </div>
 
-<!-- <script defer src="/js/curators.js"></script> -->
+
+<script defer src="/js/curators.js"></script>
+<script defer src="/js/confirmation-modal.js"></script>
+<script defer src="/js/form-handler.js"></script>
 <script defer src="/js/reviews.js"></script>
