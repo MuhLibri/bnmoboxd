@@ -9,13 +9,6 @@ function showCuratorProfile($data) {
     $subscriber = $data['subscriber'];
     $profileImg = '/assets/users/blank.jpeg';
     $status = $data['status'];
-    $button = 'Subscribe';
-    if ($status == 'ACCEPTED') {
-        $button = 'Unsubscribe';
-    }
-    else if ($status == 'PENDING') {
-        $button = 'CANCEL';
-    }
     $html = <<<EOT
     <div class="curator-container" id="cc2">
         <div class="user-profile">
@@ -27,29 +20,41 @@ function showCuratorProfile($data) {
             <h6 class="curator-info">$subscriber subscriber</h6>
         </div>
         <div class="subscribe-section">
-            <div class="inner-subscribe">
-                <h6 class="status-text">$status</h6>
-                <button type="button" class="btn-subscribe" id="subscribe">$button</button>
+        <div class="inner-subscribe">
+            <h6 class="status-text">$status</h6>
+    EOT;
+
+    if ($status == "Not Subscribed") {
+        $html = $html . <<<EOT
+                    <button type="button" class="btn-subscribe" id="subscribe">Subscribe</button>
+                </div>
             </div>
-        </div>
-        <div class="modal-container" id="confirm-subscribe-modal">
-            <div class="confirmation-modal">
-                <h2>Are you sure you want to $button</h2>
-                <div class="btn-group">
-                    <button type="button" class="btn-primary" id="confirm-subscribe-btn">Yes</button>
-                    <button type="button" class="btn-danger" onclick="handleClose('#confirm-subscribe-modal')">No</button>
+            <div class="modal-container" id="confirm-subscribe-modal">
+                <div class="confirmation-modal">
+                    <h2>Are you sure you want to Subscribe?</h2>
+                    <div class="btn-group">
+                        <button type="button" class="btn-primary" id="confirm-subscribe-btn">Yes</button>
+                        <button type="button" class="btn-danger" onclick="handleClose('#confirm-subscribe-modal')">No</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    EOT;
+        EOT;
+    }
+    else {
+        $html = $html . <<<EOT
+                </div>
+            </div>
+        </div>
+        EOT;
+    }
 
     return $html;
 }
 
 function showCuratorReviews($data) {
     $str = "";
-    $subscribed = $data['status'] == 'ACCEPTED';
+    $subscribed = $data['status'] == 'Accepted';
     if ($subscribed) {
         if (!empty($data['reviews'])) {
             $reviews = $data['reviews'];
