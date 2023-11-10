@@ -14,6 +14,7 @@ require_once __DIR__ . '/../src/controllers/AuthController.php';
 require_once __DIR__ . '/../src/controllers/ReviewsController.php';
 require_once __DIR__ . '/../src/controllers/ProfileController.php';
 require_once __DIR__ . '/../src/controllers/CuratorsController.php';
+require_once __DIR__ . '/../src/controllers/ApiController.php';
 require_once __DIR__ . '/../src/exceptions/BaseException.php';
 require_once __DIR__ . '/../src/exceptions/NotFoundException.php';
 require_once __DIR__ . '/../src/exceptions/ForbiddenException.php';
@@ -28,6 +29,7 @@ use app\controllers\AuthController;
 use app\controllers\ReviewsController;
 use app\controllers\ProfileController;
 use app\controllers\CuratorsController;
+use app\controllers\ApiController;
 
 if (!session_id()) {
     session_start();
@@ -68,6 +70,7 @@ $app->router->delete('/my-reviews/:id', [ReviewsController::class, 'delete']);
 $app->router->get('/profile', [ProfileController::class, 'index']);
 $app->router->post('/profile/edit', [ProfileController::class, 'edit']);
 $app->router->delete('/profile/delete', [ProfileController::class, 'delete']);
+$app->router->get('/api/films', [ApiController::class, 'search']);
 $app->router->get('/curators', [CuratorsController::class, 'index']);
 $app->router->get('/curators/:id', [CuratorsController::class, 'show']);
 $app->router->post('/curators/:id', [CuratorsController::class, 'show']);
