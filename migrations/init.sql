@@ -183,4 +183,6 @@ INSERT INTO subscriptions (curator_id, subscriber_id, status)
 VALUES
     (1, 1, 'ACCEPTED'),
     (1, 2, 'ACCEPTED'),
-    (2, 1, 'PENDING');
+    (1, 3, 'PENDING'),
+    (2, 1, 'PENDING'),
+    (3, 1, 'REJECTED');

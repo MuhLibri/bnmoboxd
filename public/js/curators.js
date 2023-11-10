@@ -35,3 +35,19 @@ document.addEventListener("DOMContentLoaded", function () {
         handleClose('#confirm-subscribe-modal');
     });
 });
+
+const subscription_status = document.querySelectorAll('.status-text');
+subscription_status.forEach(function coloring(ss) {
+    if (ss.innerHTML == "Accepted") {
+        ss.style.backgroundColor = "green";
+    }
+    else if (ss.innerHTML == "Pending") {
+        ss.style.backgroundColor = "#F29339";
+    }
+    else if (ss.innerHTML == "Rejected") {
+        ss.style.backgroundColor = "red";
+    }
+    else {
+        ss.style.backgroundColor = "grey";
+    }
+})

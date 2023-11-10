@@ -37,7 +37,7 @@ class CuratorsController extends Controller {
 
     public function index() {
         $userId = $_SESSION['user_id'];
-        $curators = ['curators' => [['id' => 1, 'count' => $this->curatorsService->getSubscriber(1), 'status' => $this->curatorsService->getSubscriptionStatus(1, $userId)], ['id' => 2, 'count' => $this->curatorsService->getSubscriber(2), 'status' => $this->curatorsService->getSubscriptionStatus(2, $userId)]]];
+        $curators = ['curators' => [['id' => 1, 'count' => $this->curatorsService->getSubscriber(1), 'status' => $this->curatorsService->getSubscriptionStatus(1, $userId)], ['id' => 2, 'count' => $this->curatorsService->getSubscriber(2), 'status' => $this->curatorsService->getSubscriptionStatus(2, $userId)], ['id' => 3, 'count' => $this->curatorsService->getSubscriber(3), 'status' => $this->curatorsService->getSubscriptionStatus(3, $userId)], ['id' => 4, 'count' => $this->curatorsService->getSubscriber(4), 'status' => $this->curatorsService->getSubscriptionStatus(4, $userId)]]];
         $this->render('index', array_merge($curators, ['currentPage' => 1, 'pageSize' => 5]));
     }
 

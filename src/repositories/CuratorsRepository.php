@@ -16,7 +16,7 @@ class CuratorsRepository extends Repository {
     }
 
     public function getSubscriberCount($curator_id) {
-        $query = 'SELECT COUNT(*) FROM subscriptions WHERE curator_id = :curator_id';
+        $query = "SELECT COUNT(*) FROM subscriptions WHERE curator_id = :curator_id AND status = 'ACCEPTED'";
         $params = [
             'curator_id' => $curator_id
         ];

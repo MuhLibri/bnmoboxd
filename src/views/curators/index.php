@@ -5,7 +5,6 @@ include_once Application::$BASE_DIR . '/src/views/components/navbar.php';
 
 function curatorList($data) {
     $str = "";
-    // echo $data['curators'][0];
     $curators = $data['curators'];
     if (!empty($curators)) {
         foreach ($curators as $curator) {

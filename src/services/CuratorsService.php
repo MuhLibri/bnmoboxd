@@ -18,7 +18,11 @@ class CuratorsService extends Service {
     }
 
     public function getSubscriptionStatus($curator_id, $subscriber_id) {
-        return $this->curatorsRepository->getSubscriptionStatus($curator_id, $subscriber_id)[0];
+        $status = $this->curatorsRepository->getSubscriptionStatus($curator_id, $subscriber_id);
+        if (empty($status)) {
+            return "Not Subscribed";
+        }
+        return ucwords(strtolower($status[0]));
     }
 
     public function getSubscriber($curator_id) {
