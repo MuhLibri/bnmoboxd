@@ -30,7 +30,7 @@ class Application {
     public function run() {
         try {
             echo $this->router->resolve();
-        } catch (BaseException $e) { // Catch the specific exception class you're using.
+        } catch (BaseException $e) {
             $e->handle();
         } catch (\Exception $e) {
             echo $e;

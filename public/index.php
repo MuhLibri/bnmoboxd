@@ -49,6 +49,7 @@ $config = [
     ],
     'REST_API_URL' => $_ENV['REST_API_URL'],
     'REST_API_KEY' => $_ENV['REST_API_KEY'],
+    'SOAP_BASE_URL' => $_ENV['SOAP_BASE_URL'],
     'PHP_API_KEY' => $_ENV['PHP_API_KEY'],
     'SOAP_API_KEY' => $_ENV['SOAP_API_KEY']
 ];
