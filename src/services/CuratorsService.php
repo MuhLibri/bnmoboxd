@@ -3,6 +3,7 @@
 namespace app\services;
 
 use app\clients\RestApi;
+use app\clients\SoapApi;
 use app\core\Application;
 use app\core\Service;
 use app\exceptions\BadRequestException;
@@ -13,14 +14,17 @@ class CuratorsService extends Service {
     private SubscriptionRepository $subscriptionRepository;
     private FilmService  $filmService;
     private RestApi $restApi;
+    private SoapApi $soapApi;
 
     public function __construct() {
         require_once Application::$BASE_DIR . '/src/repositories/SubscriptionRepository.php';
         require_once Application::$BASE_DIR . '/src/clients/RestApi.php';
+        require_once Application::$BASE_DIR . '/src/clients/SoapApi.php';
         require_once Application::$BASE_DIR . '/src/services/FilmService.php';
         $this->subscriptionRepository = new SubscriptionRepository();
         $this->restApi = new RestApi();
         $this->filmService = new FilmService();
+        $this->soapApi = new SoapApi();
     }
 
     /**
@@ -97,6 +101,7 @@ class CuratorsService extends Service {
     }
 
     public function createSubscription($curatorUsername, $subscriberUsername) {
+        $this->soapApi->createSubscription($curatorUsername, $subscriberUsername);
         $this->subscriptionRepository->addSubscription($curatorUsername, $subscriberUsername);
     }
 
