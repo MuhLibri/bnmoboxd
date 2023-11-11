@@ -55,11 +55,11 @@ CREATE TABLE IF NOT EXISTS watch_lists (
 
 -- Create 'subscriptions' table
 CREATE TABLE IF NOT EXISTS subscriptions (
-    curator_id INT NOT NULL,
-    subscriber_id INT(11) NOT NULL,
+    curator_username VARCHAR(25) NOT NULL,
+    subscriber_username VARCHAR(25) NOT NULL,
     status enum('PENDING', 'ACCEPTED', 'REJECTED') NOT NULL DEFAULT 'PENDING',
-    PRIMARY KEY (curator_id, subscriber_id),
-    FOREIGN KEY (subscriber_id) REFERENCES users(id) ON DELETE cascade
+    PRIMARY KEY (curator_username, subscriber_username),
+    FOREIGN KEY (subscriber_username) REFERENCES users(username) ON DELETE cascade
 );
 
 
@@ -179,10 +179,10 @@ VALUES
     (2, 2),
     (3, 3);
 
-INSERT INTO subscriptions (curator_id, subscriber_id, status)
+INSERT INTO subscriptions (curator_username, subscriber_username, status)
 VALUES
-    (1, 1, 'ACCEPTED'),
-    (1, 2, 'ACCEPTED'),
-    (1, 3, 'PENDING'),
-    (2, 1, 'PENDING'),
-    (3, 1, 'REJECTED');
+    ('user1', 'user1', 'ACCEPTED'),
+    ('user2', 'user2', 'ACCEPTED'),
+    ('user3', 'user3', 'PENDING'),
+    ('user4', 'user4', 'PENDING'),
+    ('user5', 'user5', 'REJECTED');
