@@ -4,30 +4,41 @@ use app\core\Application;
 include_once Application::$BASE_DIR . '/src/views/components/navbar.php';
 
 function showCuratorProfile($data) {
-    $name = "Lizaaa";
-    $reviewCount = 5;
-    $subscriber = $data['subscriber'];
+    $curatorDetails = $data['curatorDetails'];
+    $username = $curatorDetails['username'];
+    $name = $curatorDetails['firstName'] . ' ' . $curatorDetails['lastName'];
+    $reviewCount = $curatorDetails['reviewCount'];
+//    $subscriber = $data['subscriber'];
     $profileImg = '/assets/users/blank.jpeg';
     $status = $data['status'];
+    $statusLabelId = 'not-subscribed-label';
+    if ($status == 'SUBSCRIBED') {
+        $statusLabelId = 'subscribed-label';
+    }
+    if ($status == 'REJECTED') {
+        $statusLabelId = 'rejected-label';
+    }
+    if ($status == 'PENDING') {
+        $statusLabelId = 'pending-label';
+    }
     $html = <<<EOT
-    <div class="curator-container" id="cc2">
-        <div class="user-profile">
-            <img alt="curator's profile" src="$profileImg">
+    <input type="hidden" id="curator_username" name="curator_username" value="$username">
+    <div class="curator-container">
+        <div class="curator-info"> 
+            <div class="user-profile">
+                <img alt="curator's profile" src="$profileImg">
+            </div>
+            <div class="curator-details">
+                <h5 class="curator-name">$name</h5>
+                <h6 class="curator-info">$reviewCount review</h6>
+            </div>
         </div>
-        <div class="curator-details">
-            <h6>$name</h6>
-            <h6 class="curator-info">$reviewCount review</h6>
-            <h6 class="curator-info">$subscriber subscriber</h6>
-        </div>
-        <div class="subscribe-section">
-        <div class="inner-subscribe">
-            <h6 class="status-text">$status</h6>
+        <div class="status-section">
     EOT;
 
-    if ($status == "Not Subscribed") {
+    if ($status == "NOT SUBSCRIBED") {
         $html = $html . <<<EOT
-                    <button type="button" class="btn-subscribe" id="subscribe">Subscribe</button>
-                </div>
+                <button type="button" class="btn-subscribe" id="subscribe">SUBSCRIBE</button>
             </div>
             <div class="modal-container" id="confirm-subscribe-modal">
                 <div class="confirmation-modal">
@@ -43,7 +54,7 @@ function showCuratorProfile($data) {
     }
     else {
         $html = $html . <<<EOT
-                </div>
+                <h6 class="status-text" id="$statusLabelId">$status</h6>
             </div>
         </div>
         EOT;
@@ -54,18 +65,17 @@ function showCuratorProfile($data) {
 
 function showCuratorReviews($data) {
     $str = "";
-    $subscribed = $data['status'] == 'Accepted';
+    $subscribed = $data['status'] == 'ACCEPTED';
     if ($subscribed) {
-        if (!empty($data['reviews'])) {
-            $reviews = $data['reviews'];
+        $reviews = $data['curatorDetails']['Review'];
+        if (!empty($reviews)) {
             foreach($reviews as $review) {
                 $name = $review['title'];
-                $id = $review['id'];
-                $filmPosterPath = '/assets/films/' . $review['image_path'];
+                $filmPosterPath = '/assets/films/' . $review['imagePath'];
                 $reviewText = $review['review'];
                 $rating = $review['rating'];
-                $dtCreate = new DateTime($review['created_at']);
-                $dtUpdate = new DateTime($review['updated_at']);
+                $dtCreate = new DateTime($review['createdAt']);
+                $dtUpdate = new DateTime($review['updatedAt']);
                 $dateCreate = $dtCreate->format('M d, Y');
                 $dateUpdate = $dtCreate != $dtUpdate ? ' • Updated on ' . $dtUpdate->format('M d, Y') : '';
     
@@ -106,8 +116,9 @@ function showCuratorReviews($data) {
     <?php
         echo showCuratorProfile($data);
     ?>
-    <h5 class="section-title">REVIEWS</h5>
-
+    <div>
+         <h5 class="section-title">REVIEWS</h5>
+    </div>
     <div class="review-list" id="rl1">
         <?php
             echo showCuratorReviews($data);
@@ -116,6 +127,7 @@ function showCuratorReviews($data) {
             }
         ?>
     </div>
+
 </div>
 
 
