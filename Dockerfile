@@ -10,9 +10,10 @@ RUN apt-get update && \
     wget \
     git \
     unzip \
-    -y --no-install-recommends
+    -y --no-install-recommends \
+    -y libxml2-dev
 
-RUN docker-php-ext-install zip pdo_mysql pdo
+RUN docker-php-ext-install zip pdo_mysql pdo soap
 
 COPY ./php.ini /usr/local/etc/php/
 
