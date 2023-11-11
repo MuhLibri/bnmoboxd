@@ -15,10 +15,13 @@ require_once __DIR__ . '/../src/controllers/ReviewsController.php';
 require_once __DIR__ . '/../src/controllers/ProfileController.php';
 require_once __DIR__ . '/../src/controllers/CuratorsController.php';
 require_once __DIR__ . '/../src/controllers/ApiController.php';
+require_once __DIR__ . '/../src/controllers/SubscriptionController.php';
 require_once __DIR__ . '/../src/exceptions/BaseException.php';
 require_once __DIR__ . '/../src/exceptions/NotFoundException.php';
 require_once __DIR__ . '/../src/exceptions/ForbiddenException.php';
 require_once __DIR__ . '/../src/exceptions/BadRequestException.php';
+require_once __DIR__ . '/../src/exceptions/InternalServerErrorException.php';
+require_once __DIR__ . '/../src/exceptions/UnauthorizedException.php';
 require_once __DIR__ . '/../src/db/Database.php';
 require_once __DIR__ . '/../src/utils/utils.php';
 
@@ -30,6 +33,7 @@ use app\controllers\ReviewsController;
 use app\controllers\ProfileController;
 use app\controllers\CuratorsController;
 use app\controllers\ApiController;
+use app\controllers\SubscriptionController;
 
 if (!session_id()) {
     session_start();
@@ -42,7 +46,11 @@ $config = [
         'host' => $_ENV['MYSQL_HOST'],
         'username' => $_ENV['MYSQL_USER'],
         'password' => $_ENV['MYSQL_PASSWORD'],
-    ]
+    ],
+    'REST_API_URL' => $_ENV['REST_API_URL'],
+    'REST_API_KEY' => $_ENV['REST_API_KEY'],
+    'PHP_API_KEY' => $_ENV['PHP_API_KEY'],
+    'SOAP_API_KEY' => $_ENV['SOAP_API_KEY']
 ];
 
 
@@ -72,6 +80,8 @@ $app->router->post('/profile/edit', [ProfileController::class, 'edit']);
 $app->router->delete('/profile/delete', [ProfileController::class, 'delete']);
 $app->router->get('/api/films', [ApiController::class, 'search']);
 $app->router->get('/curators', [CuratorsController::class, 'index']);
+$app->router->get('/curators/search', [CuratorsController::class, 'search']);
 $app->router->get('/curators/:id', [CuratorsController::class, 'show']);
-$app->router->post('/curators/:id', [CuratorsController::class, 'show']);
+$app->router->post('/curators/:id/subscribe', [CuratorsController::class, 'subscribe']);
+$app->router->put('/subscription', [SubscriptionController::class, 'update']);
 $app->run();
