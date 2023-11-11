@@ -186,7 +186,7 @@ class FilmRepository extends Repository
 
     public function getFilmTitles($options) {
         $params = [];
-        $selectFilmsQuery = 'SELECT f.id, f.title ';
+        $selectFilmsQuery = 'SELECT f.id, f.title, f.image_path ';
         $selectCountQuery = 'SELECT COUNT(*) film_count ';
         $query = 'FROM films AS f';
         $isFilterOn = false;
