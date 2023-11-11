@@ -32,11 +32,18 @@
     width: 60%;
     padding: 50px;
     display: flex;
-    justify-content: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
     min-height: 100px;
     height: auto;
     gap: 10px;
     border-radius: var(--radius-md);
+    margin-bottom: 30px;
+}
+
+.curator-info{
+    display: flex;
+    flex-direction: row;
 }
 
 #cc1:hover {
@@ -47,13 +54,15 @@
 .curator-details {
     margin: auto;
     width: max-content;
-    margin-left: 40px;
-    margin-right: 25px;
+}
+.curator-name {
+    font-weight: bold;
 }
 
 .curator-info {
     font-weight: normal;
     color: var(--clr-muted);
+    gap: 20px;
 }
 
 #cc2 {
@@ -62,20 +71,31 @@
 }
 
 .status-section {
-    width: 50%;
-    height: 100%;
-    margin: auto;
+    align-items: center;
+    justify-content: center;
     display: flex;
-    justify-content: flex-end;
-    gap: 8px;
 }
 
 .status-text {
     background-color: var(--clr-primary);
     border-radius: var(--radius-md);
-    padding: 20px;
-    width: 100px;
+    padding: 12px;
+    min-width: 140px;
     text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#not-subscribed-label {
+    background-color: var(--clr-secondary);
+}
+
+#pending-label {
+    background-color: #854d0e;
+}
+
+#rejected-label {
+    background-color: var(--clr-danger);
 }
 
 .subscribe-section {
@@ -94,22 +114,18 @@
     justify-content: flex-end;
 }
 
-.status-text {
-     margin-bottom: 20px;
-}
-
 .btn-subscribe {
     padding: 14px 20px;
     font-weight: bold;
     border-radius: var(--radius-md);
     border: none;
-    background-color: var(--clr-danger);
+    background-color: var(--clr-secondary);
     color: white;
     transition: var(--transition);
 }
 
 .btn-subscribe:hover {
-    background-color: var(--clr-danger-dark);
+    background-color: var(--clr-secondary-dark);
 }
 
 .review-container {
@@ -305,5 +321,26 @@ input[type="radio"] {
     #delete {
         margin-right: 20px;
         margin-bottom: 20px;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    .curator-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .curator-info {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .curator-details{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
 }
