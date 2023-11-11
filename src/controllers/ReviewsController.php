@@ -89,7 +89,6 @@ class ReviewsController extends Controller {
         $reviewsData = $this->filmReviewService->getUserReviews($userId, $options);
         return $this->renderComponent('review-list', array_merge($reviewsData, ['currentPage' => $options['page'], 'pageSize' => 5]));
     }
-
     /**
      * @throws NotFoundException
      */
