@@ -27,35 +27,17 @@ class CuratorsService extends Service {
      * @throws BaseException
      * @throws BadRequestException
      */
-    public function getCurators($options) {
+    public function getCurators($options): array
+    {
         $data = $this->restApi->getCurators($options);
-        $curatorsMap = [];
-        $subscriberUsername = $_SESSION['username'];
         $curators = $data['curators'];
-        $curatorUsernames = '';
-        foreach ($curators as $key => $curator) {
-            $curatorUsernames .= '\''. $curator['username'] . '\',';
-            $curatorsMap[$curator['username']] = [
-                'status' => 'NOT SUBSCRIBED',
-                'reviewCount' => $curator['reviewCount'],
-                'name' => $curator['firstName'] . ' ' . $curator['lastName']
-            ];
-        }
-        $curatorUsernames = rtrim($curatorUsernames, ',');
-        $subscriptions = $this->subscriptionRepository->getSubscriptions($curatorUsernames, $subscriberUsername);
-        foreach ($subscriptions as $sub) {
-            $status = $sub['status'];
-            if ($status == 'ACCEPTED') {
-                $curatorsMap[$sub['curator_username']]['status'] = 'SUBSCRIBED';
-            } else {
-                $curatorsMap[$sub['curator_username']]['status'] = $status;
-            }
-        }
+        $curatorsMap = $this->mapCuratorsWithSubscriptionStatus($curators);
 
         return ['curators' => $curatorsMap, 'count' => $data['count']];
     }
 
-    public function getCuratorDetail($curatorUsername) {
+    public function getCuratorDetail($curatorUsername): array
+    {
         $subscriberUsername = $_SESSION['username'];
         $statusData = ($this->getSubscriptionStatus($curatorUsername, $subscriberUsername));
         if (!$statusData) {
@@ -87,6 +69,31 @@ class CuratorsService extends Service {
             $review['imagePath'] = $filmMap[$review['filmId']]['imagePath'];
         }
         return $reviews;
+    }
+
+    private function mapCuratorsWithSubscriptionStatus($curators) {
+        $subscriberUsername = $_SESSION['username'];
+        $curatorUsernames = '';
+        $curatorsMap = [];
+        foreach ($curators as $curator) {
+            $curatorUsernames .= '\''. $curator['username'] . '\',';
+            $curatorsMap[$curator['username']] = [
+                'status' => 'NOT SUBSCRIBED',
+                'reviewCount' => $curator['reviewCount'],
+                'name' => $curator['firstName'] . ' ' . $curator['lastName']
+            ];
+        }
+        $curatorUsernames = rtrim($curatorUsernames, ',');
+        $subscriptions = $this->subscriptionRepository->getSubscriptions($curatorUsernames, $subscriberUsername);
+        foreach ($subscriptions as $sub) {
+            $status = $sub['status'];
+            if ($status == 'ACCEPTED') {
+                $curatorsMap[$sub['curator_username']]['status'] = 'SUBSCRIBED';
+            } else {
+                $curatorsMap[$sub['curator_username']]['status'] = $status;
+            }
+        }
+        return $curatorsMap;
     }
 
     public function createSubscription($curatorUsername, $subscriberUsername) {
