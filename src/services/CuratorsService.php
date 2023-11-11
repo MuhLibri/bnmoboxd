@@ -2,30 +2,102 @@
 
 namespace app\services;
 
+use app\clients\RestApi;
 use app\core\Application;
 use app\core\Service;
 use app\exceptions\BadRequestException;
-use app\exceptions\ForbiddenException;
-use app\exceptions\NotFoundException;
-use app\repositories\CuratorsRepository;
+use app\exceptions\BaseException;
+use app\repositories\SubscriptionRepository;
 
 class CuratorsService extends Service {
-    private CuratorsRepository $curatorsRepository;
+    private SubscriptionRepository $subscriptionRepository;
+    private FilmService  $filmService;
+    private RestApi $restApi;
 
     public function __construct() {
-        require_once Application::$BASE_DIR . '/src/repositories/CuratorsRepository.php';
-        $this->curatorsRepository = new CuratorsRepository();
+        require_once Application::$BASE_DIR . '/src/repositories/SubscriptionRepository.php';
+        require_once Application::$BASE_DIR . '/src/clients/RestApi.php';
+        require_once Application::$BASE_DIR . '/src/services/FilmService.php';
+        $this->subscriptionRepository = new SubscriptionRepository();
+        $this->restApi = new RestApi();
+        $this->filmService = new FilmService();
     }
 
-    public function getSubscriptionStatus($curator_id, $subscriber_id) {
-        $status = $this->curatorsRepository->getSubscriptionStatus($curator_id, $subscriber_id);
-        if (empty($status)) {
-            return "Not Subscribed";
+    /**
+     * @throws BaseException
+     * @throws BadRequestException
+     */
+    public function getCurators($options) {
+        $data = $this->restApi->getCurators($options);
+        $curatorsMap = [];
+        $subscriberUsername = $_SESSION['username'];
+        $curators = $data['curators'];
+        $curatorUsernames = '';
+        foreach ($curators as $key => $curator) {
+            $curatorUsernames .= '\''. $curator['username'] . '\',';
+            $curatorsMap[$curator['username']] = [
+                'status' => 'NOT SUBSCRIBED',
+                'reviewCount' => $curator['reviewCount'],
+                'name' => $curator['firstName'] . ' ' . $curator['lastName']
+            ];
         }
-        return ucwords(strtolower($status[0]));
+        $curatorUsernames = rtrim($curatorUsernames, ',');
+        $subscriptions = $this->subscriptionRepository->getSubscriptions($curatorUsernames, $subscriberUsername);
+        foreach ($subscriptions as $sub) {
+            $status = $sub['status'];
+            if ($status == 'ACCEPTED') {
+                $curatorsMap[$sub['curator_username']]['status'] = 'SUBSCRIBED';
+            } else {
+                $curatorsMap[$sub['curator_username']]['status'] = $status;
+            }
+        }
+
+        return ['curators' => $curatorsMap, 'count' => $data['count']];
+    }
+
+    public function getCuratorDetail($curatorUsername) {
+        $subscriberUsername = $_SESSION['username'];
+        $statusData = ($this->getSubscriptionStatus($curatorUsername, $subscriberUsername));
+        if (!$statusData) {
+            $status = 'NOT SUBSCRIBED';
+        } else {
+            $status = $statusData['status'];
+        }
+        $curatorDetails = $this->restApi->getCuratorDetails($curatorUsername, $status);
+        if (!empty($curatorDetails['Review'])) {
+            $reviews = $curatorDetails['Review'];
+            $curatorDetails['Review'] = $this->mapReviewsWithFilms($reviews);
+        }
+        return ['curatorDetails' => $curatorDetails, 'status' => $status];
+    }
+
+    private function mapReviewsWithFilms($reviews) {
+        $filmIds = '';
+        foreach ($reviews as $review) {
+            $filmIds .=  $review['filmId'] . ',';
+        }
+        $filmIds = rtrim($filmIds, ',');
+        $films = ($this->filmService->getFilmTitles(['filmIds' => $filmIds]))['films'];
+        $filmMap = [];
+        foreach ($films as $film) {
+            $filmMap[$film['id']] = ['title' => $film['title'], 'imagePath' => $film['image_path']];
+        }
+        foreach ($reviews as &$review) {
+            $review['title'] = $filmMap[$review['filmId']]['title'];
+            $review['imagePath'] = $filmMap[$review['filmId']]['imagePath'];
+        }
+        return $reviews;
+    }
+
+    public function createSubscription($curatorUsername, $subscriberUsername) {
+        $this->subscriptionRepository->addSubscription($curatorUsername, $subscriberUsername);
+    }
+
+    public function getSubscriptionStatus($curatorUsername, $subscriberUsername) {
+        return $this->subscriptionRepository->getSubscriptionStatus($curatorUsername, $subscriberUsername);
     }
 
     public function getSubscriber($curator_id) {
-        return $this->curatorsRepository->getSubscriberCount($curator_id)[0];
+        return $this->subscriptionRepository->getSubscriberCount($curator_id)[0];
     }
 }
