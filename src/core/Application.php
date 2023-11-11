@@ -9,7 +9,7 @@ use app\exceptions\NotFoundException;
 class Application {
     public static Application $app;
     public static string $BASE_DIR;
-
+    public static $config;
     public static Database $db;
     public Router $router;
     public Request $request;
@@ -19,6 +19,7 @@ class Application {
         self::$app = $this;
         self::$BASE_DIR = $baseDir;
         self::$db = new Database($config['db']);
+        self::$config = $config;
 
         $this->request = new Request();
         $this->response = new Response();

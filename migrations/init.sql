@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS watch_lists;
 DROP TABLE IF EXISTS film_reviews;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS films;
+-- DROP TABLE IF EXISTS subscriptions;
 -- Create 'users' table
 CREATE TABLE IF NOT EXISTS users (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
@@ -51,6 +52,17 @@ CREATE TABLE IF NOT EXISTS watch_lists (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE cascade,
     FOREIGN KEY (film_id) REFERENCES films(id) ON DELETE cascade
 );
+
+-- Create 'subscriptions' table
+CREATE TABLE IF NOT EXISTS subscriptions (
+    curator_username VARCHAR(25) NOT NULL,
+    subscriber_username VARCHAR(25) NOT NULL,
+    status enum('PENDING', 'ACCEPTED', 'REJECTED') NOT NULL DEFAULT 'PENDING',
+    PRIMARY KEY (curator_username, subscriber_username),
+    FOREIGN KEY (subscriber_username) REFERENCES users(username) ON DELETE cascade
+);
+
+
 
 -- Insert sample data for 'users' table
 INSERT INTO users (username, first_name, email, password_hash, profile_picture_path)
@@ -166,3 +178,11 @@ VALUES
     (1, 1),
     (2, 2),
     (3, 3);
+
+INSERT INTO subscriptions (curator_username, subscriber_username, status)
+VALUES
+    ('user1', 'user1', 'ACCEPTED'),
+    ('user2', 'user2', 'ACCEPTED'),
+    ('user3', 'user3', 'PENDING'),
+    ('user4', 'user4', 'PENDING'),
+    ('user5', 'user5', 'REJECTED');

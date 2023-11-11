@@ -63,8 +63,10 @@ class Request
             fclose($putStream);
 
             $putJson = json_decode($putData);
-            foreach($putJson as $key => $value){
-                $data[$key] = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
+            if ($putJson!=null){
+                foreach($putJson as $key => $value){
+                    $data[$key] = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
+                }
             }
         }
         return $data;

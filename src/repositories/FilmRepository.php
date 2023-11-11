@@ -183,4 +183,33 @@ class FilmRepository extends Repository
         $params = ['id' => $id];
         $this->save($query, $params);
     }
+
+    public function getFilmTitles($options) {
+        $params = [];
+        $selectFilmsQuery = 'SELECT f.id, f.title, f.image_path ';
+        $selectCountQuery = 'SELECT COUNT(*) film_count ';
+        $query = 'FROM films AS f';
+        $isFilterOn = false;
+        if (isset($options['search'])) {
+            $query .= ' WHERE title LIKE :search';
+            $search = '%'. $options['search'] . '%';
+            $params = array_merge($params, ['search' => $search]);
+            $isFilterOn = true;
+        }
+        if (isset($options['filmIds'])) {
+            if ($isFilterOn) {
+                $query .= ' AND';
+            }
+            else {
+                $query .= ' WHERE';
+            };
+            $query .= ' f.id in ('.$options['filmIds'].')';
+        }
+        $selectCountQuery .= $query;
+        $query = $this->buildPaginationQuery($query, $options);
+        $selectFilmsQuery .= $query;
+        $films = $this->findAll($selectFilmsQuery, $params);
+        $count = $this->findOne($selectCountQuery, $params);
+        return ['films' => $films, 'count' => $count['film_count']];
+    }
 }

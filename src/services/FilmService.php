@@ -21,6 +21,11 @@ class FilmService extends Service {
         return $this->filmRepository->getAll($options);
     }
 
+    public function getFilmTitles($options = []): array
+    {
+        return $this->filmRepository->getFilmTitles($options);
+    }
+
     public function getFilm(string $id){
         return $this->filmRepository->getById($id);
     }

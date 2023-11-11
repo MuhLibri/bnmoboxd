@@ -1,0 +1,346 @@
+.base-container {
+    gap: 10px;
+}
+
+.curator-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.user-profile {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.user-profile img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+.curator-container {
+    background: var(--clr-background-surface);
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
+    width: 60%;
+    padding: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 100px;
+    height: auto;
+    gap: 10px;
+    border-radius: var(--radius-md);
+    margin-bottom: 30px;
+}
+
+.curator-info{
+    display: flex;
+    flex-direction: row;
+}
+
+#cc1:hover {
+    border: 2px solid var(--clr-primary);
+
+}
+
+.curator-details {
+    margin: auto;
+    width: max-content;
+}
+.curator-name {
+    font-weight: bold;
+}
+
+.curator-info {
+    font-weight: normal;
+    color: var(--clr-muted);
+    gap: 20px;
+}
+
+#cc2 {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.status-section {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.status-text {
+    background-color: var(--clr-primary);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    min-width: 140px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#not-subscribed-label {
+    background-color: var(--clr-secondary);
+}
+
+#pending-label {
+    background-color: #854d0e;
+}
+
+#rejected-label {
+    background-color: var(--clr-danger);
+}
+
+.subscribe-section {
+    width: 70%;
+    min-width: 50%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.inner-subscribe {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.btn-subscribe {
+    padding: 14px 20px;
+    font-weight: bold;
+    border-radius: var(--radius-md);
+    border: none;
+    background-color: var(--clr-secondary);
+    color: white;
+    transition: var(--transition);
+}
+
+.btn-subscribe:hover {
+    background-color: var(--clr-secondary-dark);
+}
+
+.review-container {
+    background: var(--clr-background-surface);
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
+    width: 75%;
+    padding: 50px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#rl1 {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+
+
+#review-container-flex {
+    min-height: 180px;
+    height: auto;
+}
+
+#reviews-page-container {
+    gap: 10px;
+}
+
+#review-container-flex .poster-image {
+    width: 140px;
+    height: 200px;
+}
+
+.profile-picture {
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+    min-height: 80px;
+}
+
+.review-details {
+    width: max-content;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.review-date {
+    font-weight: normal;
+    color: var(--clr-muted);
+}
+
+.review-stars-container {
+    justify-content: left;
+    gap: 12px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.empty-text {
+    color: var(--clr-muted);
+    font-style: italic;
+}
+
+.review-upper-section {
+    display: flex;
+}
+
+
+.film-poster-edit {
+    width: 100%;
+    height: 100%;
+    min-width: 100px;
+    max-width: 300px;
+    max-height: 500px;
+}
+
+.review-button-container {
+    float: right;
+}
+
+.review-button {
+    height: 60px;
+    width: 60px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.edit-review-container {
+    background: var(--clr-background-surface);
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+input[type="radio"] {
+    height: 15px;
+    width: 15px;
+}
+
+
+.star-label {
+    margin-right: 20px;
+}
+
+.edit-star {
+    display: flex;
+    text-align: left;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+
+.edit-textarea {
+    height: 300px;
+    width:700px;
+    background-color: var(--clr-background-disabled);
+    border:none;
+    color: white;
+    padding: 20px;
+}
+
+.review-radio {
+    margin-top: 8px;
+}
+
+.stars-img {
+    margin-bottom: 4px;
+}
+
+
+@media screen and (max-width: 600px) {
+    #review-container-flex {
+        padding: 10px;
+        width: 100%;
+        height: auto;
+        display: flex;
+    }    
+}
+
+@media screen and (max-width: 600px) {
+    .edit-review-container {
+        background: var(--clr-background-surface);
+        box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
+        padding: 0px;
+    }
+    
+    .review-details {
+        width: max-content;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .review-upper-section {
+        display: flex;
+    }
+    
+    .film-poster-edit {
+        display: none;
+    }
+
+    .star-label {
+        margin-right: 5px;
+    }
+
+    .edit-star {
+        display: flex;
+        text-align: left;
+        margin-top: 40px;
+        margin-bottom: 10px;
+    }
+    
+    .review-radio {
+        margin-top: 8px;
+    }
+    
+    .stars-img {
+        margin-bottom: 4px;
+    }
+
+    .edit-textarea {
+        height: 70vw;
+        width:90vw;
+        background-color: var(--clr-background-disabled);
+        border:none;
+        color: white;
+        padding: 20px;
+    }
+
+    #save {
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+
+    #delete {
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    .curator-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .curator-info {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .curator-details{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+}
