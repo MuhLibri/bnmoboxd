@@ -17,7 +17,7 @@ class SoapApi
         $baseUrl = Application::$config['SOAP_BASE_URL'];
         $headers = array(
             "http" => array(
-                "header" => "x-api-key: " . Application::$config['PHP_API_KEY']
+                "header" => "x-api-key: " . Application::$config['SOAP_API_KEY']
             )
         );
 

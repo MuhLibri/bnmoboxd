@@ -17,7 +17,7 @@ class RestApi
 
         // Set common options in the constructor
         $this->baseUrl = Application::$config['REST_API_URL'];
-        $apiKey = Application::$config['PHP_API_KEY'];
+        $apiKey = Application::$config['REST_API_KEY'];
         curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->ch, CURLOPT_HTTPHEADER, ['x-api-key: ' . $apiKey]);
     }

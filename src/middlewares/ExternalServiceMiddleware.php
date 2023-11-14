@@ -14,7 +14,7 @@ class ExternalServiceMiddleware extends Middleware {
         if(!isset($_SERVER['HTTP_X_API_KEY'])){
             throw new UnauthorizedException($isView);
         }
-        if ($_SERVER['HTTP_X_API_KEY'] != Application::$config['SOAP_API_KEY'] && $_SERVER['HTTP_X_API_KEY'] != Application::$config['REST_API_KEY']) {
+        if ($_SERVER['HTTP_X_API_KEY'] != Application::$config['PHP_API_KEY']) {
             throw new UnauthorizedException($isView);
         }
     }
