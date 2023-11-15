@@ -210,14 +210,16 @@ User
 
 ### Server Side
 
-| 13521044 | 13521047          | 13521107 |
-| -------- | ----------------- | -------- |
-|          | Subscription CRUD |          |
+| 13521044                                  | 13521047          | 13521107 |
+| ----------------------------------------- | ----------------- | -------- |
+| Integrated Subscription with REST         | Subscription CRUD |          |
+| Integrated Subscription with SOAP         |                   |          |
 
 ### Client Side
 
-| 13521044 | 13521047                   | 13521107 |
-| -------- | -------------------------- | -------- |
-|          | Curators Page              |          |
-|          | View Curator's Review Page |          |
-|          | Subscribe Functionality    |          |
+| 13521044                          | 13521047                   | 13521107 |
+| --------------------------------- | -------------------------- | -------- |
+| Curators Page integration         | Curators Page              |          |
+| Curators Page pagination          | View Curator's Review Page |          |
+| Curator's Detail integration      | Subscribe Functionality    |          |
+| Responsive curators page          |                            |          |
