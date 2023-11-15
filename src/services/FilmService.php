@@ -159,7 +159,6 @@ class FilmService extends Service {
     private function getPosterImagePath(): ?string
     {
         $posterImagePath = null;
-
         if(isset($_FILES['film_poster']) && $_FILES['film_poster']['name'] !== ''){
             $posterImagePath = saveFile($_FILES['film_poster'], Application::$BASE_DIR . '/public/assets/films/');
         }
