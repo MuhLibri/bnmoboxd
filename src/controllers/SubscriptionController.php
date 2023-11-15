@@ -32,7 +32,7 @@ class SubscriptionController extends Controller {
      */
     public function update(Request $request) {
         $subscriptionData = $request->getBody();
-        $this->subscriptionService->updateSubscription($subscriptionData);
+        return $this->subscriptionService->updateSubscription($subscriptionData);
     }
 
 }

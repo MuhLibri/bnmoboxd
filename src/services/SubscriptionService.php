@@ -21,6 +21,6 @@ class SubscriptionService extends Service {
     public function updateSubscription($subscriptionData) {
         $errors = $this->validateRequired($subscriptionData, ['curatorUsername', 'subscriberUsername', 'status']);
         $this->handleValidationErrors($errors);
-        $this->subscriptionRepository->updateSubscription($subscriptionData['curatorUsername'], $subscriptionData['subscriberUsername'], $subscriptionData['status']);
+        return $this->subscriptionRepository->updateSubscription($subscriptionData['curatorUsername'], $subscriptionData['subscriberUsername'], $subscriptionData['status']);
     }
 }
