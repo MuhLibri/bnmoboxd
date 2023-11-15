@@ -47,7 +47,7 @@ class SubscriptionRepository extends Repository {
     {
         $query = 'UPDATE subscriptions
               SET status =:status
-              WHERE curatorUsername = :curatorUsername AND subscriberUsername = :subscriberUsername';
+              WHERE curator_username = :curatorUsername AND subscriber_username = :subscriberUsername';
         $params = [
             'curatorUsername' => $curatorUsername,
             'subscriberUsername' => $subscriberUsername,

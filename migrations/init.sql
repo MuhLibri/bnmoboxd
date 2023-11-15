@@ -178,11 +178,3 @@ VALUES
     (1, 1),
     (2, 2),
     (3, 3);
-
-INSERT INTO subscriptions (curator_username, subscriber_username, status)
-VALUES
-    ('user1', 'user1', 'ACCEPTED'),
-    ('user2', 'user2', 'ACCEPTED'),
-    ('user3', 'user3', 'PENDING'),
-    ('user4', 'user4', 'PENDING'),
-    ('user5', 'user5', 'REJECTED');
