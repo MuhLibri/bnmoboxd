@@ -10,6 +10,10 @@ function showCuratorProfile($data) {
     $reviewCount = $curatorDetails['reviewCount'];
 //    $subscriber = $data['subscriber'];
     $profileImg = '/assets/users/blank.jpeg';
+    if (isset($curatorDetails['profileImage'])  && $curatorDetails['profileImage']!='') {
+        $profileImg = Application::$config['REST_CLIENT_API_URL'] . '/static/images/' . $curatorDetails['profileImage'];
+    }
+    $bio = $curatorDetails['bio'];
     $status = $data['status'];
     $statusLabelId = 'not-subscribed-label';
     if ($status == 'SUBSCRIBED') {
@@ -31,6 +35,7 @@ function showCuratorProfile($data) {
             <div class="curator-details">
                 <h5 class="curator-name">$name</h5>
                 <h6 class="curator-info">$reviewCount review</h6>
+                <p>$bio</p>
             </div>
         </div>
         <div class="status-section">
@@ -78,7 +83,7 @@ function showCuratorReviews($data) {
                 $dtUpdate = new DateTime($review['updatedAt']);
                 $dateCreate = $dtCreate->format('M d, Y');
                 $dateUpdate = $dtCreate != $dtUpdate ? ' • Updated on ' . $dtUpdate->format('M d, Y') : '';
-    
+
                 $starsHtml = str_repeat('<img src="/assets/app/star.png" alt="star" class="stars-img">', $rating);
                 $html = <<<EOT
                 <div class="review-container" id="review-container-flex">                                                                                                                                     
@@ -114,17 +119,17 @@ function showCuratorReviews($data) {
 
 <div class="base-container">
     <?php
-        echo showCuratorProfile($data);
+    echo showCuratorProfile($data);
     ?>
     <div>
-         <h5 class="section-title">REVIEWS</h5>
+        <h5 class="section-title">REVIEWS</h5>
     </div>
     <div class="review-list" id="rl1">
         <?php
-            echo showCuratorReviews($data);
-            if (isset($data['count']) && isset($data['currentPage']) && $data['status'] == 'ACCEPTED') {
-                include Application::$BASE_DIR . '/src/views/components/pagination.php';
-            }
+        echo showCuratorReviews($data);
+        if (isset($data['count']) && isset($data['currentPage']) && $data['status'] == 'ACCEPTED') {
+            include Application::$BASE_DIR . '/src/views/components/pagination.php';
+        }
         ?>
     </div>
 

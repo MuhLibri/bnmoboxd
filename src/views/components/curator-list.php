@@ -21,6 +21,10 @@ function curatorList($data) {
                 $statusLabelId = 'pending-label';
             }
             $profileImg = '/assets/users/blank.jpeg';
+            if (isset($detail['profileImage'])  && $detail['profileImage']!='') {
+                $profileImg = Application::$config['REST_CLIENT_API_URL'] . '/static/images/' . $detail['profileImage'];
+            }
+            $bio = $detail['bio'];
             $html = <<<EOT
             <a href="/curators/$username" class="curator-container" id="cc1">
                 <div class="curator-info"> 
@@ -30,6 +34,7 @@ function curatorList($data) {
                     <div class="curator-details">
                         <h5 class="curator-name">$name</h5>
                         <h6 class="curator-info">$reviewCount review</h6>
+                        <p>$bio</p>
                     </div>
                 </div>
                 <div class="status-section">

@@ -79,21 +79,21 @@ VALUES
 
 INSERT INTO films (title, release_year, director, description, image_path, genre, video_path)
 VALUES
-    ('Barbie', 2023, 'Greta Gerwig', 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg', 'Fantasy', 'barbie.mp4'),
-    ('Oppenheimer', 2022, 'Christopher Nolan', 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg', 'Drama', 'Oppenheimer.mp4'),
-    ('Spiderman: Into The Spiderverse', 2021, 'Rodney Rothman, Peter Ramsey, Bob Persichetti', 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg', 'Action', 'spiderman.mp4'),
-    ('Mission Impossible', 2023, 'Tom Cruise', 'Ethan Hunt and his IMF team must track down a dangerous weapon before it falls into the wrong hands.', 'mission-impossible.jpeg', 'Action', 'Mission Impossible.mp4'),
-    ('Infinity War', 2018, 'Russo Brothers', 'The Avengers must stop Thanos, an intergalactic warlord, from getting his hands on all the infinity stones. However, Thanos is prepared to go to any lengths to carry out his insane plan.', 'infinity-war.jpeg', 'Action', 'Infinity War.mp4'),
-    ('Inception', 2010, 'Christopher Nolan', 'A thief who enters the dreams of others to steal their secrets is hired for a final job: planting an idea in a person''s subconscious.', 'inception.jpeg', 'Sci-Fi', 'Inception.mp4'),
-    ('Jurassic Park', 1993, 'Steven Spielberg', 'A wealthy entrepreneur creates a theme park with cloned dinosaurs, but things go awry when the dinosaurs escape and wreak havoc.', 'jurassic-park.jpeg', 'Sci-Fi', 'Jurassic Park.mp4'),
-    ('Avatar', 2009, 'James Cameron', 'A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.', 'avatar.jpg', 'Sci-Fi', 'Avatar.mp4'),
-    ('Alien', 1979, 'Ridley Scott', 'A commercial spaceship crew discovers a deadly alien creature and must fight for their lives as it hunts them down.', 'alien.jpeg', 'Sci-Fi', 'Alien.mp4'),
-    ('Forrest Gump', 1994, 'Robert Zemeckis', 'The life journey of a man with low intelligence who inadvertently influences historical events in the United States.', 'forrest-gump.jpeg', 'Drama', 'Forrest Gump.mp4'),
-    ('The Shining', 1980, 'Stanley Kubrick', 'A family heads to an isolated hotel for the winter, where an evil and supernatural presence influences the father into violence.', 'the-shining.jpeg', 'Horror', 'The Shining.mp4'),
-    ('Interstellar', 2014, 'Christopher Nolan', 'A team of explorers travels through a wormhole in space in an attempt to ensure humanity''s survival.', 'interstellar.jpg', 'Sci-Fi', 'Interstellar.mp4'),
-    ('The Revenant', 2015, 'Alejandro González Iñárritu', 'A frontiersman on a fur trading expedition fights for survival after being mauled by a bear and left for dead by members of his own hunting team.', 'revenant.jpeg', 'Action', 'The Revenant.mp4'),
-    ('Pulp Fiction', 1994, 'Quentin Tarantino', 'The lives of two mob hitmen, a boxer, a gangster''s wife, and a pair of diner bandits intertwine in four tales of violence and redemption.', 'pulp-function.jpeg', 'Drama', 'Pulp Fiction.mp4'),
-    ('Gladiator', 2000, 'Ridley Scott', 'A betrayed Roman general seeks revenge against the corrupt emperor who murdered his family and sent him into slavery.', 'gladiator.jpeg', 'Action', 'GLADIATOR.mp4');
+    ('Barbie 1', 2023, 'Greta Gerwig', 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg', 'Fantasy', 'barbie.mp4'),
+    ('Oppenheimer 1', 2022, 'Christopher Nolan', 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg', 'Drama', 'Oppenheimer.mp4'),
+    ('Spiderman: Into The Spiderverse 1', 2021, 'Rodney Rothman, Peter Ramsey, Bob Persichetti', 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg', 'Action', 'spiderman.mp4'),
+    ('Mission Impossible 1', 2023, 'Tom Cruise', 'Ethan Hunt and his IMF team must track down a dangerous weapon before it falls into the wrong hands.', 'mission-impossible.jpeg', 'Action', 'Mission Impossible.mp4'),
+    ('Infinity War 1', 2018, 'Russo Brothers', 'The Avengers must stop Thanos, an intergalactic warlord, from getting his hands on all the infinity stones. However, Thanos is prepared to go to any lengths to carry out his insane plan.', 'infinity-war.jpeg', 'Action', 'Infinity War.mp4'),
+    ('Inception 1', 2010, 'Christopher Nolan', 'A thief who enters the dreams of others to steal their secrets is hired for a final job: planting an idea in a person''s subconscious.', 'inception.jpeg', 'Sci-Fi', 'Inception.mp4'),
+    ('Jurassic Park 1', 1993, 'Steven Spielberg', 'A wealthy entrepreneur creates a theme park with cloned dinosaurs, but things go awry when the dinosaurs escape and wreak havoc.', 'jurassic-park.jpeg', 'Sci-Fi', 'Jurassic Park.mp4'),
+    ('Avatar 1', 2009, 'James Cameron', 'A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.', 'avatar.jpg', 'Sci-Fi', 'Avatar.mp4'),
+    ('Alien 1', 1979, 'Ridley Scott', 'A commercial spaceship crew discovers a deadly alien creature and must fight for their lives as it hunts them down.', 'alien.jpeg', 'Sci-Fi', 'Alien.mp4'),
+    ('Forrest Gump 1', 1994, 'Robert Zemeckis', 'The life journey of a man with low intelligence who inadvertently influences historical events in the United States.', 'forrest-gump.jpeg', 'Drama', 'Forrest Gump.mp4'),
+    ('The Shining 1', 1980, 'Stanley Kubrick', 'A family heads to an isolated hotel for the winter, where an evil and supernatural presence influences the father into violence.', 'the-shining.jpeg', 'Horror', 'The Shining.mp4'),
+    ('Interstellar 1', 2014, 'Christopher Nolan', 'A team of explorers travels through a wormhole in space in an attempt to ensure humanity''s survival.', 'interstellar.jpg', 'Sci-Fi', 'Interstellar.mp4'),
+    ('The Revenant 1', 2015, 'Alejandro González Iñárritu', 'A frontiersman on a fur trading expedition fights for survival after being mauled by a bear and left for dead by members of his own hunting team.', 'revenant.jpeg', 'Action', 'The Revenant.mp4'),
+    ('Pulp Fiction 1', 1994, 'Quentin Tarantino', 'The lives of two mob hitmen, a boxer, a gangster''s wife, and a pair of diner bandits intertwine in four tales of violence and redemption.', 'pulp-function.jpeg', 'Drama', 'Pulp Fiction.mp4'),
+    ('Gladiator 1', 2000, 'Ridley Scott', 'A betrayed Roman general seeks revenge against the corrupt emperor who murdered his family and sent him into slavery.', 'gladiator.jpeg', 'Action', 'GLADIATOR.mp4');
 
 
 -- Insert sample data for 'films' table
@@ -129,11 +129,11 @@ VALUES
     ('A Beautiful Mind', 2001, 'Ron Howard', 'The life of mathematician John Nash, who overcame schizophrenia to win the Nobel Prize in Economics.', 'beautiful-mind.jpeg', 'Drama'),
     ('The Green Mile', 1999, 'Frank Darabont', 'The lives of guards on Death Row are affected by one of their charges: a black man accused of child murder and rape, yet who has a mysterious gift.', 'green-mile.jpg', 'Drama'),
     ('Barbie', 2023, 'Greta Gerwig', 'Barbie suffers a crisis that leads her to question her world and her existence.', 'barbie.jpg', 'Fantasy'),
-    ('Oppenheimer', 2022, 'Christopher Nolan', 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg', 'Drama'),
-    ('Spiderman: Into The Spiderverse', 2021, 'Rodney Rothman, Peter Ramsey, Bob Persichetti', 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg', 'Action'),
-    ('Mission Impossible', 2023, 'Tom Cruise', 'Ethan Hunt and his IMF team must track down a dangerous weapon before it falls into the wrong hands.', 'mission-impossible.jpeg', 'Action'),
-    ('Everything Everywhere All At Once', 2022, 'Michelle Yeoh', 'When an interdimensional rupture unravels reality, an unlikely hero must channel her newfound powers to fight bizarre and bewildering dangers from the multiverse as the fate of the world hangs in the balance.', 'Everything Everywhere.jpeg', 'Sci-Fi'),
-    ('Infinity War', 2018, 'Russo Brothers', 'The Avengers must stop Thanos, an intergalactic warlord, from getting his hands on all the infinity stones. However, Thanos is prepared to go to any lengths to carry out his insane plan.', 'infinity-war.jpeg', 'Action');
+    ('Oppenheimer 2', 2022, 'Christopher Nolan', 'The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.', 'oppenheimer.jpg', 'Drama'),
+    ('Spiderman: Into The Spiderverse 2', 2021, 'Rodney Rothman, Peter Ramsey, Bob Persichetti', 'Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.', 'spiderverse.jpg', 'Action'),
+    ('Mission Impossible 2', 2023, 'Tom Cruise', 'Ethan Hunt and his IMF team must track down a dangerous weapon before it falls into the wrong hands.', 'mission-impossible.jpeg', 'Action'),
+    ('Everything Everywhere All At Once 2', 2022, 'Michelle Yeoh', 'When an interdimensional rupture unravels reality, an unlikely hero must channel her newfound powers to fight bizarre and bewildering dangers from the multiverse as the fate of the world hangs in the balance.', 'Everything Everywhere.jpeg', 'Sci-Fi'),
+    ('Infinity War 2', 2018, 'Russo Brothers', 'The Avengers must stop Thanos, an intergalactic warlord, from getting his hands on all the infinity stones. However, Thanos is prepared to go to any lengths to carry out his insane plan.', 'infinity-war.jpeg', 'Action');
 
 -- Insert sample data for 'film_reviews' table
 INSERT INTO film_reviews (film_id, user_id, rating, review)
@@ -173,8 +173,26 @@ VALUES
     (20, 3, 3, 'Good movie');
 
 -- Insert sample data for 'watch_lists' table
-INSERT INTO watch_lists (user_id, film_id)
+INSERT INTO subscriptions (curator_username, subscriber_username, status)
 VALUES
-    (1, 1),
-    (2, 2),
-    (3, 3);
+    ('curator1', 'user1', 'ACCEPTED'),
+    ('curator1', 'user2', 'PENDING'),
+    ('curator1', 'user3', 'ACCEPTED'),
+    ('curator1', 'user4', 'PENDING'),
+    ('curator1', 'user5', 'ACCEPTED'),
+    ('curator2', 'user1', 'PENDING'),
+    ('curator2', 'user4', 'REJECTED'),
+    ('curator2', 'user5', 'PENDING'),
+    ('curator3', 'user5', 'PENDING'),
+    ('curator4', 'user1', 'PENDING'),
+    ('curator4', 'user2', 'PENDING'),
+    ('curator5', 'user3', 'PENDING'),
+    ('curator6', 'user3', 'PENDING'),
+    ('curator6', 'user5', 'PENDING'),
+    ('curator7', 'user1', 'ACCEPTED'),
+    ('curator7', 'user2', 'PENDING'),
+    ('curator7', 'user3', 'PENDING'),
+    ('curator7', 'user4', 'REJECTED'),
+    ('curator8', 'user5', 'PENDING'),
+    ('curator10', 'user1', 'REJECTED'),
+    ('curator10', 'user4', 'REJECTED');

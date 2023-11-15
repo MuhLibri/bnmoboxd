@@ -84,7 +84,9 @@ class CuratorsService extends Service {
             $curatorsMap[$curator['username']] = [
                 'status' => 'NOT SUBSCRIBED',
                 'reviewCount' => $curator['reviewCount'],
-                'name' => $curator['firstName'] . ' ' . $curator['lastName']
+                'name' => $curator['firstName'] . ' ' . $curator['lastName'],
+                'profileImage' => $curator['profileImage'],
+                'bio' => $curator['bio']
             ];
         }
         $curatorUsernames = rtrim($curatorUsernames, ',');

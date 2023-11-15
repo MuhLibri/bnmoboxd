@@ -47,6 +47,7 @@ $config = [
         'username' => $_ENV['MYSQL_USER'],
         'password' => $_ENV['MYSQL_PASSWORD'],
     ],
+    'REST_CLIENT_API_URL' => $_ENV['REST_CLIENT_API_URL'],
     'REST_API_URL' => $_ENV['REST_API_URL'],
     'REST_API_KEY' => $_ENV['REST_API_KEY'],
     'SOAP_BASE_URL' => $_ENV['SOAP_BASE_URL'],
