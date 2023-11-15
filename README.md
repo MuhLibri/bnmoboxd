@@ -173,11 +173,12 @@ Admin
 
 |            Nama            |   NIM    |
 | :------------------------: | :------: |
-|    Rachel Gabriela Chen    | 13521044 |
+| Rachel Gabriela Chen       | 13521044 |
 | Muhammad Equilibrie Fajria | 13521047 |
-|  Jericho Russel Sebastian  | 13521107 |
+| Jericho Russel Sebastian   | 13521107 |
 
-What's New?
+
+# What's New?
 
 ## Fitur
 
