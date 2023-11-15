@@ -223,3 +223,39 @@ User
 | Curators Page pagination          | View Curator's Review Page |          |
 | Curator's Detail integration      | Subscribe Functionality    |          |
 | Responsive curators page          |                            |          |
+
+## OWASP
+This application is safe from:
+**1. SQL Injection**
+SQL Injection occurs when _attacker_ injects mallicious code into input forms that can execute unwanted SQL commands. This attack usually occurs when the appplication fails to sanitize the input and doesn't prepare the statements before exxecuting SQL query.
+Example of a vulnerable code:
+```
+<?php
+// Vulnerable code
+$user_input = $_GET['username'];
+$sql_query = "SELECT * FROM users WHERE username = '" . $user_input . "'";
+$result = mysqli_query($conn, $sql_query);
+?>
+```
+The problem with the code above is that, it straight up takes the 'username' from the query params without sanitizing it or preparing it as params. This will cause the input to be intepreted as SQL query. Attackers can exploit this by inputting params like:
+`admin' or 1=1 --`
+
+The `1=1` makes the statement true regardless or the other conditions and the `--` comments out the rest of the query.
+
+This attack is prevented in our app by using:
+1. Input Sanitazion
+![image](documentations/owasp/input-sanitazion.png)
+2. Input Validation
+3. Parameterized Statements
+![image](documentations/owasp/parameterized.png)
+![image](documentations/owasp/sqli.png)
+
+**2. File Upload Vulnerability**
+File upload vulnerability refers to a security issue in web applications that allows an attacker to upload and execute malicious files. This type of vulnerability is particularly dangerous because it can lead to a range of attacks, including remote code execution, unauthorized access, and various forms of malware injection. Here are the key aspects of file upload vulnerabilities. 
+
+PHP is often vulnerable to this attack due to improper use of file_get_contents()
+
+This attack is prevented in our app by using:
+1. No usage of file_get_contents() to load files, instead we use html's `src`
+2. Filetype checking
+![image](documentations/owasp/filetype-checking.png)
